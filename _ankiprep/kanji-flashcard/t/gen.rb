@@ -5,12 +5,13 @@ $GIFDIR = 'D:/Japanese/_dict/gif'
 $HEISIG_DIR = "D:/Japanese/_dict/heisig"
 
 Dir.mkdir "__gen" unless File.exist? "__gen"
+Dir.mkdir "__gen/kanji-flashcards" unless File.exist? "__gen/kanji-flashcards"
 
 t = T.new('..')
 
 # make report flashcard files
 
-File.open("__gen/k4f1a.html", 'w') do |f|
+File.open("__gen/kanji-flashcards/k4f1a.html", 'w') do |f|
   f.write t['flashcard.html'].apply_ifdef('REPORT').with(
     UTF16: "4f1a",
     DATA: File.read('__testpage/data.json', mode:'r:UTF-8'),
