@@ -4,7 +4,7 @@ require_relative '../kanji-wordlist/format'
 require_relative '../kanji-flashcard/format'
 require_relative '../kanji-index/index'
 
-$REPORTDIR = '__report__'
+$REPORTDIR = '__OUT__'
 
 
 module Kanji

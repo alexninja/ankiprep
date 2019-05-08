@@ -54,7 +54,7 @@ private
       puts
     else
       @input_file_present = false
-      puts "Not Found. Will Regenerate Everything in __report__!"
+      puts "Not Found. Will Regenerate Everything in __OUT__!"
     end
     #p (anki.values + rikai.values).map {|ar| ar.size}.to_set
 

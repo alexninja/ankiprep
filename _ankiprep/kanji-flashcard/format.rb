@@ -43,7 +43,7 @@ module Flashcard
   end
 
   def Flashcard.make_card(k)
-    # creates the kanji's html flashcard in __report__/kanji-flashcards (for display by server.rb),
+    # creates the kanji's html flashcard in __OUT__/kanji-flashcards (for display by server.rb),
     # prepopulated with the data json and the word_counts json.
     # also returns the data json for Anki import txt file
 
