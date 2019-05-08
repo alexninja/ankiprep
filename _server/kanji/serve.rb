@@ -1,0 +1,116 @@
+require 'misc/template'
+
+$HEISIG_DIR = "D:/Japanese/_dict/heisig"
+
+module Kanji
+
+  KanjiData = Struct.new(:time, :chunks)
+
+  @t = T.new('kanji')
+  @data = Hash.new
+
+  def Kanji.serve(url, s)
+
+    @data.delete_if {|k,v| (Time.now - v.time) > 10}
+
+    if m = url.match(/^kanji\/([0-9a-fA-F]{4})$/)
+      utf16 = m[1]
+      s.print "HTTP/1.1 200/OK\r\n"
+      s.print "Content-type: text/html\r\n\r\n"
+      s.print @t['redirect.html'].with(UTF16: utf16)
+
+    elsif m = url.match(/^kanji\/(set|copy)\/([0-9a-fA-F]{4})\/(\d+)\/(\d+)\/(.+)$/)
+      op, utf16, cur, tot, chunk = m[1], m[2], m[3], m[4], m[5]
+      if op == "copy" && @last_copy
+        elapsed = (Time.now - @last_copy).to_i
+        if (elapsed < 1)
+          s.print "HTTP/1.1 200/OK\r\n"
+          s.print "Content-type: text/html\r\n\r\n"
+          s.print "too early"
+          puts "copy aborted (within 1s of last; prevent double click)"
+          return
+        end
+      end
+      unless @data.has_key? utf16
+        @data[utf16] = KanjiData.new(Time.now, [nil] * tot.to_i)
+      end
+      @data[utf16].chunks[cur.to_i - 1] = chunk
+      @data[utf16].time = Time.now
+      puts "[got chunk #{cur}/#{tot} for #{utf16}]"
+      if op == "copy"
+        s.print "HTTP/1.1 200/OK\r\n"
+        s.print "Content-type: text/plain\r\n\r\n"
+        if @data[utf16].chunks.all? {|c| c != nil}
+          data = @data[utf16].chunks.join
+          result = `copytocb.exe #{data}`
+          puts result
+          s.print result
+          @data.delete utf16
+          puts "running `AutoIt3.exe ankipaste.au3`"
+          puts `AutoIt3.exe ankipaste.au3`
+          @last_copy = Time.now
+        else
+          s.print "moar"
+        end
+      end
+
+    elsif m = url.match(/^kanji\/show\/([0-9a-fA-F]{4})$/)
+      utf16 = m[1]
+      s.print "HTTP/1.1 200/OK\r\n"
+      s.print "Content-type: text/html\r\n\r\n"
+      if @data.has_key?(utf16) && @data[utf16].chunks.all? {|c| c != nil}
+        # data available, load the two-frame html
+        s.print @t['report.html'].with(UTF16: utf16)
+      else
+        # keep redirecting until we have data
+        s.print @t['redirect.html'].with(UTF16: utf16)
+      end
+
+    elsif m = url.match(/^kanji\/show\/(kanji-flashcards|kanji-wordlists)\/(.+)\.(.+)$/)
+      dir, file, ext = m[1], m[2], m[3]
+      path = "../_ankiprep/__report__/#{dir}/#{file}.#{ext}"
+      if ext == "html"
+        return unless m = file.match(/^([kw])([0-9a-fA-F]{4})$/)
+        prefix, utf16 = m[1], m[2]
+        html = File.read(path, mode:'r:UTF-8')
+        if dir == "kanji-flashcards" && prefix == "k"
+          data_override = CGI.unescape( @data[utf16].chunks.join )
+          html.sub!("var _data_override = null", "var _data_override = #{data_override}")
+#          @data.delete utf16
+        end
+        s.print "HTTP/1.1 200/OK\r\n"
+        s.print "Content-type: text/html\r\n\r\n"
+        s.print html
+      elsif ext == "js"
+        s.print "HTTP/1.1 200/OK\r\n"
+        s.print "Content-type: text/javascript\r\n\r\n"
+        s.print File.read(path, mode:'r:UTF-8')
+      elsif ext == "css"
+        s.print "HTTP/1.1 200/OK\r\n"
+        s.print "Content-type: text/css\r\n\r\n"
+        s.print File.read(path, mode:'r:UTF-8')
+      elsif ext == "png" || ext == "gif"
+        path = "#{$GIFDIR}/#{file}.#{ext}" if ext == "gif"
+        if File.exist? path
+          s.print "HTTP/1.1 200/OK\r\n"
+          s.print "Content-Type: image/#{ext}\r\n"
+          s.print "Accept-Ranges: bytes\r\n"
+          s.print "Content-Length: #{File.size(path)}\r\n\r\n"
+          s.print open(path,'rb') {|io| io.read}
+        else
+          s.print "HTTP/1.1 404 Not Found\r\n"
+        end
+      end
+
+    elsif m = url.match(/^kanji\/heisig\/(\d+\.png)$/)
+      path = "#{$HEISIG_DIR}/#{m[1]}"
+      s.print "HTTP/1.1 200/OK\r\n"
+      s.print "Content-Type: image/png\r\n"
+      s.print "Accept-Ranges: bytes\r\n"
+      s.print "Content-Length: #{File.size(path)}\r\n\r\n"
+      s.print open(path,'rb') {|io| io.read}
+
+    end
+  end
+
+end # module

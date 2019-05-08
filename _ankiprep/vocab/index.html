@@ -1,0 +1,51 @@
+<html>
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link type="text/css" rel="stylesheet" href="index.css">
+
+<script language="javascript">
+  function pageloaded(pageid) {
+    for (var i = 0; i < $PAGECOUNT; i++) {
+      var elem = document.getElementById('item'+i);
+      if (elem) {
+        var className = (i == pageid) ? 'item-hl' : 'item';
+        elem.className = className;
+      }
+    }
+    parent.wordlist.focus();
+  }
+</script>
+
+<style type="text/css">
+  div.item {
+    font-family: "Courier New";
+    font-size: 9pt;
+  }
+  div.item-hl {
+    font-family: "Courier New";
+    font-size: 9pt;
+    background-color: #CCFF66;
+  }
+  div.item-d {
+    font-family: "Courier New";
+    font-size: 9pt;
+    color: #C8C8C8;
+  }
+  div.item:hover { background-color: yellow; }
+  A:link    {text-decoration: none; color: 0;}
+  A:visited {text-decoration: none; color: 0;}
+  A:active  {text-decoration: none; color: 0;}
+</style>
+
+</head>
+
+
+<body>
+
+$ITEMS
+
+</body>
+
+</html>

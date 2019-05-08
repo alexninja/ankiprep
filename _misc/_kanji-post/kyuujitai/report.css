@@ -1,0 +1,37 @@
+  table {
+    border-collapse: collapse;
+  }
+
+  table td {
+    width: 80px;
+    font-size: 32pt;
+    text-align: left;
+    vertical-align: middle;
+    border: 1px dotted gray;
+    padding: 3px;
+  }
+
+  table td.header {
+    width: 150px;
+    font-size: 12pt;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px dotted gray;
+    border-bottom: 2px solid black;
+    padding: 3px;
+  }
+
+  table td.nr {
+    width: 45px;
+    font-size: 10pt;
+    text-align: left;
+    vertical-align: middle;
+    border: 1px dotted gray;
+    padding: 3px;
+    padding-left: 8px;
+  }
+
+  table tr.diff {
+    background-color: #FFCCCC;
+  }
+

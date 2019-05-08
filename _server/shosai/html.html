@@ -1,0 +1,30 @@
+<html>
+
+<head>
+
+<title>$TITLE</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link type="text/css" rel="stylesheet" href="style.css">
+
+<script type="text/javascript">
+  function animated(name) {
+    document.images[name].src = 'file:///$GIFDIR/' + name + '-fast.gif';
+  }
+  function static(name) {
+    document.images[name].src = 'file:///$GIFDIR/' + name + '-static.gif';
+  }
+  function load(url) {
+    window.open(url)
+  }
+</script>
+
+</head>
+
+<body>
+
+$BODY
+
+</body>
+
+</html>

@@ -1,0 +1,127 @@
+﻿OBSOLETE
+show the full edict definition in a really small font
+leave a field for "example sentence using this word"
+open a page with kanji animations leeched from the two places, animate only on hover
+
+熟語 are fuckin insane. unless you know the word, you can't understand its meaning when you hear it. Cram lots of jukugo, recognition only.
+
+about the above: ramen may already contain way too many words I may not need to write under this new scheme. Maybe mark their "production" with a star or something for easy deletion.
+
+generalization: keep "production" cards, even for the loads of new jukugo, just mark them as "no need to write"
+
+also just hiragana yomikata as question, will help with listening skills.
+
+recognition only! single kanji, recall all readings
+
+go through ramen, make up for all missing yomi
+
+of course, rikaichan-like legend for all contained kanji
+
+what to do about doctored definitions like 形　貌　容?
+END OBSOLETE
+
+-------------
+takes in expr\t\reading\tmeaning
+
+;;identify defs with , or " " or "　" in them ;;maybe no need
+rather, identify *readings* with , or " " or "　" in them
+deuglify meanings
+look up kanji, make table
+
+================================
+fields:
+
+expr
+kana
+teigi
+links (to fill teigi: http://dictionary.goo.ne.jp/ http://www.sanseido.net/ http://dic.yahoo.co.jp/ http://www.alc.co.jp/
+       plus link to generated page containing gifs from http://kakijun.main.jp/main/start.html)
+kanji (generated pngs)
+orig_eigo [HIDDEN, visible only in edit]
+edict_eigo [HIDDEN, visible only in edit]
+
+
+ramen kana is ignored completely
+signal error if expr is not in edict
+==1== if an expr has multiple kana with multiple eigo, consolidate, example:
+
+中 => うち、なか、じゅう、ちゅう <== the (P) ones first!
+"うち inside; within; while; among; amongst; between; we (referring to one's in-group, i.e. company, etc.); my spouse; imperial palace grounds; emperor; I (primarily used by women and children)
+なか inside; in; among; within; center (centre); middle; during; while
+じゅう through; throughout; in the course of; all over or throughout (e.g. a place)
+ちゅう medium; average; middle; moderation; middle school; China; in; out of (e.g. three out of ten people); during (a certain time when one did or is doing something)"
+
+==2== if an expr's kana and eigo are shared by other exprs in edict, consolidate, example:
+逢う 遇う 遭う => あう
+"to meet; to encounter; to have an accident; to have a bad experience"
+
+THERE was also a situation where a middle kana was optional, can't recall now.
+Seems to be covered by the above.
+found it:
+関る かかわる
+関わる かかわる
+to be affected; to be influenced; to be concerned with; to have to do with; to stick to (opinions)
+
+==3== if an expr has multiple kana and different meanings, create distinct entries, example:
+潜る くぐる
+to drive; to pass through; to pass under; to evade; to hide; to survive
+潜る もぐる
+to dive (into or under water); to get in; to go underground
+
+IN ALL CASES, EIGO IS HIDDEN
+
+
+
+use better comma
+fix (P) in eigoc_annot
+if a card in anki is deleted, is the media deleted too? lots of cards for 中 will be deleted, so better make sure their ONLY png is not deleted along with them
+
+
+problem.
+
+永年 ながねん long time; many years; (P)
+
+also gives
+長年 ながねん long time; many years; (P)
+
+as well as
+長年 えいねん long time; many years; (P)
+永年 えいねん long time; many years
+
+
+
+
+analysis:
+
+from 永年 I get
+永年 ながねん long time; many years; (P)
+永年 えいねん long time; many years
+
+both have "same-kana" alternatives:
+長年 ながねん long time; many years; (P)
+長年 えいねん long time; many years; (P)
+
+so I have 4 entries to shrink:
+永年 ながねん long time; many years; (P)
+永年 えいねん long time; many years
+長年 ながねん long time; many years; (P)
+長年 えいねん long time; many years; (P)
+
+
+into one:
+永年、長年 ながねん、えいねん long time; many years;
+
+
+solution:
+first expand the "same-kana", then contract what's possible
+
+
+
+another one for the test: 紅葉 (nothing new)
+
+
+
+
+
+
+

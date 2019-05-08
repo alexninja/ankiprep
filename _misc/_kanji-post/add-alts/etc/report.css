@@ -1,0 +1,42 @@
+
+  body {
+    background-color: white;
+    color: black;
+  }
+
+  table.card {
+    margin: 0;
+    margin-top: 30px;
+    border: 2px solid blue;
+    border-collapse: collapse;
+  }
+  table.card td {
+    font-family: "Courier New";
+    font-size: 9pt;
+    border: 1px dotted #D0D0D0;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 2px;
+    padding-bottom: 3px;
+  }
+  table.card td span.fragment {
+    background-color: #FFFF99;
+  }
+  table.card td span.changed {
+    color: red;
+    font-weight: normal;
+  }
+  table.card td.orig-line {
+    border-bottom: 1px solid black;
+    line-height: 170%;
+  }
+  table.card td.final-line {
+    border-top: 1px solid black;
+    line-height: 170%;
+  }
+  table.card td.heading {
+    width: 40px;
+  }
+  table.card td.kana {
+    border-top: 1px solid black;
+  }

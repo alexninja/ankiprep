@@ -1,0 +1,81 @@
+  body {
+    background-color: white;
+  }
+  table.onyomi {
+    margin: 5px;
+    border: 1px dotted #B0B0B0;
+    border-collapse: collapse;
+    margin-left: 30px;
+  }
+  td.expr {
+    font-family: "MS PMincho";
+    font-size: 14pt;
+    border: 1px dotted #B0B0B0;
+    vertical-align: middle;
+    text-align: center;
+    min-width: 250px;
+  }
+  .kana {
+    font-size: 11pt;
+  }
+  td.yomi {
+    background-color: #F0F8FF;
+    font-weight: normal;
+    font-family: "MS PMincho";
+    font-size: 11pt;
+    padding: 1px;
+    border: 1px dotted #B0B0B0;
+    vertical-align: middle;
+    text-align: center;
+  }
+  td.yomi-faded {
+    color: #D0D0D0;
+    font-family: "MS PMincho";
+    font-size: 11pt;
+    padding: 1px;
+    border: 1px dotted #B0B0B0;
+    vertical-align: middle;
+    text-align: center;
+  }
+  td.frag {
+    font-family: "MS PMincho";
+    font-size: 11pt;
+    padding: 1px;
+    border: 1px dotted #B0B0B0;
+    vertical-align: middle;
+    text-align: center;
+  }
+  td.frag-faded {
+    color: #D0D0D0;
+    font-family: "MS PMincho";
+    font-size: 11pt;
+    padding: 1px;
+    border: 1px dotted #B0B0B0;
+    vertical-align: middle;
+    text-align: center;
+  }
+  td.moji {
+    font-family: "MS PMincho";
+    font-size: 40pt;
+    padding: 0px;
+    min-width: 60px;
+    border: 1px dotted #B0B0B0;
+    vertical-align: middle;
+    text-align: center;
+  }
+  td.moji-faded {
+    color: #D0D0D0;
+    font-family: "MS PMincho";
+    font-size: 40pt;
+    padding: 0px;
+    min-width: 60px;
+    border: 1px dotted #B0B0B0;
+    vertical-align: middle;
+    text-align: center;
+  }
+  .comment {
+    font-family: "MS PMincho";
+    font-size: 12pt;
+    font-weight: bold;
+    color: #DC143C;
+  }

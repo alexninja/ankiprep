@@ -1,0 +1,1 @@
+D:\Tools\Python25\python.exe ../franki-1.4.py -d kanji.anki -f kanji.anki-corrected.txt -m kanji -k data 1 -r data 2 -r kanji 3

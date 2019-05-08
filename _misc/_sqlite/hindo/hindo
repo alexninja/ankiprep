@@ -1,0 +1,53 @@
+#!/usr/bin/env ruby1.9
+# encoding: UTF-8
+
+require 'kconv'
+require 'logger'
+require 'hindo'
+
+$log = Logger.new STDOUT
+
+$opts = Opts.new
+
+if $opts.abort then
+    quit
+end
+
+if $opts.verbose then
+    $log.level = Logger::DEBUG
+else
+    $log.level = Logger::WARN
+end
+
+$settings = load_settings
+
+word_filter = WordFilter.new $settings.words_to_ignore
+words = Words.new($settings, word_filter)
+tsuitta = Tsuitta.new $settings
+
+puts "Storing data in '#{words.file_name}' and 'tweets.txt'"
+
+count_tweets = -> do
+    counter = Counter.new(words, word_filter, $settings.users_to_ignore)
+
+    tweets = []
+
+    begin
+        tweets = tsuitta.get counter.id
+    rescue TweetError => e
+        puts e.message
+    end
+
+    if tweets.length > 0 then
+        counter.count_words_in tweets
+        counter.save_data 
+    end
+end
+
+if $opts.daemon then
+    puts "Checking twitter every #{$settings.time_to_wait} minutes"
+    
+    sleep_loop($settings.time_to_wait, count_tweets)
+else
+    count_tweets.call
+end

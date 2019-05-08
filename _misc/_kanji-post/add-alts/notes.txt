@@ -1,0 +1,21 @@
+change use:1 to use:true, etc
+remove spaces in yomi & nanori enumeration
+
+find out why this is happening in the first place - apparently sometimes during the copying phase
+
+- before:
+use:true, use:false, yomi:["blah", "blah"]
+- after going through word selection:
+use:1, use:0, yomi:["blah","blah"]
+
+also check if any &quot; show up
+
+[x] fixed.
+use: was turning to integer due to a bitmask and: _data[y].use &= ...
+
+&quot; shows up when a card is modified:
+- by editing
+- by copying from report (which edits it)
+Looks like Anki puts them there to be "safe". Not much to do about it, though pity about all the bloating
+
+NB: after running franki to modify the .anki file, remember to "Check Database" in Anki, otherwise the cache isn't refreshed.

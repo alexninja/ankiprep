@@ -1,0 +1,1492 @@
+GET /kanji/set/844e/1/1/%7B%22%5B%E3%83%AA%E3%83%84%5D%22%3A%7B%22use%22%3Afalse%2C%22freq%22%3A0%2C%22words%22%3A%5B%5D%7D%2C%22(%E3%82%80%E3%81%90%E3%82%89)%22%3A%7B%22use%22%3Atrue%2C%22words%22%3A%5B%5D%7D%2C%22other%22%3A%7B%22use%22%3Atrue%2C%22words%22%3A%5B%5D%7D%2C%22yomi%22%3A%5B%22%5B%E3%83%AA%E3%83%84%5D%22%2C%22(%E3%82%80%E3%81%90%E3%82%89)%22%5D%2C%22nanori%22%3A%5B%22%E3%81%A4%22%5D%2C%22eigo%22%3A%22creepers%2C%20trailing%20plants%2C%20vines%22%2C%22utf16%22%3A%22844e%22%2C%22kanji%22%3A%22%E8%91%8E%22%7D HTTP/1.1
+Origin: null
+User-Agent: Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US) AppleWebKit/533.3 (KHTML, like Gecko) Anki Safari/533.3
+Connection: Keep-Alive
+Accept-Encoding: gzip
+Accept-Language: en-US,*
+Host: 127.0.0.1
+
+GET /kanji/set/844e/1/1/%7B%22%5B%E3%83%AA%E3%83%84%5D%22%3A%7B%22use%22%3Afalse%2C%22freq%22%3A0%2C%22words%22%3A%5B%5D%7D%2C%22(%E3%82%80%E3%81%90%E3%82%89)%22%3A%7B%22use%22%3Atrue%2C%22words%22%3A%5B%5D%7D%2C%22other%22%3A%7B%22use%22%3Atrue%2C%22words%22%3A%5B%5D%7D%2C%22yomi%22%3A%5B%22%5B%E3%83%AA%E3%83%84%5D%22%2C%22(%E3%82%80%E3%81%90%E3%82%89)%22%5D%2C%22nanori%22%3A%5B%22%E3%81%A4%22%5D%2C%22eigo%22%3A%22creepers%2C%20trailing%20plants%2C%20vines%22%2C%22utf16%22%3A%22844e%22%2C%22kanji%22%3A%22%E8%91%8E%22%7D HTTP/1.1
+Origin: null
+User-Agent: Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US) AppleWebKit/533.3 (KHTML, like Gecko) Anki Safari/533.3
+Connection: Keep-Alive
+Accept-Encoding: gzip
+Accept-Language: en-US,*
+Host: 127.0.0.1
+
+GET /kanji/set/844e/1/1/%7B%22%5B%E3%83%AA%E3%83%84%5D%22%3A%7B%22use%22%3Afalse%2C%22freq%22%3A0%2C%22words%22%3A%5B%5D%7D%2C%22(%E3%82%80%E3%81%90%E3%82%89)%22%3A%7B%22use%22%3Atrue%2C%22words%22%3A%5B%5D%7D%2C%22other%22%3A%7B%22use%22%3Atrue%2C%22words%22%3A%5B%5D%7D%2C%22yomi%22%3A%5B%22%5B%E3%83%AA%E3%83%84%5D%22%2C%22(%E3%82%80%E3%81%90%E3%82%89)%22%5D%2C%22nanori%22%3A%5B%22%E3%81%A4%22%5D%2C%22eigo%22%3A%22creepers%2C%20trailing%20plants%2C%20vines%22%2C%22utf16%22%3A%22844e%22%2C%22kanji%22%3A%22%E8%91%8E%22%7D HTTP/1.1
+Origin: null
+User-Agent: Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US) AppleWebKit/533.3 (KHTML, like Gecko) Anki Safari/533.3
+Connection: Keep-Alive
+Accept-Encoding: gzip
+Accept-Language: en-US,*
+Host: 127.0.0.1
+
+GET /kanji/844e HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /kanji/844e HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+Cache-Control: max-age=0
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /kanji/show/844e HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://127.0.0.1/kanji/844e
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /kanji/show/844e HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://127.0.0.1/kanji/show/844e
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /kanji/show/844e HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://127.0.0.1/kanji/show/844e
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /kanji/show/844e HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://127.0.0.1/kanji/show/844e
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /kanji/show/844e HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://127.0.0.1/kanji/show/844e
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /kanji/show/844e HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://127.0.0.1/kanji/show/844e
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /kanji/set/844e/1/1/%7B%22%5B%E3%83%AA%E3%83%84%5D%22%3A%7B%22use%22%3Afalse%2C%22freq%22%3A0%2C%22words%22%3A%5B%5D%7D%2C%22(%E3%82%80%E3%81%90%E3%82%89)%22%3A%7B%22use%22%3Atrue%2C%22words%22%3A%5B%5D%7D%2C%22other%22%3A%7B%22use%22%3Atrue%2C%22words%22%3A%5B%5D%7D%2C%22yomi%22%3A%5B%22%5B%E3%83%AA%E3%83%84%5D%22%2C%22(%E3%82%80%E3%81%90%E3%82%89)%22%5D%2C%22nanori%22%3A%5B%22%E3%81%A4%22%5D%2C%22eigo%22%3A%22creepers%2C%20trailing%20plants%2C%20vines%22%2C%22utf16%22%3A%22844e%22%2C%22kanji%22%3A%22%E8%91%8E%22%7D HTTP/1.1
+Origin: null
+User-Agent: Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US) AppleWebKit/533.3 (KHTML, like Gecko) Anki Safari/533.3
+Connection: Keep-Alive
+Accept-Encoding: gzip
+Accept-Language: en-US,*
+Host: 127.0.0.1
+
+GET /kanji/844e HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /kanji/show/844e HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://127.0.0.1/kanji/844e
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+
+GET /kanji/show/kanji-flashcards/k844e.html HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://127.0.0.1/kanji/show/844e
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /kanji/show/kanji-flashcards/flashcard.css HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: text/css,*/*;q=0.1
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://127.0.0.1/kanji/show/kanji-flashcards/k844e.html
+Connection: keep-alive
+
+GET /kanji/show/kanji-flashcards/flashcard.js HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://127.0.0.1/kanji/show/kanji-flashcards/k844e.html
+Connection: keep-alive
+
+GET /kanji/show/kanji-flashcards/kanji-static/u844e.gif HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://127.0.0.1/kanji/show/kanji-flashcards/k844e.html
+Connection: keep-alive
+
+GET /kanji/show/kanji-wordlists/w844e.html HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://127.0.0.1/kanji/show/kanji-flashcards/k844e.html
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+
+GET /kanji/show/kanji-flashcards/delete-gray.png HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://127.0.0.1/kanji/show/kanji-flashcards/k844e.html
+Connection: keep-alive
+
+GET /kanji/show/kanji-flashcards/up-gray.png HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://127.0.0.1/kanji/show/kanji-flashcards/k844e.html
+Connection: keep-alive
+
+GET /kanji/show/kanji-flashcards/down-gray.png HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://127.0.0.1/kanji/show/kanji-flashcards/k844e.html
+Connection: keep-alive
+
+GET /kanji/show/kanji-wordlists/wordlist.css HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: text/css,*/*;q=0.1
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://127.0.0.1/kanji/show/kanji-wordlists/w844e.html
+Connection: keep-alive
+
+GET /kanji/show/kanji-flashcards/delete.png HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://127.0.0.1/kanji/show/kanji-flashcards/k844e.html
+Connection: keep-alive
+
+GET /kanji/show/kanji-flashcards/down.png HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://127.0.0.1/kanji/show/kanji-flashcards/k844e.html
+Connection: keep-alive
+
+GET /kanji/show/kanji-flashcards/up.png HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://127.0.0.1/kanji/show/kanji-flashcards/k844e.html
+Connection: keep-alive
+
+GET /kanji/copy/844e/1/1/%7B%22%5B%E3%83%AA%E3%83%84%5D%22%3A%7Buse%3Afalse%2Cfreq%3A0%2Cwords%3A%5B%5D%7D%2C%22(%E3%82%80%E3%81%90%E3%82%89)%22%3A%7Buse%3Atrue%2Cwords%3A%5B%5B%22(%E3%82%80%E3%81%90%E3%82%89)%22%2C%22%E8%91%8E%22%2C%22creepers%3B%20trailing%20plants%22%2Cfalse%2C%22~%E3%81%86%E3%81%90%E3%82%89%20~%E3%82%82%E3%81%90%E3%82%89%22%5D%2C%5B%22%E3%82%84%E3%81%88(%E3%82%80%E3%81%90%E3%82%89)%22%2C%22%E5%85%AB%E9%87%8D%E8%91%8E%22%2C%22thick%20patch%20of%20mixed%20weeds%3B%20false%20cleavers%20(species%20of%20bedstraw%2C%20Galium%20spurium%20var.%20echinospermon)%22%2Cfalse%5D%5D%7D%2C%22other%22%3A%7Buse%3Afalse%2Cwords%3A%5B%5D%7D%2Cyomi%3A%5B%22%5B%E3%83%AA%E3%83%84%5D%22%2C%22(%E3%82%80%E3%81%90%E3%82%89)%22%5D%2Cnanori%3A%5B%22%E3%81%A4%22%5D%2Ceigo%3A%22creepers%2C%20trailing%20plants%2C%20vines%22%2Cutf16%3A%22844e%22%2Ckanji%3A%22%E8%91%8E%22%7D HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://127.0.0.1/kanji/show/kanji-flashcards/k844e.html
+Connection: keep-alive
+
+GET /kanji/set/5316/1/3/%7B%22%5B%E3%82%AB%5D%22%3A%7B%22use%22%3Atrue%2C%22freq%22%3A8268861%2C%22words%22%3A%5B%5B%22%E3%81%B8%E3%82%93%5B%E3%81%8B%5D%22%2C%22%E5%A4%89%E5%8C%96%22%2C%22change%3B%20variation%3B%20alteration%3B%20mutation%3B%20transition%3B%20transformation%3B%20transfiguration%3B%20metamorphosis%3B%20variety%3B%20diversity%3B%20inflection%3B%20declension%3B%20conjugation%3B%20sidestepping%20(sumo)%22%2Ctrue%5D%2C%5B%22%E3%81%B6%E3%82%93%5B%E3%81%8B%5D%22%2C%22%E6%96%87%E5%8C%96%22%2C%22culture%3B%20civilization%3B%20civilisation%3B%20Bunka%20era%20(1804.2.11-1818.4.22)%22%2Ctrue%5D%2C%5B%22%5B%E3%81%8B%5D%E3%81%8C%E3%81%8F%22%2C%22%E5%8C%96%E5%AD%A6%22%2C%22chemistry%3B%20chemical%20company%20(e.g.%20Acme%20Chemical%20Co.)%22%2Ctrue%5D%5D%7D%2C%22%5B%E3%82%B1%5D%22%3A%7B%22use%22%3Atrue%2C%22freq%22%3A1644757%2C%22words%22%3A%5B%5B%22%5B%E3%81%91%5D%E3%81%97%E3%82%87%E3%81%86%22%2C%22%E5%8C%96%E7%B2%A7%22%2C%22make-up%3B%20makeup%3B%20cosmetics%22%2Ctrue%2C%22~%E3%81%91%E3%81%9D%E3%81%86%20~%E3%81%91%E3%82%8F%E3%81%84 HTTP/1.1
+Origin: null
+User-Agent: Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US) AppleWebKit/533.3 (KHTML, like Gecko) Anki Safari/533.3
+Connection: Keep-Alive
+Accept-Encoding: gzip
+Accept-Language: en-US,*
+Host: 127.0.0.1
+
+GET /kanji/set/5316/2/3/%3B~%E4%BB%AE%E7%B2%A7%22%5D%5D%7D%2C%22(%E3%81%B0)%E3%81%91%E3%82%8B%22%3A%7B%22use%22%3Atrue%2C%22words%22%3A%5B%5B%22(%E3%81%B0)%E3%81%91%E3%82%8B%22%2C%22%E5%8C%96%E3%81%91%E3%82%8B%22%2C%22to%20appear%20in%20disguise%3B%20to%20take%20the%20form%20of%3B%20to%20change%20for%20the%20worse%3B%20to%20corrupt%22%2Ctrue%5D%5D%7D%2C%22(%E3%81%B5)%E3%81%91%E3%82%8B%22%3A%7B%22use%22%3Afalse%2C%22words%22%3A%5B%5B%22(%E3%81%B5)%E3%81%91%E3%82%8B%22%2C%22%E5%8C%96%E3%81%91%E3%82%8B%22%2C%22to%20age%3B%20to%20grow%20old%22%2Cfalse%2C%22%E8%80%81%E3%81%91%E3%82%8B%22%5D%5D%7D%2C%22(%E3%81%B0)%E3%81%8B%E3%81%99%22%3A%7B%22use%22%3Afalse%2C%22words%22%3A%5B%5B%22(%E3%81%B0)%E3%81%8B%E3%81%99%22%2C%22%E5%8C%96%E3%81%8B%E3%81%99%22%2C%22to%20bewitch%3B%20to%20confuse%3B%20to%20enchant%3B%20to%20delude%22%2Cfalse%2C%22~%E9%AD%85%E3%81%99%22%5D%5D%7D%2C%22(%E3%81%91)%E3%81%99%E3%82%8B%22%3A%7B%22use%22%3Afalse%2C%22words%22%3A%5B%5D%7D%2C%22other%22%3A%7B%22use%22%3Afalse%2C%22words%22%3A%5B%5B%22(%E3%81%B0)%E3%81%91%E3%82%82%E3%81%AE%22%2C%22%E5%8C%96%E3%81%91%E7%89%A9%22%2C%22goblin%3B%20apparition%3B%20monster%3B%20ghost%3B%20phantom%3B%20spectre%3B%20specter%22%2Ctrue%2C%22~%E3%81%B0%E3%81%91%E3%82%82%E3%82%93%3B~%E5%8C%96%E7%89%A9%22%5D%5D%7D%2C%22yomi%22%3A%5B%22%5B%E3%82%AB%5D%22%2C%22%5B HTTP/1.1
+Origin: null
+User-Agent: Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US) AppleWebKit/533.3 (KHTML, like Gecko) Anki Safari/533.3
+Connection: Keep-Alive
+Accept-Encoding: gzip
+Accept-Language: en-US,*
+Host: 127.0.0.1
+
+GET /kanji/set/5316/1/3/%7B%22%5B%E3%82%AB%5D%22%3A%7B%22use%22%3Atrue%2C%22freq%22%3A8268861%2C%22words%22%3A%5B%5B%22%E3%81%B8%E3%82%93%5B%E3%81%8B%5D%22%2C%22%E5%A4%89%E5%8C%96%22%2C%22change%3B%20variation%3B%20alteration%3B%20mutation%3B%20transition%3B%20transformation%3B%20transfiguration%3B%20metamorphosis%3B%20variety%3B%20diversity%3B%20inflection%3B%20declension%3B%20conjugation%3B%20sidestepping%20(sumo)%22%2Ctrue%5D%2C%5B%22%E3%81%B6%E3%82%93%5B%E3%81%8B%5D%22%2C%22%E6%96%87%E5%8C%96%22%2C%22culture%3B%20civilization%3B%20civilisation%3B%20Bunka%20era%20(1804.2.11-1818.4.22)%22%2Ctrue%5D%2C%5B%22%5B%E3%81%8B%5D%E3%81%8C%E3%81%8F%22%2C%22%E5%8C%96%E5%AD%A6%22%2C%22chemistry%3B%20chemical%20company%20(e.g.%20Acme%20Chemical%20Co.)%22%2Ctrue%5D%5D%7D%2C%22%5B%E3%82%B1%5D%22%3A%7B%22use%22%3Atrue%2C%22freq%22%3A1644757%2C%22words%22%3A%5B%5B%22%5B%E3%81%91%5D%E3%81%97%E3%82%87%E3%81%86%22%2C%22%E5%8C%96%E7%B2%A7%22%2C%22make-up%3B%20makeup%3B%20cosmetics%22%2Ctrue%2C%22~%E3%81%91%E3%81%9D%E3%81%86%20~%E3%81%91%E3%82%8F%E3%81%84 HTTP/1.1
+Origin: null
+User-Agent: Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US) AppleWebKit/533.3 (KHTML, like Gecko) Anki Safari/533.3
+Connection: Keep-Alive
+Accept-Encoding: gzip
+Accept-Language: en-US,*
+Host: 127.0.0.1
+
+GET /kanji/set/5316/3/3/%E3%82%B1%5D%22%2C%22(%E3%81%B0)%E3%81%91%E3%82%8B%22%2C%22(%E3%81%B5)%E3%81%91%E3%82%8B%22%2C%22(%E3%81%B0)%E3%81%8B%E3%81%99%22%2C%22(%E3%81%91)%E3%81%99%E3%82%8B%22%5D%2C%22nanori%22%3A%5B%5D%2C%22eigo%22%3A%22change%2C%20take%20the%20form%20of%2C%20influence%2C%20enchant%2C%20delude%2C%20-ization%22%2C%22utf16%22%3A%225316%22%2C%22kanji%22%3A%22%E5%8C%96%22%7D HTTP/1.1
+Origin: null
+User-Agent: Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US) AppleWebKit/533.3 (KHTML, like Gecko) Anki Safari/533.3
+Connection: Keep-Alive
+Accept-Encoding: gzip
+Accept-Language: en-US,*
+Host: 127.0.0.1
+
+GET /kanji/set/5316/2/3/%3B~%E4%BB%AE%E7%B2%A7%22%5D%5D%7D%2C%22(%E3%81%B0)%E3%81%91%E3%82%8B%22%3A%7B%22use%22%3Atrue%2C%22words%22%3A%5B%5B%22(%E3%81%B0)%E3%81%91%E3%82%8B%22%2C%22%E5%8C%96%E3%81%91%E3%82%8B%22%2C%22to%20appear%20in%20disguise%3B%20to%20take%20the%20form%20of%3B%20to%20change%20for%20the%20worse%3B%20to%20corrupt%22%2Ctrue%5D%5D%7D%2C%22(%E3%81%B5)%E3%81%91%E3%82%8B%22%3A%7B%22use%22%3Afalse%2C%22words%22%3A%5B%5B%22(%E3%81%B5)%E3%81%91%E3%82%8B%22%2C%22%E5%8C%96%E3%81%91%E3%82%8B%22%2C%22to%20age%3B%20to%20grow%20old%22%2Cfalse%2C%22%E8%80%81%E3%81%91%E3%82%8B%22%5D%5D%7D%2C%22(%E3%81%B0)%E3%81%8B%E3%81%99%22%3A%7B%22use%22%3Afalse%2C%22words%22%3A%5B%5B%22(%E3%81%B0)%E3%81%8B%E3%81%99%22%2C%22%E5%8C%96%E3%81%8B%E3%81%99%22%2C%22to%20bewitch%3B%20to%20confuse%3B%20to%20enchant%3B%20to%20delude%22%2Cfalse%2C%22~%E9%AD%85%E3%81%99%22%5D%5D%7D%2C%22(%E3%81%91)%E3%81%99%E3%82%8B%22%3A%7B%22use%22%3Afalse%2C%22words%22%3A%5B%5D%7D%2C%22other%22%3A%7B%22use%22%3Afalse%2C%22words%22%3A%5B%5B%22(%E3%81%B0)%E3%81%91%E3%82%82%E3%81%AE%22%2C%22%E5%8C%96%E3%81%91%E7%89%A9%22%2C%22goblin%3B%20apparition%3B%20monster%3B%20ghost%3B%20phantom%3B%20spectre%3B%20specter%22%2Ctrue%2C%22~%E3%81%B0%E3%81%91%E3%82%82%E3%82%93%3B~%E5%8C%96%E7%89%A9%22%5D%5D%7D%2C%22yomi%22%3A%5B%22%5B%E3%82%AB%5D%22%2C%22%5B HTTP/1.1
+Origin: null
+User-Agent: Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US) AppleWebKit/533.3 (KHTML, like Gecko) Anki Safari/533.3
+Connection: Keep-Alive
+Accept-Encoding: gzip
+Accept-Language: en-US,*
+Host: 127.0.0.1
+
+GET /kanji/set/5316/1/3/%7B%22%5B%E3%82%AB%5D%22%3A%7B%22use%22%3Atrue%2C%22freq%22%3A8268861%2C%22words%22%3A%5B%5B%22%E3%81%B8%E3%82%93%5B%E3%81%8B%5D%22%2C%22%E5%A4%89%E5%8C%96%22%2C%22change%3B%20variation%3B%20alteration%3B%20mutation%3B%20transition%3B%20transformation%3B%20transfiguration%3B%20metamorphosis%3B%20variety%3B%20diversity%3B%20inflection%3B%20declension%3B%20conjugation%3B%20sidestepping%20(sumo)%22%2Ctrue%5D%2C%5B%22%E3%81%B6%E3%82%93%5B%E3%81%8B%5D%22%2C%22%E6%96%87%E5%8C%96%22%2C%22culture%3B%20civilization%3B%20civilisation%3B%20Bunka%20era%20(1804.2.11-1818.4.22)%22%2Ctrue%5D%2C%5B%22%5B%E3%81%8B%5D%E3%81%8C%E3%81%8F%22%2C%22%E5%8C%96%E5%AD%A6%22%2C%22chemistry%3B%20chemical%20company%20(e.g.%20Acme%20Chemical%20Co.)%22%2Ctrue%5D%5D%7D%2C%22%5B%E3%82%B1%5D%22%3A%7B%22use%22%3Atrue%2C%22freq%22%3A1644757%2C%22words%22%3A%5B%5B%22%5B%E3%81%91%5D%E3%81%97%E3%82%87%E3%81%86%22%2C%22%E5%8C%96%E7%B2%A7%22%2C%22make-up%3B%20makeup%3B%20cosmetics%22%2Ctrue%2C%22~%E3%81%91%E3%81%9D%E3%81%86%20~%E3%81%91%E3%82%8F%E3%81%84 HTTP/1.1
+Origin: null
+User-Agent: Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US) AppleWebKit/533.3 (KHTML, like Gecko) Anki Safari/533.3
+Connection: Keep-Alive
+Accept-Encoding: gzip
+Accept-Language: en-US,*
+Host: 127.0.0.1
+
+GET /kanji/set/5316/3/3/%E3%82%B1%5D%22%2C%22(%E3%81%B0)%E3%81%91%E3%82%8B%22%2C%22(%E3%81%B5)%E3%81%91%E3%82%8B%22%2C%22(%E3%81%B0)%E3%81%8B%E3%81%99%22%2C%22(%E3%81%91)%E3%81%99%E3%82%8B%22%5D%2C%22nanori%22%3A%5B%5D%2C%22eigo%22%3A%22change%2C%20take%20the%20form%20of%2C%20influence%2C%20enchant%2C%20delude%2C%20-ization%22%2C%22utf16%22%3A%225316%22%2C%22kanji%22%3A%22%E5%8C%96%22%7D HTTP/1.1
+Origin: null
+User-Agent: Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US) AppleWebKit/533.3 (KHTML, like Gecko) Anki Safari/533.3
+Connection: Keep-Alive
+Accept-Encoding: gzip
+Accept-Language: en-US,*
+Host: 127.0.0.1
+
+GET /kanji/set/5316/2/3/%3B~%E4%BB%AE%E7%B2%A7%22%5D%5D%7D%2C%22(%E3%81%B0)%E3%81%91%E3%82%8B%22%3A%7B%22use%22%3Atrue%2C%22words%22%3A%5B%5B%22(%E3%81%B0)%E3%81%91%E3%82%8B%22%2C%22%E5%8C%96%E3%81%91%E3%82%8B%22%2C%22to%20appear%20in%20disguise%3B%20to%20take%20the%20form%20of%3B%20to%20change%20for%20the%20worse%3B%20to%20corrupt%22%2Ctrue%5D%5D%7D%2C%22(%E3%81%B5)%E3%81%91%E3%82%8B%22%3A%7B%22use%22%3Afalse%2C%22words%22%3A%5B%5B%22(%E3%81%B5)%E3%81%91%E3%82%8B%22%2C%22%E5%8C%96%E3%81%91%E3%82%8B%22%2C%22to%20age%3B%20to%20grow%20old%22%2Cfalse%2C%22%E8%80%81%E3%81%91%E3%82%8B%22%5D%5D%7D%2C%22(%E3%81%B0)%E3%81%8B%E3%81%99%22%3A%7B%22use%22%3Afalse%2C%22words%22%3A%5B%5B%22(%E3%81%B0)%E3%81%8B%E3%81%99%22%2C%22%E5%8C%96%E3%81%8B%E3%81%99%22%2C%22to%20bewitch%3B%20to%20confuse%3B%20to%20enchant%3B%20to%20delude%22%2Cfalse%2C%22~%E9%AD%85%E3%81%99%22%5D%5D%7D%2C%22(%E3%81%91)%E3%81%99%E3%82%8B%22%3A%7B%22use%22%3Afalse%2C%22words%22%3A%5B%5D%7D%2C%22other%22%3A%7B%22use%22%3Afalse%2C%22words%22%3A%5B%5B%22(%E3%81%B0)%E3%81%91%E3%82%82%E3%81%AE%22%2C%22%E5%8C%96%E3%81%91%E7%89%A9%22%2C%22goblin%3B%20apparition%3B%20monster%3B%20ghost%3B%20phantom%3B%20spectre%3B%20specter%22%2Ctrue%2C%22~%E3%81%B0%E3%81%91%E3%82%82%E3%82%93%3B~%E5%8C%96%E7%89%A9%22%5D%5D%7D%2C%22yomi%22%3A%5B%22%5B%E3%82%AB%5D%22%2C%22%5B HTTP/1.1
+Origin: null
+User-Agent: Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US) AppleWebKit/533.3 (KHTML, like Gecko) Anki Safari/533.3
+Connection: Keep-Alive
+Accept-Encoding: gzip
+Accept-Language: en-US,*
+Host: 127.0.0.1
+
+GET /kanji/set/5316/3/3/%E3%82%B1%5D%22%2C%22(%E3%81%B0)%E3%81%91%E3%82%8B%22%2C%22(%E3%81%B5)%E3%81%91%E3%82%8B%22%2C%22(%E3%81%B0)%E3%81%8B%E3%81%99%22%2C%22(%E3%81%91)%E3%81%99%E3%82%8B%22%5D%2C%22nanori%22%3A%5B%5D%2C%22eigo%22%3A%22change%2C%20take%20the%20form%20of%2C%20influence%2C%20enchant%2C%20delude%2C%20-ization%22%2C%22utf16%22%3A%225316%22%2C%22kanji%22%3A%22%E5%8C%96%22%7D HTTP/1.1
+Origin: null
+User-Agent: Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US) AppleWebKit/533.3 (KHTML, like Gecko) Anki Safari/533.3
+Connection: Keep-Alive
+Accept-Encoding: gzip
+Accept-Language: en-US,*
+Host: 127.0.0.1
+
+GET /kanji/5316 HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /kanji/show/5316 HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://127.0.0.1/kanji/5316
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+
+GET /kanji/show/kanji-flashcards/k5316.html HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://127.0.0.1/kanji/show/5316
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /favicon.ico HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+GET /kanji/show/kanji-flashcards/k5316.html HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://127.0.0.1/kanji/show/5316
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+
+GET /kanji/show/kanji-flashcards/flashcard.css HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: text/css,*/*;q=0.1
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://127.0.0.1/kanji/show/kanji-flashcards/k5316.html
+Connection: keep-alive
+
+GET /kanji/show/kanji-flashcards/flashcard.js HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://127.0.0.1/kanji/show/kanji-flashcards/k5316.html
+Connection: keep-alive
+
+GET /kanji/show/kanji-flashcards/kanji-static/u5316.gif HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://127.0.0.1/kanji/show/kanji-flashcards/k5316.html
+Connection: keep-alive
+
+GET /kanji/show/kanji-wordlists/w5316.html HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://127.0.0.1/kanji/show/kanji-flashcards/k5316.html
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+
+GET /kanji/heisig/1008.png HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://127.0.0.1/kanji/show/kanji-flashcards/k5316.html
+Connection: keep-alive
+
+GET /kanji/show/kanji-flashcards/delete.png HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://127.0.0.1/kanji/show/kanji-flashcards/k5316.html
+Connection: keep-alive
+
+GET /kanji/show/kanji-flashcards/up-gray.png HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://127.0.0.1/kanji/show/kanji-flashcards/k5316.html
+Connection: keep-alive
+
+GET /kanji/show/kanji-flashcards/down.png HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://127.0.0.1/kanji/show/kanji-flashcards/k5316.html
+Connection: keep-alive
+
+GET /kanji/show/kanji-flashcards/up.png HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://127.0.0.1/kanji/show/kanji-flashcards/k5316.html
+Connection: keep-alive
+
+GET /kanji/show/kanji-flashcards/down-gray.png HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://127.0.0.1/kanji/show/kanji-flashcards/k5316.html
+Connection: keep-alive
+
+GET /kanji/show/kanji-flashcards/delete-gray.png HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://127.0.0.1/kanji/show/kanji-flashcards/k5316.html
+Connection: keep-alive
+
+GET /kanji/show/kanji-wordlists/wordlist.css HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: text/css,*/*;q=0.1
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://127.0.0.1/kanji/show/kanji-wordlists/w5316.html
+Connection: keep-alive
+
+GET /kanji/copy/5316/1/3/%7B%22%5B%E3%82%AB%5D%22%3A%7Buse%3Atrue%2Cfreq%3A8268861%2Cwords%3A%5B%5B%22%E3%81%B8%E3%82%93%5B%E3%81%8B%5D%22%2C%22%E5%A4%89%E5%8C%96%22%2C%22change%3B%20variation%3B%20alteration%3B%20mutation%3B%20transition%3B%20transformation%3B%20transfiguration%3B%20metamorphosis%3B%20variety%3B%20diversity%3B%20inflection%3B%20declension%3B%20conjugation%3B%20sidestepping%20(sumo)%22%2Ctrue%5D%2C%5B%22%E3%81%B6%E3%82%93%5B%E3%81%8B%5D%22%2C%22%E6%96%87%E5%8C%96%22%2C%22culture%3B%20civilization%3B%20civilisation%3B%20Bunka%20era%20(1804.2.11-1818.4.22)%22%2Ctrue%5D%2C%5B%22%5B%E3%81%8B%5D%E3%81%8C%E3%81%8F%22%2C%22%E5%8C%96%E5%AD%A6%22%2C%22chemistry%3B%20chemical%20company%20(e.g.%20Acme%20Chemical%20Co.)%22%2Ctrue%5D%2C%5B%22%E3%81%98%E3%82%87%E3%81%86%5B%E3%81%8B%5D%22%2C%22%E6%B5%84%E5%8C%96%22%2C%22purification%3B%20cleanup%22%2Ctrue%5D%5D%7D%2C%22%5B%E3%82%B1%5D%22%3A%7Buse%3Atrue%2Cfreq%3A1644757%2Cwords%3A%5B%5B%22%5B%E3%81%91%5D%E3%81%97%E3%82%87%E3%81%86%22%2C%22%E5%8C%96%E7%B2%A7%22%2C%22make-up%3B%20m HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://127.0.0.1/kanji/show/kanji-flashcards/k5316.html
+Connection: keep-alive
+
+GET /kanji/copy/5316/2/3/akeup%3B%20cosmetics%22%2Ctrue%2C%22~%E3%81%91%E3%81%9D%E3%81%86%20~%E3%81%91%E3%82%8F%E3%81%84%3B~%E4%BB%AE%E7%B2%A7%22%5D%5D%7D%2C%22(%E3%81%B0)%E3%81%91%E3%82%8B%22%3A%7Buse%3Atrue%2Cwords%3A%5B%5B%22(%E3%81%B0)%E3%81%91%E3%82%8B%22%2C%22%E5%8C%96%E3%81%91%E3%82%8B%22%2C%22to%20appear%20in%20disguise%3B%20to%20take%20the%20form%20of%3B%20to%20change%20for%20the%20worse%3B%20to%20corrupt%22%2Ctrue%5D%5D%7D%2C%22(%E3%81%B5)%E3%81%91%E3%82%8B%22%3A%7Buse%3Afalse%2Cwords%3A%5B%5B%22(%E3%81%B5)%E3%81%91%E3%82%8B%22%2C%22%E5%8C%96%E3%81%91%E3%82%8B%22%2C%22to%20age%3B%20to%20grow%20old%22%2Cfalse%2C%22%E8%80%81%E3%81%91%E3%82%8B%22%5D%5D%7D%2C%22(%E3%81%B0)%E3%81%8B%E3%81%99%22%3A%7Buse%3Afalse%2Cwords%3A%5B%5B%22(%E3%81%B0)%E3%81%8B%E3%81%99%22%2C%22%E5%8C%96%E3%81%8B%E3%81%99%22%2C%22to%20bewitch%3B%20to%20confuse%3B%20to%20enchant%3B%20to%20delude%22%2Cfalse%2C%22~%E9%AD%85%E3%81%99%22%5D%5D%7D%2C%22(%E3%81%91)%E3%81%99%E3%82%8B%22%3A%7Buse%3Afalse%2Cwords%3A%5B%5D%7D%2C%22other%22%3A%7Buse%3Afalse%2Cwords%3A%5B%5B%22(%E3%81%B0)%E3%81%91%E3%82%82%E3%81%AE%22%2C%22%E5%8C%96%E3%81%91%E7%89%A9%22%2C%22goblin%3B%20apparition%3B%20monster%3B%20ghost%3B%20phantom%3B%20spectre%3B%20specter%22%2Ctrue%2C%22~%E3%81%B0%E3%81%91%E3%82%82%E3%82%93%3B~%E5%8C%96%E7%89%A9%22%5D%5D%7D%2Cyom HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://127.0.0.1/kanji/show/kanji-flashcards/k5316.html
+Connection: keep-alive
+
+GET /kanji/copy/5316/3/3/i%3A%5B%22%5B%E3%82%AB%5D%22%2C%22%5B%E3%82%B1%5D%22%2C%22(%E3%81%B0)%E3%81%91%E3%82%8B%22%2C%22(%E3%81%B5)%E3%81%91%E3%82%8B%22%2C%22(%E3%81%B0)%E3%81%8B%E3%81%99%22%2C%22(%E3%81%91)%E3%81%99%E3%82%8B%22%5D%2Cnanori%3A%5B%5D%2Ceigo%3A%22change%2C%20take%20the%20form%20of%2C%20influence%2C%20enchant%2C%20delude%2C%20-ization%22%2Cutf16%3A%225316%22%2Ckanji%3A%22%E5%8C%96%22%7D HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://127.0.0.1/kanji/show/kanji-flashcards/k5316.html
+Connection: keep-alive
+
+GET /kanji/copy/5316/1/3/%7B%22%5B%E3%82%AB%5D%22%3A%7Buse%3Atrue%2Cfreq%3A8268861%2Cwords%3A%5B%5B%22%E3%81%B8%E3%82%93%5B%E3%81%8B%5D%22%2C%22%E5%A4%89%E5%8C%96%22%2C%22change%3B%20variation%3B%20alteration%3B%20mutation%3B%20transition%3B%20transformation%3B%20transfiguration%3B%20metamorphosis%3B%20variety%3B%20diversity%3B%20inflection%3B%20declension%3B%20conjugation%3B%20sidestepping%20(sumo)%22%2Ctrue%5D%2C%5B%22%E3%81%B6%E3%82%93%5B%E3%81%8B%5D%22%2C%22%E6%96%87%E5%8C%96%22%2C%22culture%3B%20civilization%3B%20civilisation%3B%20Bunka%20era%20(1804.2.11-1818.4.22)%22%2Ctrue%5D%2C%5B%22%5B%E3%81%8B%5D%E3%81%8C%E3%81%8F%22%2C%22%E5%8C%96%E5%AD%A6%22%2C%22chemistry%3B%20chemical%20company%20(e.g.%20Acme%20Chemical%20Co.)%22%2Ctrue%5D%2C%5B%22%E3%81%98%E3%82%87%E3%81%86%5B%E3%81%8B%5D%22%2C%22%E6%B5%84%E5%8C%96%22%2C%22purification%3B%20cleanup%22%2Ctrue%5D%2C%5B%22%E3%81%AB%E3%81%95%E3%82%93%5B%E3%81%8B%5D%E3%81%9F%E3%82%93%E3%81%9D%22%2C%22%E4%BA%8C%E9%85%B8%E5%8C%96%E7%82%AD%E7%B4%A0%22%2C%22carbon%20dioxide%22%2Cfalse%5D%5D%7D%2C%22%5B%E3%82%B1%5D%22%3A%7Buse%3Atrue%2Cf HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://127.0.0.1/kanji/show/kanji-flashcards/k5316.html
+Connection: keep-alive
+
+GET /kanji/copy/5316/2/3/req%3A1644757%2Cwords%3A%5B%5B%22%5B%E3%81%91%5D%E3%81%97%E3%82%87%E3%81%86%22%2C%22%E5%8C%96%E7%B2%A7%22%2C%22make-up%3B%20makeup%3B%20cosmetics%22%2Ctrue%2C%22~%E3%81%91%E3%81%9D%E3%81%86%20~%E3%81%91%E3%82%8F%E3%81%84%3B~%E4%BB%AE%E7%B2%A7%22%5D%5D%7D%2C%22(%E3%81%B0)%E3%81%91%E3%82%8B%22%3A%7Buse%3Atrue%2Cwords%3A%5B%5B%22(%E3%81%B0)%E3%81%91%E3%82%8B%22%2C%22%E5%8C%96%E3%81%91%E3%82%8B%22%2C%22to%20appear%20in%20disguise%3B%20to%20take%20the%20form%20of%3B%20to%20change%20for%20the%20worse%3B%20to%20corrupt%22%2Ctrue%5D%5D%7D%2C%22(%E3%81%B5)%E3%81%91%E3%82%8B%22%3A%7Buse%3Afalse%2Cwords%3A%5B%5B%22(%E3%81%B5)%E3%81%91%E3%82%8B%22%2C%22%E5%8C%96%E3%81%91%E3%82%8B%22%2C%22to%20age%3B%20to%20grow%20old%22%2Cfalse%2C%22%E8%80%81%E3%81%91%E3%82%8B%22%5D%5D%7D%2C%22(%E3%81%B0)%E3%81%8B%E3%81%99%22%3A%7Buse%3Afalse%2Cwords%3A%5B%5B%22(%E3%81%B0)%E3%81%8B%E3%81%99%22%2C%22%E5%8C%96%E3%81%8B%E3%81%99%22%2C%22to%20bewitch%3B%20to%20confuse%3B%20to%20enchant%3B%20to%20delude%22%2Cfalse%2C%22~%E9%AD%85%E3%81%99%22%5D%5D%7D%2C%22(%E3%81%91)%E3%81%99%E3%82%8B%22%3A%7Buse%3Afalse%2Cwords%3A%5B%5D%7D%2C%22other%22%3A%7Buse%3Afalse%2Cwords%3A%5B%5B%22(%E3%81%B0)%E3%81%91%E3%82%82%E3%81%AE%22%2C%22%E5%8C%96%E3%81%91%E7%89%A9%22%2C%22goblin%3B%20apparition%3B%20monster%3B%20ghost%3B%20phant HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://127.0.0.1/kanji/show/kanji-flashcards/k5316.html
+Connection: keep-alive
+
+GET /kanji/copy/5316/3/3/om%3B%20spectre%3B%20specter%22%2Ctrue%2C%22~%E3%81%B0%E3%81%91%E3%82%82%E3%82%93%3B~%E5%8C%96%E7%89%A9%22%5D%5D%7D%2Cyomi%3A%5B%22%5B%E3%82%AB%5D%22%2C%22%5B%E3%82%B1%5D%22%2C%22(%E3%81%B0)%E3%81%91%E3%82%8B%22%2C%22(%E3%81%B5)%E3%81%91%E3%82%8B%22%2C%22(%E3%81%B0)%E3%81%8B%E3%81%99%22%2C%22(%E3%81%91)%E3%81%99%E3%82%8B%22%5D%2Cnanori%3A%5B%5D%2Ceigo%3A%22change%2C%20take%20the%20form%20of%2C%20influence%2C%20enchant%2C%20delude%2C%20-ization%22%2Cutf16%3A%225316%22%2Ckanji%3A%22%E5%8C%96%22%7D HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://127.0.0.1/kanji/show/kanji-flashcards/k5316.html
+Connection: keep-alive
+
+GET /kanji/show/kanji-flashcards/kanji-fast/u5316.gif HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://127.0.0.1/kanji/show/kanji-flashcards/k5316.html
+Connection: keep-alive
+

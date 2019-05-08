@@ -1,0 +1,118 @@
+#!/usr/bin/env ruby1.9
+# encoding: UTF-8
+
+require 'sqlite3'
+require 'set'
+require 'getoptlong'
+require 'hindo'
+
+$settings = load_settings
+
+$anki = true
+$kanji = true
+
+begin
+    opts = GetoptLong.new(
+        ['--noanki', '-n', GetoptLong::NO_ARGUMENT],
+        ['--nokanji', '-k', GetoptLong::NO_ARGUMENT],
+    )
+
+    opts.each do |opt, arg|
+        case opt
+            when '--noanki'
+                $anki = false
+            when '--nokanji'
+                $kanji = false
+        end
+    end
+
+
+    phrase_file = $settings.phrase_db
+    kanji_file = $settings.kanji_db
+
+    if $anki then
+        $grammar_db = SQLite3::Database.new phrase_file
+        $kanji_db = SQLite3::Database.new kanji_file
+    end
+
+    def problem_no(word)
+        if $anki then
+            sql = 'select count(1) from cards where priority > 0 and question like "%'+word+'%"'
+            $grammar_db.execute(sql) do |row|
+                return row[0]
+            end
+        else
+            return 0
+        end
+    end
+
+    data = IO.readlines "data.txt"
+
+    kanji = Set.new
+
+    limit = 0
+    words={}
+
+    data[1..-1].each do |line|
+        word, frequency = line.split(",")
+
+        if not $settings.words_to_ignore.include? word then
+
+            number = problem_no word
+
+            if number == 0 then
+                limit = limit + 1
+                words[limit.to_s] = word
+                puts "#{limit}) #{word.ljust(10)}#{frequency.rjust(2)}"
+            end
+
+            word.each_char{|char|
+                if /\p{Han}/ =~ word then
+                    kanji << char
+                end
+            }
+
+            if limit >= 20 then
+                break
+            end
+        end
+    end
+
+    if $anki and $kanji then
+        puts " === kanji === "
+
+        kanji.each do |char|
+            sql = 'select count(1) from cards where type!=2 and priority > 0 and question like "%'+char+'%"'
+
+            $kanji_db.execute(sql) do |row|
+
+                if not row[0].to_i > 0 then
+                    print char
+                end
+            end
+        end
+    end
+
+    puts ""
+
+    if $anki then
+        $grammar_db.close
+        $kanji_db.close
+    end
+
+    print "Search for? (1-20)"
+    id = gets.chomp
+
+    if id.to_i > 0 then
+        TweetsSearch.new.search(words[id]).each do |w|
+            puts w
+            puts 
+        end
+    end
+    
+rescue SQLite3::BusyException
+    puts "*********************************"
+    puts "***  dataベースはもう開けます  ***"
+    puts "*********************************"
+end
+

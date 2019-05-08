@@ -1,0 +1,32 @@
+<html onkeydown="parent.index.keydown(event);">
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link type="text/css" rel="stylesheet" href="wordlist.css">
+
+<script language="javascript">
+
+var _tags = /<\/?[^>]+>/gi;
+
+function clk(yomi, kana, expr, eigo_id, priority, alts) {
+  var eigo = document.getElementById("eigo" + eigo_id).innerHTML.replace(_tags, "");
+  parent.flashcard.add_word(yomi, expr, kana, eigo, priority, alts);
+  return false;
+}
+
+</script>
+
+</head>
+
+
+<body>
+
+$BODY
+
+<br><br><br><br><br><br><br><br>
+====
+
+</body>
+
+</html>

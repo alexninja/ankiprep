@@ -1,0 +1,5 @@
+used this plugin to get rid of the kanji in tags.
+
+overwriting tags with an empty string has no effect,
+so the plugin first writes a dummy string into the tag,
+and then I manually use `Delete Tags` from the anki interface.

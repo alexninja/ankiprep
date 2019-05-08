@@ -1,0 +1,99 @@
+  p {
+    margin-top: 2px;
+    margin-bottom: 0px;
+  }
+  body {
+    background-color: white;
+    color: black;
+  }
+  .expr {
+    font-family: "MS PMincho";
+    font-size: 42pt;
+    font-weight: normal;
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 60px;
+  }
+  table.kakijun {
+    margin: 0;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border-collapse: collapse;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  td.row1 {
+    padding: 0;
+    width: 200px;
+    background-color: #FFFFFF;
+    border: 1px dotted #D0D0D0;
+    border-spacing: 10px;
+    border-collapse: collapse;
+    vertical-align: middle;
+  }
+  td.row2 {
+    padding: 5px;
+    padding-left: 6px;
+    width: 200px;
+    background-color: #FFFFFF;
+    border: 1px dotted #D0D0D0;
+    border-spacing: 10px;
+    border-collapse: collapse;
+    vertical-align: top;
+  }
+  td.row2-hl {
+    padding: 5px;
+    padding-left: 6px;
+    width: 200px;
+    background-color: #F8F8F8;
+    border: 1px dotted #D0D0D0;
+    border-spacing: 10px;
+    border-collapse: collapse;
+    vertical-align: top;
+  }
+  .kanji {
+    font-family: "MS PMincho";
+    padding: 0;
+    font-size: 130pt;
+    text-align: center;
+    vertical-align: middle;
+  }
+  .eigo {
+    font-family: "Arial";
+    font-size: 7pt;
+  }
+  .yomi {
+    font-family: "MS PMincho";
+    font-size: 9pt;
+    color: #20A020;
+    letter-spacing: 1px;
+    padding-bottom: 5px;
+    padding-top: 3px;
+  }
+  .yomi-okurigana {
+    color: #CD5C5C;
+  }
+  .nanori {
+    color: #000000;
+    font-size: 8pt;
+    padding-right: 8px;
+  }
+
+  table.dict {
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border-collapse: collapse;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  td.dict {
+    padding: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: #FFFFFF;
+    border: 1px dotted #D0D0D0;
+    border-spacing: 10px;
+    border-collapse: collapse;
+    vertical-align: middle;
+    max-width: 600px;
+  }
