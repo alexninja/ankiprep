@@ -1,2 +1,4 @@
 __OUT__/kanji-flashcards should be populated from Anki, not left empty and useless.
 
+move kanji-flashcard, kanji-index, kanji-wordlist under kanji/
+move vocab-flashcard, vocab-wordlist under vocab/
