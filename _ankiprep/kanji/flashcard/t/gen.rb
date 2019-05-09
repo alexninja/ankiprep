@@ -20,16 +20,16 @@ File.open("__OUT__/kanji/flashcards/k4f1a.html", 'w') do |f|
   ).check
 end
 
-File.open("__OUT__/flashcard.js", 'w') do |f|
+File.open("__OUT__/kanji/flashcards/flashcard.js", 'w') do |f|
   f.write $T['../flashcard.js'].apply_ifdef('REPORT')
 end
 
-File.open("__OUT__/flashcard.css", 'w') do |f|
+File.open("__OUT__/kanji/flashcards/flashcard.css", 'w') do |f|
   f.write $T['../flashcard.css'].apply_ifdef('REPORT')
 end
 
 
-# make anki .js files
+# make anki files
 
 # answer
 
