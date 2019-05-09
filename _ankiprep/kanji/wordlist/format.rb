@@ -10,12 +10,12 @@ require_relative '../stats'
 module Wordlist
 
   def Wordlist.makeall
-    print "[Wordlist] generating #{Stats.relevant_kanji.size} html files... "
+    print "[Wordlist] generating #{Kanji::Stats.relevant_kanji.size} html files... "
 
     FileUtils.mkdir_p $OUTDIR+'/kanji/wordlists'
 
-    Progress.new(Stats.relevant_kanji.size) do |pr|
-      Stats.relevant_kanji.each do |k|
+    Progress.new(Kanji::Stats.relevant_kanji.size) do |pr|
+      Kanji::Stats.relevant_kanji.each do |k|
         make_html(k)
         pr.tick
       end
@@ -30,7 +30,7 @@ private
   def Wordlist.make_html(k)
     body = ''
     @eigo_id = 0
-    yarr = Stats.yarr(k) + [:other]
+    yarr = Kanji::Stats.yarr(k) + [:other]
 
     filename = $OUTDIR + '/kanji/wordlists/w' + k.utf16_code + '.html'
 
@@ -47,7 +47,7 @@ private
 
 
   def Wordlist.format_wordlist(src, k, yomi)
-    wi_list = Stats.words(src, k, yomi)
+    wi_list = Kanji::Stats.words(src, k, yomi)
     return '' if wi_list.empty?
 
     word_trs = wi_list.map do |wi|

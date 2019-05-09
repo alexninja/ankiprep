@@ -20,7 +20,7 @@ else
   "__!sources!__/wordfreq_full"
 end
 
-module Stats
+module Kanji; module Stats
 
 private
 
@@ -335,4 +335,4 @@ public
     parse_kjt
   end
 
-end
+end; end

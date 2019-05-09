@@ -17,8 +17,8 @@ module Index
 
     Progress.new do |pr|
 
-      body = "#{Stats.all_kanji.size} kanji<br>\n"
-      Stats.all_kanji.each do |k|
+      body = "#{Kanji::Stats.all_kanji.size} kanji<br>\n"
+      Kanji::Stats.all_kanji.each do |k|
         body << "<span id=\"k#{k.utf16_code}\">#{k}</span>".urlify("flashcards/k#{k.utf16_code}.html", 'flashcard')
       end
 
@@ -26,7 +26,7 @@ module Index
         f.write $T['kanji/index/index.html'].with(
           :CSS => File.read('kanji/gray.css'),
           :BODY => body,
-          :FRAMEIDS => Stats.all_kanji.map {|k| "'#{k.utf16_code}'"}.join(',')
+          :FRAMEIDS => Kanji::Stats.all_kanji.map {|k| "'#{k.utf16_code}'"}.join(',')
         )
       end
 

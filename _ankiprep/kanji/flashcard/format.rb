@@ -13,19 +13,19 @@ module Flashcard
   @heisig_list = Dir[$HEISIG_DIR+'/*.png'].map {|f| f.match(/\/(\d{4})\.png/)[1].to_i}.to_set
 
   def Flashcard.makeall
-    print "[Flashcard] generating #{Stats.new_kanji.size} html files... "
+    print "[Flashcard] generating #{Kanji::Stats.new_kanji.size} html files... "
 
     FileUtils.mkdir_p $OUTDIR+'/kanji/flashcards'
     FileUtils.mkdir_p $OUTDIR+'/kanji/anki/templates'
     FileUtils.mkdir_p $OUTDIR+'/kanji/anki/media'
 
     File.open('D:/kanji.[IMPORT].txt','w') do |ankiimp|
-      Progress.new(Stats.new_kanji.size) do |pr|
-        Stats.new_kanji.each do |k|
+      Progress.new(Kanji::Stats.new_kanji.size) do |pr|
+        Kanji::Stats.new_kanji.each do |k|
           # create the html flashcard...
           data_json = make_card(k)
           # ... and create a line for importing to kanji.anki (unless it's already there)
-          unless Stats.known_kanji? k
+          unless Kanji::Stats.known_kanji? k
             # anki wants \\\" and \' so make it happy
             data_json_escaped = data_json.split('\"').join('\\\\\"').split("'").join("\\'")
             ankiimp.puts "#{data_json_escaped}\t#{k}"
@@ -45,14 +45,14 @@ module Flashcard
     # also returns the data json for Anki import txt file
 
     utf16 = k.utf16_code
-    yarr = Stats.yarr(k) + [:other]
+    yarr = Kanji::Stats.yarr(k) + [:other]
 
-    on_all, kun_all = Kanjidic.yomi(k).sort_by {|y| Stats.yfreq(k,y)}.reverse.partition {|y| y.kat?}
+    on_all, kun_all = Kanjidic.yomi(k).sort_by {|y| Kanji::Stats.yfreq(k,y)}.reverse.partition {|y| y.kat?}
     kun_all = kun_all.partition {|y| ! y.include?('-')}.flatten
 
     word_counts = Hash.new
     yarr.each do |y|
-      word_counts[y] = [ANK,POM,MON,EDI].map {|src| Stats.words(src, k, y).size}
+      word_counts[y] = [ANK,POM,MON,EDI].map {|src| Kanji::Stats.words(src, k, y).size}
     end
 
     data = Hash.new
@@ -61,7 +61,7 @@ module Flashcard
       data[yb] = Hash.new
       data[yb]['use'] = (word_counts[y].inject(0) {|sum,x| sum+=x} > 0)
       if y.class == String && y.kat?
-        data[yb]['freq'] = Stats.yfreq(k,y)
+        data[yb]['freq'] = Kanji::Stats.yfreq(k,y)
       end
       data[yb]['words'] = []
     end
@@ -70,7 +70,7 @@ module Flashcard
     data['eigo'] = Kanjidic.eigo(k).join(', ').sub(", (kokuji)", " (kokuji)")
     data['utf16'] = utf16
     data['kanji'] = k
-    kjt = Stats.kjt(k)
+    kjt = Kanji::Stats.kjt(k)
     data['kjt'] = kjt unless kjt.empty?
 
     word_counts_brk = Hash.new
