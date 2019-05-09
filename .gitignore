@@ -15,3 +15,6 @@ _server/cpp/copytocb/.vs/
 _server/cpp/copytocb/Release/
 _server/cpp/copytocb/Debug/
 _server/cpp/copytocb/x64/
+
+_server/bassplay.exe
+_server/copytocb.exe
