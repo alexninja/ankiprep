@@ -22,7 +22,7 @@ module Index
       end
 
       File.open($REPORTDIR+'/kanji-index.html','w') do |f|
-        f.write T('kanji-index/index.html').with(
+        f.write $T['kanji-index/index.html'].with(
           :CSS => File.read('kanji/gray.css'),
           :BODY => body,
           :FRAMEIDS => Stats.all_kanji.map {|k| "'#{k.utf16_code}'"}.join(',')

@@ -1,7 +1,4 @@
-
-def T(path)
-  StringTemplate.new( File.read(path, mode:'r:UTF-8') ).freeze
-end
+$T = Hash.new {|h,path| h[path] = StringTemplate.new( File.read(path, mode:'r:UTF-8') ).freeze}
 
 
 class StringTemplate < String

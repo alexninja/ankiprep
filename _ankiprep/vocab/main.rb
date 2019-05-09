@@ -161,29 +161,29 @@ private
       wordlists.each_with_index do |wl,i|
         text = "#{wl[1]} (#{wl[2].size})"
         items << if wl[2].empty?
-          T('vocab/item-d.html').with(
+          $T['vocab/item-d.html'].with(
             TEXT: text
           )
         else
-          T('vocab/item.html').with(
+          $T['vocab/item.html'].with(
             URL: 'vocab-wordlists/' + wl[0],
             PAGEID: i,
             TEXT: text
           )
         end
       end
-      f.write T('vocab/index.html').with(
+      f.write $T['vocab/index.html'].with(
         ITEMS: items.join("\n"),
         PAGECOUNT: wordlists.size
       )
     end
     
     File.open($REPORTDIR+'/vocab-wordlists/wordlist.css','w:UTF-8') do |f|
-      f.write T('vocab-flashcard/flashcard.css').apply_ifdef('REPORT')
+      f.write $T['vocab-flashcard/flashcard.css'].apply_ifdef('REPORT')
     end
 
     File.open('report-vocab.html','w') do |f|
-      f.write T('vocab/report.html').with(REPORTDIR: $REPORTDIR)
+      f.write $T['vocab/report.html'].with(REPORTDIR: $REPORTDIR)
     end
   end
 
