@@ -1,0 +1,525 @@
+#ifdef ANKI
+<style type="text/css">
+#endif
+
+#ifdef REPORT
+  body {
+    background-color: white;
+    color: black;
+  }
+#endif
+
+#ifdef ANKI
+  body {
+    zoom: 150%;
+  }
+#endif
+
+  /**********************************************************/
+
+  table.flashcard {
+#ifdef ANKI
+    margin-top: 5px;
+#endif
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  table.flashcard td {
+    vertical-align: top;
+  }
+
+  table.flashcard td.yomibig-holder {
+    width: 350px;
+  }
+
+  /**********************************************************/
+
+  table.kakijun {
+    width: 190px;
+    border-collapse: collapse;
+  }
+
+  table.kakijun td.kanjipic {
+#ifdef ANKI
+    zoom: 66.7%;
+#endif
+    height: 250px;
+    width: 188px;
+    font-family: "EPSON 教科書体Ｍ", "MS PGothic";
+    font-size: 150pt;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid white;
+    line-height: 80%;
+  }
+
+  table.kakijun td.kanjipic-hover {
+#ifdef ANKI
+    zoom: 66.7%;
+#endif
+    height: 250px;
+    width: 188px;
+    font-family: "MS PMincho";
+    font-size: 130pt;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px dotted #EAEAEA;
+  }
+
+  table.kakijun td.yomieigo {
+    height: 202px;
+  }
+
+  table.kakijun td.yomieigo-visible {
+    height: 202px;
+  }
+
+  table.kakijun td.yomieigo div.yomi {
+    font-family: "MS PMincho";
+    font-size: 9pt;
+    letter-spacing: 1px;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 25px;
+    color: white;
+  }
+
+  table.kakijun td.yomieigo span.nanori-heading {
+    font-size: 8pt;
+    padding-right: 8px;
+    color: white;
+  }
+
+  table.kakijun td.yomieigo div.eigo {
+    font-family: "Georgia";
+    font-size: 10pt;
+    padding-top: 5px;
+    padding-left: 25px;
+    padding-right: 25px;
+    color: white;
+  }
+
+  table.kakijun td.yomieigo span.on {
+    color: white;
+  }
+
+  table.kakijun td.yomieigo span.kun {
+    color: white;
+  }
+
+  table.kakijun td.yomieigo-visible div.yomi {
+    font-family: "MS PMincho";
+    font-size: 9pt;
+    letter-spacing: 1px;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 25px;
+  }
+
+  table.kakijun td.yomieigo-visible span.nanori-heading {
+    font-size: 8pt;
+    padding-right: 8px;
+    color: #990000;
+  }
+
+  table.kakijun td.yomieigo-visible div.eigo {
+    font-family: "Georgia";
+    font-size: 10pt;
+    padding-top: 5px;
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+
+  table.kakijun p {
+    margin: 0;
+  }
+
+  /**********************************************************/
+
+  table.yomibig {
+    margin-top: 25px;
+    margin-left: 70px;
+  }
+  
+  table.yomibig td.yomibig-td {
+    font-family: "MS PMincho";
+    font-size: 34pt;
+    font-weight: bold;
+    border: none;
+    vertical-align: top;
+    text-align: center;
+  }
+
+  table.yomibig td.yomibig-td div {
+    padding-bottom: 17px;
+    height: 57px;
+  }
+
+#ifdef KUNYOMI_BIG
+  table.yomibig td.yomibig-td div.on-separator {
+    padding-bottom: 30px;
+    height: 0;
+  }
+
+  table.yomibig td.yomibig-td span.kun-stem {
+    font-size: 22pt;
+    font-weight: bold;
+    color: #9E7E7E;
+  }
+
+  table.yomibig td.yomibig-td span.kun-gobi-unique {
+    font-size: 20pt;
+    font-weight: normal;
+    color: #DDDDDD;
+  }
+
+  table.yomibig td.yomibig-td span.kun-gobi-multiple {
+    font-size: 20pt;
+    font-weight: normal;
+    color: #DDDDDD;
+  }
+
+  table.yomibig td.yomibig-td span.kun-gobi-ellipsis {
+    font-size: 12pt;
+    font-weight: normal;
+    color: #DDDDDD;
+  }
+#endif
+
+  /**********************************************************/
+
+  table.wordlist {
+    border-collapse: collapse;
+    width: 500px;
+    margin-top: 15px;
+  }
+
+#ifdef REPORT || ANSWER || PROD
+  table.wordlist p {
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+
+  table.wordlist td.kana {
+    font-family: "MS PMincho";
+    font-size: 13pt;
+    min-width: 100px;
+    vertical-align: middle;
+    text-align: left;
+    padding-left: 7px;
+    padding-right: 45px;
+    padding-top: 17px;
+    padding-bottom: 0;
+    border-top: 1px dotted #E0E0E0;
+  }
+
+#ifdef ANSWER || PROD
+  table.wordlist td.kana-smaller {
+    font-family: "MS PMincho";
+    font-size: 12pt;
+    min-width: 100px;
+    vertical-align: middle;
+    text-align: left;
+    padding-left: 7px;
+    padding-right: 15px;
+    padding-top: 17px;
+    padding-bottom: 0;
+    border-top: 1px dotted #E0E0E0;
+  }
+#endif
+
+#ifdef REPORT
+  table.wordlist td.kana-gray {
+    font-family: "MS PMincho";
+    font-size: 13pt;
+    text-decoration: line-through;
+    background-color: #EEEEEE;
+    color: #999999;
+    min-width: 100px;
+    vertical-align: middle;
+    text-align: left;
+    padding-left: 7px;
+    padding-right: 45px;
+    padding-top: 17px;
+    padding-bottom: 0;
+    border-top: 1px dotted #E0E0E0;
+  }
+#endif
+
+  table.wordlist td.expr {
+    font-family: "MS PMincho";
+#ifdef ANKI
+    font-size: 30pt;
+    height: 58px;
+#endif
+#ifdef REPORT
+    font-size: 12pt;
+#endif
+    min-width: 250px;
+    vertical-align: middle;
+    text-align: left;
+    padding-left: 7px;
+    padding-right: 7px;
+    padding-top: 14px;
+    padding-bottom: 0;
+    border-top: 1px dotted #E0E0E0;
+  }
+
+#ifdef ANSWER || PROD
+  table.wordlist td.expr-smaller {
+    font-family: "MS PMincho";
+    font-size: 22pt;
+    height: 58px;
+    min-width: 250px;
+    vertical-align: middle;
+    text-align: left;
+    padding-left: 3px;
+    padding-right: 3px;
+    padding-top: 14px;
+    padding-bottom: 0;
+    border-top: 1px dotted #E0E0E0;
+  }
+#endif
+
+#ifdef REPORT || ANSWER || PROD
+  table.wordlist td.eigo {
+    font-family: "Georgia";
+    font-size: 10pt;
+    padding-left: 7px;
+    padding-right: 7px;
+    padding-top: 6px;
+    padding-bottom: 10px;
+    border-bottom: 1px dotted #E0E0E0;
+  }
+  table.wordlist td.eigo-nonp {
+    font-family: "Georgia";
+    font-size: 10pt;
+    padding-left: 7px;
+    padding-right: 7px;
+    padding-top: 6px;
+    padding-bottom: 10px;
+    border-bottom: 1px dotted #E0E0E0;
+    color: #B2B2B2;
+  }
+  table.wordlist td.eigo-gray {
+    font-family: "Georgia";
+    font-size: 10pt;
+    padding-left: 7px;
+    padding-right: 7px;
+    padding-top: 6px;
+    padding-bottom: 10px;
+    border-bottom: 1px dotted #E0E0E0;
+    background-color: #EEEEEE;
+    color: #999999;
+  }
+  table.wordlist td div.alts {
+    font-family: "MS PMincho";
+    font-size: 14pt;
+    color: black;
+    text-align: right;
+    padding-top: 4px;
+  }
+  table.wordlist td div.alts span.gray {
+    color: #A8A8A8;
+  }
+#endif
+
+#ifdef PROD
+  table.wordlist td.expr span.hide-on {
+    font-size: 28pt;
+    color: white;
+    border: 1px dotted #3366FF;
+    margin-left: 1px;
+    margin-right: 1px;
+  }
+  table.wordlist td.expr-smaller span.hide-on {
+    font-size: 21pt;
+    color: white;
+    border: 1px dotted #3366FF;
+    margin-left: 1px;
+    margin-right: 1px;
+  }
+  table.wordlist td.expr span.hide-kun {
+    font-size: 28pt;
+    color: white;
+    border: 1px dotted #BB0000;
+    margin-left: 1px;
+    margin-right: 1px;
+  }
+  table.wordlist td.expr-smaller span.hide-kun {
+    font-size: 21pt;
+    color: white;
+    border: 1px dotted #BB0000;
+    margin-left: 1px;
+    margin-right: 1px;
+  }
+  table.wordlist td.expr span.hide-gray {
+    font-size: 28pt;
+    color: white;
+    border: 1px dotted #999999;
+    margin-left: 1px;
+    margin-right: 1px;
+  }
+  table.wordlist td.expr-smaller span.hide-gray {
+    font-size: 21pt;
+    color: white;
+    border: 1px dotted #999999;
+    margin-left: 1px;
+    margin-right: 1px;
+  }
+#endif
+
+#ifdef REPORT
+  table.wordlist td.expr-gray {
+    font-family: "MS PMincho";
+    font-size: 12pt;
+    min-width: 250px;
+    text-decoration: line-through;
+    background-color: #EEEEEE;
+    color: #999999;
+    vertical-align: middle;
+    text-align: left;
+    padding-left: 7px;
+    padding-right: 7px;
+    padding-top: 14px;
+    padding-bottom: 0;
+    border-top: 1px dotted #E0E0E0;
+  }
+#endif
+
+#ifdef REPORT
+  td.kana-gray span.on {
+    color: #999999;
+    font-weight: bold;
+  }
+  td.kana-gray span.kun {
+    color: #999999;
+    font-weight: bold;
+  }
+#endif
+
+#ifdef REPORT
+  table.wordlist td.controls {
+    padding-top: 4px;
+    padding-left: 7px;
+    border-top: 1px dotted #E0E0E0;
+    border-bottom: 1px dotted #E0E0E0;
+  }
+
+  table.wordlist td.yomiinfo {
+    font-family: "MS PMincho";
+    min-width: 120px;
+    font-size: 11pt;
+    vertical-align: top;
+    text-align: left;
+    padding-top: 6px;
+    padding-left: 7px;
+    padding-right: 7px;
+    padding-bottom: 3px;
+    border-top: 1px dotted #E0E0E0;
+    border-bottom: 1px dotted #E0E0E0;
+  }
+
+  td.yomiinfo div.word-counts {
+    font-family: "Tahoma";
+    font-size: 9pt;
+    text-align: left;
+    padding-left: 6px;
+    padding-top: 4px;
+  }
+
+  td.yomiinfo div.word-counts-gray {
+    font-family: "Tahoma";
+    font-size: 9pt;
+    color: #999999;
+    text-align: left;
+    padding-left: 6px;
+    padding-top: 4px;
+  }
+#endif
+#endif
+
+  /**********************************************************/
+
+  table.footer {
+#ifdef REPORT
+    width: 540px;
+#endif
+#ifdef ANKI
+    width: 500px;
+#endif
+    border-collapse: collapse;
+    font-family: "MS PMincho";
+    font-size: 8pt;
+    margin-top: 17px;
+  }
+
+#ifdef ANSWER
+  table.footer A:link    {text-decoration: none; color: #F0F0F0;}
+  table.footer A:visited {text-decoration: none; color: #F0F0F0;}
+  table.footer A:active  {text-decoration: none; color: #F0F0F0;}
+  table.footer A:hover   {text-decoration: underline; color: blue;}
+#endif
+
+  table.footer td {
+    padding-top: 5px;
+  }
+
+  table.footer td.edit {
+    width: 50px;
+    vertical-align: bottom;
+    text-align: right;
+  }
+
+  table.footer td.kjt {
+    width: 10px;
+    font-family: "MS PMincho";
+    font-size: 16pt;
+    vertical-align: bottom;
+    text-align: center;
+  }
+
+  table.footer td.kjt span.small {
+    font-family: "MS PMincho";
+    font-size: 8pt;
+  }
+
+  table.footer td.kjt span.small-red {
+    font-family: "MS PMincho";
+    font-size: 8pt;
+    color: #A00000;
+  }
+
+  /**********************************************************/
+
+#ifdef REPORT || ANSWER || PROD
+  span.on {
+    color: #3366FF;
+    font-weight: bold;
+  }
+
+  span.kun {
+    color: #BB0000;
+    font-weight: bold;
+  }
+#endif
+
+#ifdef RECOG
+  span.on {
+    color: white;
+    font-weight: bold;
+  }
+
+  span.kun {
+    color: white;
+    font-weight: bold;
+  }
+#endif
+
+  /**********************************************************/
+
+#ifdef ANKI
+</style>
+#endif
