@@ -90,7 +90,7 @@ module Vocab
       if expr != data['expr']
         warning = "expr mismatch: expr=\"#{expr}\" data.expr=\"#{data['expr']}\""
         puts warning
-        File.open('log.txt','a') {|f| f.puts warning}
+        #File.open('log.txt','a') {|f| f.puts warning}
       end
       w.expr = data['expr']
       w.entries = data['yomi'].map do |y|
