@@ -27,7 +27,7 @@ private
   Wordinfo = Struct.new(:expr, :n, :entries)
 
 
-  def Stats.pre_init
+  def self.pre_init
     @valid_chars = Set.new
     Kanjidic.each_kanji {|k| @valid_chars << k}
     Kana.each_kana {|k| @valid_chars << k}
@@ -36,7 +36,7 @@ private
   end
 
 
-  def Stats.parse_sources
+  def self.parse_sources
     if File.exist? $SOURCEDIR+'/_marshal'
       print "[Kanji::Stats] loading preparsed data... "
       Progress.new(1) do |pr|
@@ -91,7 +91,7 @@ private
   end
 
 
-  def Stats.parse_anki
+  def self.parse_anki
     errors_kanji = []
 
     print "[Kanji::Stats] reading #{$ANKIDIR}/kanji.anki... "
@@ -144,7 +144,7 @@ private
   end
 
 
-  def Stats.add_source(src, filename)
+  def self.add_source(src, filename)
 
     kw = Hash.new {|h,k| h[k] = Set.new}
 
@@ -202,7 +202,7 @@ private
   end
 
 
-  def Stats.postprocess(kw)
+  def self.postprocess(kw)
     print "[Kanji::Stats] classifying... "
 
     k_src = Hash.new {|hk,_| hk[_] = Hash.new {|hy,_| hy[_] = []}}
@@ -251,7 +251,7 @@ private
   end
 
 
-  def Stats.parse_kjt
+  def self.parse_kjt
     print "[Kanji::Stats] reading kyuujitai list... "
     @kjt = Hash.new {|h,k| h[k] = ''}
     File.read('__!sources!__/kjt/asahi/old_chara.html', mode:'r:Shift_JIS:UTF-8')
@@ -266,14 +266,14 @@ private
 
 public
 
-  def Stats.words(src, k, yomi = :all)
+  def self.words(src, k, yomi = :all)
     if @k[src][k]
       ret = @k[src][k][yomi]
     end
     ret || []
   end
 
-  def Stats.yfreq(k, yomi)
+  def self.yfreq(k, yomi)
     if @yfreq.has_key?(k) && @yfreq[k].has_key?(yomi)
       @yfreq[k][yomi]
     else
@@ -281,7 +281,7 @@ public
     end
   end
 
-  def Stats.yarr(k)
+  def self.yarr(k)
     ret = Kanjidic.yomi(k).delete_if {|yomi| yomi.include? '-'}
     if @yfreq.has_key? k
       ret = ret.sort_by {|yomi| yfreq(k,yomi)}.reverse.
@@ -290,23 +290,23 @@ public
     ret
   end
 
-  def Stats.valid_char?(c)
+  def self.valid_char?(c)
     @valid_chars.include? c
   end
 
-  def Stats.known_kanji?(k)
+  def self.known_kanji?(k)
     @known_kanji.include? k
   end
 
-  def Stats.vocab_kanji?(k)
+  def self.vocab_kanji?(k)
     @vocab_kanji.include? k
   end
 
-  def Stats.all_kanji
+  def self.all_kanji
     @vocab_kanji + @known_kanji
   end
 
-  def Stats.new_kanji
+  def self.new_kanji
     if Vocab.input_file_present?
       @vocab_kanji - @known_kanji
     else
@@ -314,7 +314,7 @@ public
     end
   end
 
-  def Stats.relevant_kanji
+  def self.relevant_kanji
     if Vocab.input_file_present?
       @relevant_kanji  # kanji for which Wordlists will be regenerated
     else
@@ -322,13 +322,13 @@ public
     end
   end
 
-  def Stats.kjt(k)
+  def self.kjt(k)
     @kjt[k]
   end
 
   # module initialization
 
-  def Stats.init
+  def self.init
     pre_init
     parse_sources
     parse_anki

@@ -7,10 +7,10 @@ require 'misc/gray'
 require_relative '../stats'
 
 
-module Wordlist
+module Kanji; module Wordlist
 
-  def Wordlist.makeall
-    print "[Wordlist] generating #{Kanji::Stats.relevant_kanji.size} html files... "
+  def self.makeall
+    print "[Kanji::Wordlist] generating #{Kanji::Stats.relevant_kanji.size} html files... "
 
     FileUtils.mkdir_p $OUTDIR+'/kanji/wordlists'
 
@@ -27,7 +27,7 @@ module Wordlist
 
 private
 
-  def Wordlist.make_html(k)
+  def self.make_html(k)
     body = ''
     @eigo_id = 0
     yarr = Kanji::Stats.yarr(k) + [:other]
@@ -46,7 +46,7 @@ private
   end
 
 
-  def Wordlist.format_wordlist(src, k, yomi)
+  def self.format_wordlist(src, k, yomi)
     wi_list = Kanji::Stats.words(src, k, yomi)
     return '' if wi_list.empty?
 
@@ -93,7 +93,7 @@ private
   end
 
 
-  def Wordlist.bracket_kana(e,k)
+  def self.bracket_kana(e,k)
     # generates a special kana string for consumption in html
     # example output: "machi(a)waseru", "[ei]ga"
     return e.kana if e.seki.empty?
@@ -111,11 +111,11 @@ private
       join
   end
 
-  def Wordlist.bracket_to_span(str)
+  def self.bracket_to_span(str)
     str.gsub('[', "<span class='on'>").
         gsub('(', "<span class='kun'>").
         gsub(']', "</span>").
         gsub(')', "</span>")
   end
 
-end
+end; end

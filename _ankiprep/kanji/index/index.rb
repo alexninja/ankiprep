@@ -7,11 +7,11 @@ require_relative '../stats'
 require_relative '../wordlist/format'
 
 
-module Index
+module Kanji; module Index
 
-  def Index.makereport
+  def self.makereport
 
-    print "[Index] generating index.html... "
+    print "[Kanji::Index] generating index.html... "
 
     FileUtils.mkdir_p $OUTDIR
 
@@ -34,4 +34,4 @@ module Index
 
   end
 
-end
+end; end

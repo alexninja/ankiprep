@@ -8,12 +8,12 @@ require_relative '../stats'
 $GIFDIR = 'D:/Japanese/_dict/gif'
 $HEISIG_DIR = "D:/Japanese/_dict/heisig"
 
-module Flashcard
+module Kanji; module Flashcard
 
   @heisig_list = Dir[$HEISIG_DIR+'/*.png'].map {|f| f.match(/\/(\d{4})\.png/)[1].to_i}.to_set
 
-  def Flashcard.makeall
-    print "[Flashcard] generating #{Kanji::Stats.new_kanji.size} html files... "
+  def self.makeall
+    print "[Kanji::Flashcard] generating #{Kanji::Stats.new_kanji.size} html files... "
 
     FileUtils.mkdir_p $OUTDIR+'/kanji/flashcards'
     FileUtils.mkdir_p $OUTDIR+'/kanji/anki/templates'
@@ -39,7 +39,7 @@ module Flashcard
     FileUtils.copy Dir['kanji/flashcard/png/*.png'], $OUTDIR+'/kanji/flashcards'
   end
 
-  def Flashcard.make_card(k)
+  def self.make_card(k)
     # creates the kanji's html flashcard in __OUT__/kanji/flashcards (for display by server.rb),
     # prepopulated with the data json and the word_counts json.
     # also returns the data json for Anki import txt file
@@ -113,7 +113,7 @@ module Flashcard
   end
 
 
-  def Flashcard.bracket_yomi(y)
+  def self.bracket_yomi(y)
     return y.to_s if y.class == Symbol
     if y.kat?
       '[' + y + ']'
@@ -125,7 +125,7 @@ module Flashcard
   end
 
 
-  def Flashcard.make_anki_templates
+  def self.make_anki_templates
 
     # answer
 
@@ -175,4 +175,4 @@ module Flashcard
     FileUtils.copy 'kanji/flashcard/json2/json2.js', $OUTDIR+'/kanji/anki/media'
   end
 
-end
+end; end
