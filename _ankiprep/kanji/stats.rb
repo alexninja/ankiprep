@@ -1,4 +1,5 @@
 # encoding: UTF-8
+require 'fileutils'
 require 'set'
 require 'json' # gem
 require 'edict'
@@ -81,7 +82,7 @@ private
     @k[EDI] = postprocess(kw)
 
     print "[Stats] saving preparsed data... "
-    Dir.mkdir $SOURCEDIR+'/_marshal' unless File.exist? $SOURCEDIR+'/_marshal'
+    FileUtils.mkdir_p $SOURCEDIR+'/_marshal'
     Progress.new(1) do |pr|
       File.open($SOURCEDIR+'/_marshal/k.marshal', "wb") {|f| Marshal.dump(@k, f)}
       File.open($SOURCEDIR+'/_marshal/yfreq.marshal', "wb") {|f| Marshal.dump(@yfreq, f)}

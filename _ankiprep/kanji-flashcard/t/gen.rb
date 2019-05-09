@@ -4,8 +4,7 @@ require 'fileutils'
 $GIFDIR = 'D:/Japanese/_dict/gif'
 $HEISIG_DIR = "D:/Japanese/_dict/heisig"
 
-Dir.mkdir "__OUT__" unless File.exist? "__OUT__"
-Dir.mkdir "__OUT__/kanji-flashcards" unless File.exist? "__OUT__/kanji-flashcards"
+FileUtils.mkdir_p "__OUT__/kanji-flashcards"
 
 # make report flashcard files
 

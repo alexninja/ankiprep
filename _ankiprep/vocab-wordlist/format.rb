@@ -1,4 +1,5 @@
-﻿
+﻿require 'fileutils'
+
 module Vocab
 
 private
@@ -51,8 +52,7 @@ private
       )
     end.join("\n")
 
-    Dir.mkdir($OUTDIR) unless File.exist?($OUTDIR)
-    Dir.mkdir($OUTDIR+'/vocab-wordlists') unless File.exist?($OUTDIR+'/vocab-wordlists')
+    FileUtils.mkdir_p $OUTDIR+'/vocab-wordlists'
 
     heading = title.gsub('&nbsp;','').chars.to_a.select {|c| c.ascii_only?}.join + " (#{wordlist.size})"
 

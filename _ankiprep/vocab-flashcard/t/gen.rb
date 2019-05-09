@@ -1,6 +1,7 @@
+require 'fileutils'
 require '../../../libs/misc/template'
 
-Dir.mkdir "__OUT__" unless File.exist? "__OUT__"
+FileUtils.mkdir_p "__OUT__"
 
 # make testpage flashcard files
 

@@ -1,3 +1,4 @@
+require 'fileutils'
 require 'misc/template'
 require_relative 'stats'
 require_relative '../kanji-wordlist/format'
@@ -21,7 +22,7 @@ module Kanji
 private
 
   def Kanji.makereport
-    Dir.mkdir $OUTDIR unless File.exist? $OUTDIR
+    FileUtils.mkdir_p $OUTDIR
     File.open('report-kanji.html','w') do |f|
       f.write $T['kanji/report.html'].with(OUTDIR: $OUTDIR)
     end

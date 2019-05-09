@@ -11,8 +11,8 @@ module Wordlist
 
   def Wordlist.makeall
     print "[Wordlist] generating #{Stats.relevant_kanji.size} html files... "
-    Dir.mkdir $OUTDIR unless File.exist? $OUTDIR
-    Dir.mkdir $OUTDIR+'/kanji-wordlists' unless File.exist? $OUTDIR+'/kanji-wordlists'
+
+    FileUtils.mkdir_p $OUTDIR+'/kanji-wordlists'
 
     Progress.new(Stats.relevant_kanji.size) do |pr|
       Stats.relevant_kanji.each do |k|

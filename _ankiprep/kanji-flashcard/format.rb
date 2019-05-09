@@ -15,11 +15,9 @@ module Flashcard
   def Flashcard.makeall
     print "[Flashcard] generating #{Stats.new_kanji.size} html files... "
 
-    Dir.mkdir $OUTDIR unless File.exist? $OUTDIR
-    Dir.mkdir $OUTDIR+'/kanji-flashcards' unless File.exist? $OUTDIR+'/kanji-flashcards'
-    Dir.mkdir $OUTDIR+'/__anki__' unless File.exist? $OUTDIR+'/__anki__'
-    Dir.mkdir $OUTDIR+'/__anki__/templates' unless File.exist? $OUTDIR+'/__anki__/templates'
-    Dir.mkdir $OUTDIR+'/__anki__/media' unless File.exist? $OUTDIR+'/__anki__/media'
+    FileUtils.mkdir_p $OUTDIR+'/kanji-flashcards'
+    FileUtils.mkdir_p $OUTDIR+'/__anki__/templates'
+    FileUtils.mkdir_p $OUTDIR+'/__anki__/media'
 
     File.open('D:/kanji.[IMPORT].txt','w') do |ankiimp|
       Progress.new(Stats.new_kanji.size) do |pr|

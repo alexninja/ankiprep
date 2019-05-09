@@ -1,3 +1,4 @@
+require 'fileutils'
 require 'misc/urlify'
 require 'misc/template'
 require 'misc/utf16'
@@ -12,7 +13,7 @@ module Index
 
     print "[Index] generating index.html... "
 
-    Dir.mkdir $OUTDIR unless File.exist? $OUTDIR
+    FileUtils.mkdir_p $OUTDIR
 
     Progress.new do |pr|
 
