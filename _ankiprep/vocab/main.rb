@@ -11,7 +11,7 @@ require_relative '../anki/anki'
 require_relative 'word'
 require_relative 'string'
 require_relative 'audio'
-require_relative '../vocab-wordlist/format'
+require_relative '../vocab/wordlist/format'
 
 
 
@@ -156,7 +156,7 @@ private
       end
     end
 
-    File.open($OUTDIR+'/vocab-index.html','w:UTF-8') do |f|
+    File.open($OUTDIR+'/vocab/index.html','w:UTF-8') do |f|
       items = []
       wordlists.each_with_index do |wl,i|
         text = "#{wl[1]} (#{wl[2].size})"
@@ -166,7 +166,7 @@ private
           )
         else
           $T['vocab/item.html'].with(
-            URL: 'vocab-wordlists/' + wl[0],
+            URL: 'wordlists/' + wl[0],
             PAGEID: i,
             TEXT: text
           )
@@ -178,8 +178,8 @@ private
       )
     end
     
-    File.open($OUTDIR+'/vocab-wordlists/wordlist.css','w:UTF-8') do |f|
-      f.write $T['vocab-flashcard/flashcard.css'].apply_ifdef('REPORT')
+    File.open($OUTDIR+'/vocab/wordlists/wordlist.css','w:UTF-8') do |f|
+      f.write $T['vocab/flashcard/flashcard.css'].apply_ifdef('REPORT')
     end
 
     File.open('report-vocab.html','w') do |f|
