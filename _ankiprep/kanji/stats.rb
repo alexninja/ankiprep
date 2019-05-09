@@ -38,7 +38,7 @@ private
 
   def Stats.parse_sources
     if File.exist? $SOURCEDIR+'/_marshal'
-      print "[Stats] loading preparsed data... "
+      print "[Kanji::Stats] loading preparsed data... "
       Progress.new(1) do |pr|
         @k = File.open($SOURCEDIR+'/_marshal/k.marshal', "rb") {|f| Marshal.load(f)}
         @yfreq = File.open($SOURCEDIR+'/_marshal/yfreq.marshal', "rb") {|f| Marshal.load(f)}
@@ -81,7 +81,7 @@ private
     end
     @k[EDI] = postprocess(kw)
 
-    print "[Stats] saving preparsed data... "
+    print "[Kanji::Stats] saving preparsed data... "
     FileUtils.mkdir_p $SOURCEDIR+'/_marshal'
     Progress.new(1) do |pr|
       File.open($SOURCEDIR+'/_marshal/k.marshal', "wb") {|f| Marshal.dump(@k, f)}
@@ -94,7 +94,7 @@ private
   def Stats.parse_anki
     errors_kanji = []
 
-    print "[Stats] reading #{$ANKIDIR}/kanji.anki... "
+    print "[Kanji::Stats] reading #{$ANKIDIR}/kanji.anki... "
     @known_kanji = Anki.read("#{$ANKIDIR}/kanji.anki").map do |kanji,json|
       json_q = json.gsub('use:',    '"use":'   ).
                     gsub('freq:',   '"freq":'  ).
@@ -122,7 +122,7 @@ private
       abort "Errors in kanji.anki! [see __errors.txt]" #abort
     end
 
-    puts "[Stats] parsing vocab..."
+    puts "[Kanji::Stats] parsing vocab..."
     kw = Hash.new {|h,k| h[k] = Set.new}
     @vocab_kanji = Set.new
     @relevant_kanji = Set.new
@@ -152,7 +152,7 @@ private
 
     # a half-hack to load all words from edict (to complement goo, which is really old)
     if src == EDI && $SOURCEDIR.include?("/__full__")
-      print "[Stats] priming with Edict... "
+      print "[Kanji::Stats] priming with Edict... "
       Progress.new(Edict.size) do |pr|
         Edict.each do |e|
           words[e.expr] = 0
@@ -160,7 +160,7 @@ private
       end
     end
 
-    print "[Stats] reading #{filename}... "
+    print "[Kanji::Stats] reading #{filename}... "
     lines = Utf8.readlines(filename)
 
     Progress.new(lines.size) do |pr|
@@ -182,7 +182,7 @@ private
       end
     end
 
-    print "[Stats] parsing #{words.size} words... "
+    print "[Kanji::Stats] parsing #{words.size} words... "
 
     Progress.new(words.size) do |pr|
       words.each do |expr,n|
@@ -203,7 +203,7 @@ private
 
 
   def Stats.postprocess(kw)
-    print "[Stats] classifying... "
+    print "[Kanji::Stats] classifying... "
 
     k_src = Hash.new {|hk,_| hk[_] = Hash.new {|hy,_| hy[_] = []}}
 
@@ -252,7 +252,7 @@ private
 
 
   def Stats.parse_kjt
-    print "[Stats] reading kyuujitai list... "
+    print "[Kanji::Stats] reading kyuujitai list... "
     @kjt = Hash.new {|h,k| h[k] = ''}
     File.read('__!sources!__/kjt/asahi/old_chara.html', mode:'r:Shift_JIS:UTF-8')
         .scan(/\s+<td class="ch">(.+)<\/td>\n\s+<td class="ch">(.+)<\/td>/)
