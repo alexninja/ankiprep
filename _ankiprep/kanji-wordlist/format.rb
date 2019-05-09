@@ -9,9 +9,6 @@ require_relative '../kanji/stats'
 
 module Wordlist
 
-  @t = T.new('kanji-wordlist')
-
-
   def Wordlist.makeall
     print "[Wordlist] generating #{Stats.relevant_kanji.size} html files... "
     Dir.mkdir $REPORTDIR unless File.exist? $REPORTDIR
@@ -44,7 +41,7 @@ private
     end
 
     File.open(filename, 'w') do |f|
-      f.write @t['page.html'].with(BODY: body)
+      f.write T('kanji-wordlist/page.html').with(BODY: body)
     end
   end
 
@@ -54,7 +51,7 @@ private
     return '' if wi_list.empty?
 
     word_trs = wi_list.map do |wi|
-      @t['word-tr.html'].with(
+      T('kanji-wordlist/word-tr.html').with(
         COUNT: wi.n,
         EXPR: "<nobr>" + wi.expr.html_gray_if(wi.entries.all? {|e| !e.priority?}) + "</nobr>",
         DETAILS: wi.entries.map do |e|
@@ -66,7 +63,7 @@ private
                       alts_js = ',"' + e.alts[0].join(' ') + (e.alts[0].empty? || e.alts[1].empty? ? '' : ';') + e.alts[1].join(' ') + '"'
                       alts = '&nbsp;'*4 + e.alts.flatten.map { |a| (a[0]=='~' ? a[1..-1].gray : a) }.join(Utf8::Space)
                     end
-                    @t['details.html'].with(
+                    T('kanji-wordlist/details.html').with(
                       YOMI_JS: Flashcard.bracket_yomi(yomi),
                       KANA_JS: kana_brk,
                       EXPR_JS: wi.expr,
@@ -89,7 +86,7 @@ private
       ' ' +
       ["Anki","Pomax","Monash","Edict"][src]
 
-    @t['wordlist.html'].with(
+    T('kanji-wordlist/wordlist.html').with(
       ANCHOR: %w[ank pom mon edi][src] + '_' + Flashcard.bracket_yomi(yomi),
       TITLE: "#{title} (#{wi_list.size} words)",
       WORD_TRS: word_trs)

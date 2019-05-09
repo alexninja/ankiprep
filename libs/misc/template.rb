@@ -1,13 +1,6 @@
 
-class T
-  def initialize(path)
-    @hash = Hash.new
-    @path = path
-  end
-
-  def [] file
-    @hash[file] ||= StringTemplate.new( File.read(@path+'/'+file, mode:'r:UTF-8') ).freeze
-  end
+def T(path)
+  StringTemplate.new( File.read(path, mode:'r:UTF-8') ).freeze
 end
 
 

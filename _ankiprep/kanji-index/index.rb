@@ -8,8 +8,6 @@ require_relative '../kanji-wordlist/format'
 
 module Index
 
-  @t = T.new('kanji-index')
-
   def Index.makereport
 
     print "[Index] generating index.html... "
@@ -24,7 +22,7 @@ module Index
       end
 
       File.open($REPORTDIR+'/kanji-index.html','w') do |f|
-        f.write @t['index.html'].with(
+        f.write T('kanji-index/index.html').with(
           :CSS => File.read('kanji/gray.css'),
           :BODY => body,
           :FRAMEIDS => Stats.all_kanji.map {|k| "'#{k.utf16_code}'"}.join(',')

@@ -20,12 +20,10 @@ module Kanji
 
 private
 
-  @t = T.new('kanji')
-
   def Kanji.makereport
     Dir.mkdir $REPORTDIR unless File.exist? $REPORTDIR
     File.open('report-kanji.html','w') do |f|
-      f.write @t['report.html'].with(REPORTDIR: $REPORTDIR)
+      f.write T('kanji/report.html').with(REPORTDIR: $REPORTDIR)
     end
   end
 
