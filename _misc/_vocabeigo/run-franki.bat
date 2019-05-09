@@ -1,1 +1,0 @@
-D:\Tools\Python25\python.exe franki-1.4.py -d vocab.anki -f vocab-with-eigo.txt -m vocab -k teigi 1 -k expr 2 -k kana 3 -k shosai 4 -r eigo 5

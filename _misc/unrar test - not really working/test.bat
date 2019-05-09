@@ -1,1 +1,0 @@
-d:\tools\winrar\winrar.exe e D:\zzz\test.zip -n@test_filelist.tmp -y -scu Shit\
