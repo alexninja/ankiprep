@@ -6,8 +6,8 @@ module Yomi
   @rendakuh = Hash.new {|h,k| h[k] = []}
   @rendakut = Hash.new {|h,k| h[k] = []}
 
-  readpairs('yomi/rendakuh.txt').each {|p| @rendakuh[p[0]] << p[1]}
-  readpairs('yomi/rendakut.txt').each {|p| @rendakut[p[0]] << p[1]}
+  readpairs('../libs/yomi/rendakuh.txt').each {|p| @rendakuh[p[0]] << p[1]}
+  readpairs('../libs/yomi/rendakut.txt').each {|p| @rendakut[p[0]] << p[1]}
 
   def Yomi.rendaku(yomi)
     ([yomi] + rendakuh(yomi) + rendakut(yomi)).uniq

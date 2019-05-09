@@ -9,8 +9,8 @@ require 'anki'
 require 'misc/utf8'
 require 'misc/utf16'
 require 'misc/progress'
-require_relative '../yomi/parse'
-require_relative '../yomi/has_yomi'
+require 'yomi/parse'
+require 'yomi/has_yomi'
 
 ANK,POM,MON,EDI=0,1,2,3
 
