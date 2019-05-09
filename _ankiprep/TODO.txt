@@ -1,8 +1,10 @@
-__OUT__/kanji-flashcards should be populated from Anki, not left empty and useless.
+    __OUT__/kanji/flashcards should be populated from Anki, not left empty and useless.
 
-move kanji-flashcard, kanji-index, kanji-wordlist under kanji/
-move vocab-flashcard, vocab-wordlist under vocab/
+[x] move kanji-flashcard, kanji-index, kanji-wordlist under kanji/
+[x] move vocab-flashcard, vocab-wordlist under vocab/
 
-yank the anki-template.html processing out of vocab-flashcard\t\gen.rb and put it in a vocab-flashcard\format.rb, same as kanji-flashcard
+    yank the anki-template.html processing out of vocab-flashcard\t\gen.rb and put it in a vocab-flashcard\format.rb, same as kanji-flashcard
 
-__OUT__/kanji/ wordlists and flashcards make singular
+    __OUT__/kanji/ wordlists and flashcards make singular
+
+    vocab/wordlist is improperly named - this is just a report of the current run from rikaichan.txt
