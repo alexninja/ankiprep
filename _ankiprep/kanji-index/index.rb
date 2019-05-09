@@ -12,7 +12,7 @@ module Index
 
     print "[Index] generating index.html... "
 
-    Dir.mkdir $REPORTDIR unless File.exist? $REPORTDIR
+    Dir.mkdir $OUTDIR unless File.exist? $OUTDIR
 
     Progress.new do |pr|
 
@@ -21,7 +21,7 @@ module Index
         body << "<span id=\"k#{k.utf16_code}\">#{k}</span>".urlify("kanji-flashcards/k#{k.utf16_code}.html", 'flashcard')
       end
 
-      File.open($REPORTDIR+'/kanji-index.html','w') do |f|
+      File.open($OUTDIR+'/kanji-index.html','w') do |f|
         f.write $T['kanji-index/index.html'].with(
           :CSS => File.read('kanji/gray.css'),
           :BODY => body,

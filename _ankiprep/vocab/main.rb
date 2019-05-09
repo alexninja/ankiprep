@@ -156,7 +156,7 @@ private
       end
     end
 
-    File.open($REPORTDIR+'/vocab-index.html','w:UTF-8') do |f|
+    File.open($OUTDIR+'/vocab-index.html','w:UTF-8') do |f|
       items = []
       wordlists.each_with_index do |wl,i|
         text = "#{wl[1]} (#{wl[2].size})"
@@ -178,12 +178,12 @@ private
       )
     end
     
-    File.open($REPORTDIR+'/vocab-wordlists/wordlist.css','w:UTF-8') do |f|
+    File.open($OUTDIR+'/vocab-wordlists/wordlist.css','w:UTF-8') do |f|
       f.write $T['vocab-flashcard/flashcard.css'].apply_ifdef('REPORT')
     end
 
     File.open('report-vocab.html','w') do |f|
-      f.write $T['vocab/report.html'].with(REPORTDIR: $REPORTDIR)
+      f.write $T['vocab/report.html'].with(OUTDIR: $OUTDIR)
     end
   end
 

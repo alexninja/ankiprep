@@ -11,8 +11,8 @@ module Wordlist
 
   def Wordlist.makeall
     print "[Wordlist] generating #{Stats.relevant_kanji.size} html files... "
-    Dir.mkdir $REPORTDIR unless File.exist? $REPORTDIR
-    Dir.mkdir $REPORTDIR+'/kanji-wordlists' unless File.exist? $REPORTDIR+'/kanji-wordlists'
+    Dir.mkdir $OUTDIR unless File.exist? $OUTDIR
+    Dir.mkdir $OUTDIR+'/kanji-wordlists' unless File.exist? $OUTDIR+'/kanji-wordlists'
 
     Progress.new(Stats.relevant_kanji.size) do |pr|
       Stats.relevant_kanji.each do |k|
@@ -21,7 +21,7 @@ module Wordlist
       end
     end
 
-    FileUtils.cp 'kanji-wordlist/wordlist.css', $REPORTDIR+'/kanji-wordlists'
+    FileUtils.cp 'kanji-wordlist/wordlist.css', $OUTDIR+'/kanji-wordlists'
   end
 
 
@@ -32,7 +32,7 @@ private
     @eigo_id = 0
     yarr = Stats.yarr(k) + [:other]
 
-    filename = $REPORTDIR + '/kanji-wordlists/w' + k.utf16_code + '.html'
+    filename = $OUTDIR + '/kanji-wordlists/w' + k.utf16_code + '.html'
 
     yarr.each do |yomi|
       [ANK,POM,MON,EDI].each do |src|

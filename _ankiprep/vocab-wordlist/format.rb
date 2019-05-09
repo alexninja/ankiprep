@@ -51,12 +51,12 @@ private
       )
     end.join("\n")
 
-    Dir.mkdir($REPORTDIR) unless File.exist?($REPORTDIR)
-    Dir.mkdir($REPORTDIR+'/vocab-wordlists') unless File.exist?($REPORTDIR+'/vocab-wordlists')
+    Dir.mkdir($OUTDIR) unless File.exist?($OUTDIR)
+    Dir.mkdir($OUTDIR+'/vocab-wordlists') unless File.exist?($OUTDIR+'/vocab-wordlists')
 
     heading = title.gsub('&nbsp;','').chars.to_a.select {|c| c.ascii_only?}.join + " (#{wordlist.size})"
 
-    File.open($REPORTDIR+'/vocab-wordlists/'+filename,'w:UTF-8') do |f|
+    File.open($OUTDIR+'/vocab-wordlists/'+filename,'w:UTF-8') do |f|
       f.write $T['vocab-wordlist/wordlist.html'].with(
         PAGEID: pageid,
         HEADING: heading,
