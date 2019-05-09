@@ -5,3 +5,4 @@ move vocab-flashcard, vocab-wordlist under vocab/
 
 yank the anki-template.html processing out of vocab-flashcard\t\gen.rb and put it in a vocab-flashcard\format.rb, same as kanji-flashcard
 
+__OUT__/kanji/ wordlists and flashcards make singular

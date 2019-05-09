@@ -1,9 +1,9 @@
 require 'fileutils'
 require 'misc/template'
 require_relative 'stats'
-require_relative '../kanji-wordlist/format'
-require_relative '../kanji-flashcard/format'
-require_relative '../kanji-index/index'
+require_relative '../kanji/wordlist/format'
+require_relative '../kanji/flashcard/format'
+require_relative '../kanji/index/index'
 
 $OUTDIR = '__OUT__'
 
