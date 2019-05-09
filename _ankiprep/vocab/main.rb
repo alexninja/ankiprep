@@ -3,15 +3,15 @@ require 'fileutils'
 require 'json'
 require 'edict'
 require 'kanjidic'
+require 'anki'
 require 'misc/utf8'
 require 'misc/gray'
 require 'misc/template'
 require 'misc/progress'
-require_relative '../anki/anki'
 require_relative 'word'
 require_relative 'string'
 require_relative 'audio'
-require_relative '../vocab/wordlist/format'
+require_relative 'wordlist/format'
 
 
 
