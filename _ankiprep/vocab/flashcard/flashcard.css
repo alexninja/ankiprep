@@ -10,7 +10,7 @@
 
   table.flashcard {
     border-collapse: collapse;
-#ifdef QUESTION || ANSWER || TESTPAGE
+#ifdef RECOG || PROD || ANSWER || TESTPAGE
     margin-top: 50px;
     margin-left: auto;
     margin-right: auto;
@@ -19,7 +19,7 @@
 
   table.flashcard td {
     vertical-align: top;
-#ifdef QUESTION || ANSWER || TESTPAGE
+#ifdef RECOG || PROD || ANSWER || TESTPAGE
     text-align: center;
 #endif
 #ifdef REPORT
@@ -28,7 +28,7 @@
   }
 
   table.flashcard td.expr {
-#ifdef QUESTION || ANSWER || TESTPAGE
+#ifdef RECOG || PROD || ANSWER || TESTPAGE
     height: 250px;
     padding-top: 60px;
 #endif
@@ -54,7 +54,7 @@
     font-family: "MS PMincho";
     font-weight: bold;
     text-align: left;
-#ifdef QUESTION || ANSWER || TESTPAGE
+#ifdef RECOG || PROD || ANSWER || TESTPAGE
     padding-top: 17px;
     font-size: 15pt;
 #endif
@@ -78,7 +78,7 @@
     font-family: "MS PMincho";
     font-size: 12pt;
     text-align: right;
-#ifdef QUESTION || ANSWER || TESTPAGE
+#ifdef RECOG || PROD || ANSWER || TESTPAGE
     padding-top: 17px;
 #endif
 #ifdef REPORT

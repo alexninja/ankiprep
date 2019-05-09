@@ -1,10 +1,11 @@
 _ankiprep/__OUT__/
-_ankiprep/kanji-flashcard/t/__gen
+
+_ankiprep/kanji/flashcard/t/__OUT__/
+_ankiprep/vocab/flashcard/t/__OUT__/
+
 _ankiprep/report-kanji.html
 _ankiprep/report-vocab.html
 _ankiprep/log.txt
-_ankiprep/kanji-flashcard/t/__OUT__/
-_ankiprep/vocab-flashcard/t/__OUT__/
 
 _server/cpp/bassplay/.vs/
 _server/cpp/bassplay/Release/

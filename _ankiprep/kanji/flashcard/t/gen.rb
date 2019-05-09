@@ -1,4 +1,4 @@
-require '../../../libs/misc/template'
+require '../../../../libs/misc/template'
 require 'fileutils'
 
 $GIFDIR = 'D:/Japanese/_dict/gif'

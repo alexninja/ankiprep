@@ -15,11 +15,10 @@ copy testpage.html                      __OUT__
 
 copy __OUT__\flashcard.css              __OUT__\kanji\flashcards
 copy __OUT__\flashcard.js               __OUT__\kanji\flashcards
-copy __OUT__\k4f1a.html                 __OUT__\kanji\flashcards
+
 copy ..\png\*.png                       __OUT__\kanji\flashcards
 
 copy w4f1a.html                         __OUT__\kanji\wordlists
-copy ..\..\kanji-wordlist\wordlist.css  __OUT__\kanji\wordlists
-
+copy ..\..\wordlist\wordlist.css           __OUT__\kanji\wordlists
 
 start firefox                           __OUT__\testpage.html
