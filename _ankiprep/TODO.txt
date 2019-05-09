@@ -1,0 +1,2 @@
+__OUT__/kanji-flashcards should be populated from Anki, not left empty and useless.
+
