@@ -1,21 +1,18 @@
 #ifdef ANKI
+
 #ifdef PROD || RECOG
   document.write('$HTML$CSS');
 #endif
 #ifdef ANSWER
   document.write('$HTML$CSS<script src="json2.js"></script>');
 #endif
-#endif
 
-#ifdef ANKI
   var _timer = setInterval(function() {
     if (/loaded|complete/.test(document.readyState)) {
       prepare();
     }
   }, 10);
-#endif
 
-#ifdef ANKI
   try {
     var _data = eval('(' + clean_garbage(data) + ')');
   }

@@ -1,5 +1,5 @@
-
 #ifdef ANKI
+
   document.write('$HTML$CSS');
 
   var _timer = setInterval(function() {
@@ -12,7 +12,7 @@
     var _data = eval('(' + clean_garbage(data) + ')');
   }
   catch(e) {
-    alert('kanji data eval exception: name = [' + e.name  + ']; message = [' + e.message + ']');
+    alert('vocab data eval exception: name = [' + e.name  + ']; message = [' + e.message + ']');
   }
   function clean_garbage(str) {
     return str.replace(/&quot;/g,'"').replace(/<span class=".+">/,"").replace('</span>',"");
