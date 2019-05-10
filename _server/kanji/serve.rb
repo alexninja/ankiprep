@@ -6,7 +6,6 @@ module Kanji
 
   KanjiData = Struct.new(:time, :chunks)
 
-  @t = T.new('kanji')
   @data = Hash.new
 
   def Kanji.serve(url, s)
@@ -17,7 +16,7 @@ module Kanji
       utf16 = m[1]
       s.print "HTTP/1.1 200/OK\r\n"
       s.print "Content-type: text/html\r\n\r\n"
-      s.print @t['redirect.html'].with(UTF16: utf16)
+      s.print $T['redirect.html'].with(UTF16: utf16)
 
     elsif m = url.match(/^kanji\/(set|copy)\/([0-9a-fA-F]{4})\/(\d+)\/(\d+)\/(.+)$/)
       op, utf16, cur, tot, chunk = m[1], m[2], m[3], m[4], m[5]
@@ -60,10 +59,10 @@ module Kanji
       s.print "Content-type: text/html\r\n\r\n"
       if @data.has_key?(utf16) && @data[utf16].chunks.all? {|c| c != nil}
         # data available, load the two-frame html
-        s.print @t['report.html'].with(UTF16: utf16)
+        s.print $T['report.html'].with(UTF16: utf16)
       else
         # keep redirecting until we have data
-        s.print @t['redirect.html'].with(UTF16: utf16)
+        s.print $T['redirect.html'].with(UTF16: utf16)
       end
 
     elsif m = url.match(/^kanji\/show\/(kanji-flashcards|kanji-wordlists)\/(.+)\.(.+)$/)
