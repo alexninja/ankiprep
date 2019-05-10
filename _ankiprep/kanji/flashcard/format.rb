@@ -15,7 +15,7 @@ module Kanji; module Flashcard
   def self.makeall
     print "[Kanji::Flashcard] generating #{Kanji::Stats.new_kanji.size} html files... "
 
-    FileUtils.mkdir_p $OUTDIR+'/kanji/flashcards'
+    FileUtils.mkdir_p $OUTDIR+'/kanji/flashcard'
     FileUtils.mkdir_p $OUTDIR+'/kanji/anki/templates'
     FileUtils.mkdir_p $OUTDIR+'/kanji/anki/media'
 
@@ -36,11 +36,11 @@ module Kanji; module Flashcard
     end
 
     make_anki_templates
-    FileUtils.copy Dir['kanji/flashcard/png/*.png'], $OUTDIR+'/kanji/flashcards'
+    FileUtils.copy Dir['kanji/flashcard/png/*.png'], $OUTDIR+'/kanji/flashcard'
   end
 
   def self.make_card(k)
-    # creates the kanji's html flashcard in __OUT__/kanji/flashcards (for display by server.rb),
+    # creates the kanji's html flashcard in __OUT__/kanji/flashcard/ (for display by server.rb),
     # prepopulated with the data json and the word_counts json.
     # also returns the data json for Anki import txt file
 
@@ -89,7 +89,7 @@ module Kanji; module Flashcard
 
     data_json = data.to_json.trim_keys(data)
 
-    File.open($OUTDIR+"/kanji/flashcards/k#{k.utf16_code}.html", 'w') do |f|
+    File.open($OUTDIR+"/kanji/flashcard/k#{k.utf16_code}.html", 'w') do |f|
       f.write $T['kanji/flashcard/flashcard.html'].apply_ifdef('REPORT').with(
         UTF16: utf16,
         DATA: data_json,
@@ -101,11 +101,11 @@ module Kanji; module Flashcard
       ).check
     end
 
-    File.open($OUTDIR+"/kanji/flashcards/flashcard.js", 'w') do |f|
+    File.open($OUTDIR+"/kanji/flashcard/flashcard.js", 'w') do |f|
       f.write $T['kanji/flashcard/flashcard.js'].apply_ifdef('REPORT')
     end
 
-    File.open($OUTDIR+"/kanji/flashcards/flashcard.css", 'w') do |f|
+    File.open($OUTDIR+"/kanji/flashcard/flashcard.css", 'w') do |f|
       f.write $T['kanji/flashcard/flashcard.css'].apply_ifdef('REPORT')
     end
 

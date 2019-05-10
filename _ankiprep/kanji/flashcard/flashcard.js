@@ -494,7 +494,7 @@
       }
       var wc = _word_counts[yomi][i];
       if (wc > 0 && use) {
-        href = "../wordlists/w" + _data.utf16 + ".html#" + ["ank","pom","mon","edi"][i] + "_" + yomi;
+        href = "../wordlist/w" + _data.utf16 + ".html#" + ["ank","pom","mon","edi"][i] + "_" + yomi;
         html += "<a href='" + href + "' target='wordlist'>" + wc + "</a>";
       }
       else {

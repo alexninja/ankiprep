@@ -19,7 +19,7 @@ module Kanji; module Index
 
       body = "#{Kanji::Stats.all_kanji.size} kanji<br>\n"
       Kanji::Stats.all_kanji.each do |k|
-        body << "<span id=\"k#{k.utf16_code}\">#{k}</span>".urlify("flashcards/k#{k.utf16_code}.html", 'flashcard')
+        body << "<span id=\"k#{k.utf16_code}\">#{k}</span>".urlify("flashcard/k#{k.utf16_code}.html", 'flashcard')
       end
 
       File.open($OUTDIR+'/kanji/index.html','w') do |f|

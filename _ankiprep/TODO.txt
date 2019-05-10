@@ -5,6 +5,6 @@
 
     yank the anki-template.html processing out of vocab-flashcard\t\gen.rb and put it in a vocab-flashcard\format.rb, same as kanji-flashcard
 
-    __OUT__/kanji/ wordlists and flashcards make singular
+[x] __OUT__/kanji/ wordlists and flashcards make singular
 
     vocab/wordlist is improperly named - this is just a report of the current run from rikaichan.txt

@@ -12,7 +12,7 @@ module Kanji; module Wordlist
   def self.makeall
     print "[Kanji::Wordlist] generating #{Kanji::Stats.relevant_kanji.size} html files... "
 
-    FileUtils.mkdir_p $OUTDIR+'/kanji/wordlists'
+    FileUtils.mkdir_p $OUTDIR+'/kanji/wordlist'
 
     Progress.new(Kanji::Stats.relevant_kanji.size) do |pr|
       Kanji::Stats.relevant_kanji.each do |k|
@@ -21,7 +21,7 @@ module Kanji; module Wordlist
       end
     end
 
-    FileUtils.cp 'kanji/wordlist/wordlist.css', $OUTDIR+'/kanji/wordlists'
+    FileUtils.cp 'kanji/wordlist/wordlist.css', $OUTDIR+'/kanji/wordlist'
   end
 
 
@@ -32,7 +32,7 @@ private
     @eigo_id = 0
     yarr = Kanji::Stats.yarr(k) + [:other]
 
-    filename = $OUTDIR + '/kanji/wordlists/w' + k.utf16_code + '.html'
+    filename = $OUTDIR + '/kanji/wordlist/w' + k.utf16_code + '.html'
 
     yarr.each do |yomi|
       [ANK,POM,MON,EDI].each do |src|

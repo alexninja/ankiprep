@@ -166,7 +166,7 @@ private
           )
         else
           $T['vocab/item.html'].with(
-            URL: 'wordlists/' + wl[0],
+            URL: 'wordlist/' + wl[0],
             PAGEID: i,
             TEXT: text
           )
@@ -178,7 +178,7 @@ private
       )
     end
     
-    File.open($OUTDIR+'/vocab/wordlists/wordlist.css','w:UTF-8') do |f|
+    File.open($OUTDIR+'/vocab/wordlist/wordlist.css','w:UTF-8') do |f|
       f.write $T['vocab/flashcard/flashcard.css'].apply_ifdef('REPORT')
     end
 

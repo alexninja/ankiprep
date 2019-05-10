@@ -4,11 +4,13 @@ require 'fileutils'
 $GIFDIR = 'D:/Japanese/_dict/gif'
 $HEISIG_DIR = "D:/Japanese/_dict/heisig"
 
-FileUtils.mkdir_p "__OUT__/kanji/flashcards"
+FileUtils.mkdir_p "__OUT__/kanji/flashcard"
+FileUtils.mkdir_p "__OUT__/kanji/wordlist"
+
 
 # make report flashcard files
 
-File.open("__OUT__/kanji/flashcards/k4f1a.html", 'w') do |f|
+File.open("__OUT__/kanji/flashcard/k4f1a.html", 'w') do |f|
   f.write $T['../flashcard.html'].apply_ifdef('REPORT').with(
     UTF16: "4f1a",
     DATA: File.read('data.json', mode:'r:UTF-8'),
@@ -20,11 +22,11 @@ File.open("__OUT__/kanji/flashcards/k4f1a.html", 'w') do |f|
   ).check
 end
 
-File.open("__OUT__/kanji/flashcards/flashcard.js", 'w') do |f|
+File.open("__OUT__/kanji/flashcard/flashcard.js", 'w') do |f|
   f.write $T['../flashcard.js'].apply_ifdef('REPORT')
 end
 
-File.open("__OUT__/kanji/flashcards/flashcard.css", 'w') do |f|
+File.open("__OUT__/kanji/flashcard/flashcard.css", 'w') do |f|
   f.write $T['../flashcard.css'].apply_ifdef('REPORT')
 end
 

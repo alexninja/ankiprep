@@ -6,16 +6,11 @@ cd t
 
 ruby gen.rb
 
-if not exist "__OUT__"                  mkdir __OUT__
-if not exist "__OUT__\kanji"            mkdir __OUT__\kanji
-if not exist "__OUT__\kanji\flashcards" mkdir __OUT__\kanji\flashcards
-if not exist "__OUT__\kanji\wordlists"  mkdir __OUT__\kanji\wordlists
-
 copy testpage.html                      __OUT__
 
-copy ..\png\*.png                       __OUT__\kanji\flashcards
+copy ..\png\*.png                       __OUT__\kanji\flashcard
 
-copy w4f1a.html                         __OUT__\kanji\wordlists
-copy ..\..\wordlist\wordlist.css        __OUT__\kanji\wordlists
+copy w4f1a.html                         __OUT__\kanji\wordlist
+copy ..\..\wordlist\wordlist.css        __OUT__\kanji\wordlist
 
 start firefox                           __OUT__\testpage.html

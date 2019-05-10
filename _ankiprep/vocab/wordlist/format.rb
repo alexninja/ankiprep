@@ -52,11 +52,11 @@ private
       )
     end.join("\n")
 
-    FileUtils.mkdir_p $OUTDIR+'/vocab/wordlists'
+    FileUtils.mkdir_p $OUTDIR+'/vocab/wordlist'
 
     heading = title.gsub('&nbsp;','').chars.to_a.select {|c| c.ascii_only?}.join + " (#{wordlist.size})"
 
-    File.open($OUTDIR+'/vocab/wordlists/'+filename,'w:UTF-8') do |f|
+    File.open($OUTDIR+'/vocab/wordlist/'+filename,'w:UTF-8') do |f|
       f.write $T['vocab/wordlist/wordlist.html'].with(
         PAGEID: pageid,
         HEADING: heading,
