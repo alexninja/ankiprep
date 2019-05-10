@@ -172,7 +172,6 @@ module Kanji; module Flashcard
       ).check
     end
 
-    FileUtils.copy 'kanji/flashcard/json2/json2.js', $OUTDIR+'/kanji/anki/media'
   end
 
 end; end

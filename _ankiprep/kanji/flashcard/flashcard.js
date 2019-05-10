@@ -1,11 +1,6 @@
 #ifdef ANKI
 
-#ifdef PROD || RECOG
   document.write('$HTML$CSS');
-#endif
-#ifdef ANSWER
-  document.write('$HTML$CSS<script src="json2.js"></script>');
-#endif
 
   var _timer = setInterval(function() {
     if (/loaded|complete/.test(document.readyState)) {
