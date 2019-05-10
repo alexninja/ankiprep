@@ -39,7 +39,7 @@ end
 
 # make anki templates
 
-File.open('__OUT__/recorg.html','w') do |f|
+File.open('__OUT__/recog.html','w') do |f|
   f.write $T['../anki-template.html'].with(
     JS_EXT_GARBLED: "<script src='recog.js'></script>".reverse
   ).check.gsub("\n",'').gsub('  ','')
