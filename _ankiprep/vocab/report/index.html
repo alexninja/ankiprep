@@ -3,37 +3,37 @@
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link type="text/css" rel="stylesheet" href="index.css">
+<link type="text/css" rel="stylesheet" href="report.css">
 
 <script language="javascript">
-  function pageloaded(pageid) {
-    for (var i = 0; i < $PAGECOUNT; i++) {
-      var elem = document.getElementById('item'+i);
+  function pageloaded(groupid) {
+    for (var i = 0; i < $GROUPCOUNT; i++) {
+      var elem = document.getElementById('header'+i);
       if (elem) {
-        var className = (i == pageid) ? 'item-hl' : 'item';
+        var className = (i == groupid) ? 'header-hl' : 'header';
         elem.className = className;
       }
     }
-    parent.wordlist.focus();
+    parent.group.focus();
   }
 </script>
 
 <style type="text/css">
-  div.item {
+  div.header {
     font-family: "Courier New";
     font-size: 9pt;
   }
-  div.item-hl {
+  div.header-hl {
     font-family: "Courier New";
     font-size: 9pt;
     background-color: #CCFF66;
   }
-  div.item-d {
+  div.header-d {
     font-family: "Courier New";
     font-size: 9pt;
     color: #C8C8C8;
   }
-  div.item:hover { background-color: yellow; }
+  div.header:hover { background-color: yellow; }
   A:link    {text-decoration: none; color: 0;}
   A:visited {text-decoration: none; color: 0;}
   A:active  {text-decoration: none; color: 0;}
@@ -44,7 +44,7 @@
 
 <body>
 
-$ITEMS
+$HEADERS
 
 </body>
 

@@ -10,16 +10,16 @@ require 'misc/progress'
 require_relative 'word'
 require_relative 'string'
 require_relative 'audio'
-require_relative 'wordlist/format'
+require_relative 'report/report'
 
 
 
 module Vocab
 
   def Vocab.makeall
-    anki_words, rikai_words = parse_input
+    anki_words, rikai_words = parse_input()
 
-    make_wordlists(rikai_words)
+    Vocab::Report.make_htmls(rikai_words)
     make_anki(rikai_words)
 
     @vocab_list = make_vocab_list(anki_words, rikai_words)
@@ -58,132 +58,6 @@ private
     #p (anki.values + rikai.values).map {|ar| ar.size}.to_set
 
     [ anki_words.freeze, rikai_words.freeze ]
-  end
-
-
-  def Vocab.make_wordlists(rikai_words)
-    wordlists = [
-      [
-        'wordlist-all.html',
-        'All',
-        rikai_words
-      ],
-      [
-        'wordlist-exact-expr.html',
-        '├─exact !expr',
-        rikai_words.select {|w| w.flags_all? :exact_expr}
-      ],
-      [
-        'wordlist-exact-kana.html',
-        '└─exact !kana',
-        rikai_words.select {|w| w.flags_all? :exact_kana}
-      ],
-      [
-        'wordlist-good.html',
-        'Good',
-        rikai_words.select {|w| w.flags_none? :dupe_in_anki, :dupe_in_rikai}.
-                    select {|w| !w.error}
-      ],
-      [
-        'wordlist-good-no-audio.html',
-        '├─no audio',
-        rikai_words.select {|w| w.flags_none? :dupe_in_anki, :dupe_in_rikai}.
-                    select {|w| !w.error}.
-                    select {|w| !Audio.have?(w)}
-      ],
-      [
-        'wordlist-alt-expr.html',
-        '├─alt expr preferred',
-        rikai_words.select {|w| w.flags_none? :dupe_in_anki, :dupe_in_rikai}.
-                    select {|w| !w.error}.
-                    select {|w| w.flags_all? :alt_expr}
-      ],
-      [
-        'wordlist-alt-kana.html',
-        '├─alt kana preferred',
-        rikai_words.select {|w| w.flags_none? :dupe_in_anki, :dupe_in_rikai}.
-                    select {|w| !w.error}.
-                    select {|w| w.flags_all? :alt_kana}
-      ],
-      [
-        'wordlist-skip-edict.html',
-        '└─skip Edict',
-        rikai_words.select {|w| w.flags_all? :skip_edict}
-      ],
-      [
-        'wordlist-dupes.html',
-        'Duplicates',
-        rikai_words.select {|w| w.flags_any? :dupe_in_anki, :dupe_in_rikai}
-      ],
-      [
-        'wordlist-dupes-anki.html',
-        '└─in Anki',
-        rikai_words.select {|w| w.flags_all? :dupe_in_anki}
-      ],
-      [
-        'wordlist-dupes-anki-alts.html',
-        '&nbsp;&nbsp;└─in alts',
-        rikai_words.select {|w| w.flags_all? :dupe_in_anki, :dupe_in_alts}
-      ],
-      [
-        'wordlist-dupes-rikai.html',
-        '└─in input',
-        rikai_words.select {|w| w.flags_all? :dupe_in_rikai}
-      ],
-      [
-        'wordlist-dupes-rikai-alts.html',
-        '&nbsp;&nbsp;└─in alts',
-        rikai_words.select {|w| w.flags_all? :dupe_in_rikai, :dupe_in_alts}
-      ],
-      [
-        'wordlist-errors.html',
-        'Errors',
-        rikai_words.select {|w| w.error}
-      ],
-      [
-        'wordlist-not-in-edict.html',
-        '└─not in Edict',
-        rikai_words.select {|w| w.flags_all? :not_in_edict}
-      ]
-    ]
-
-    print "[Vocab] generating wordlists... "
-    Progress.new(wordlists.size) do |pr|
-      wordlists.each_with_index do |wl,i|
-        make_wordlist wl[0], wl[1], wl[2], i
-        pr.tick
-      end
-    end
-
-    File.open($OUTDIR+'/vocab/index.html','w:UTF-8') do |f|
-      items = []
-      wordlists.each_with_index do |wl,i|
-        text = "#{wl[1]} (#{wl[2].size})"
-        items << if wl[2].empty?
-          $T['vocab/item-d.html'].with(
-            TEXT: text
-          )
-        else
-          $T['vocab/item.html'].with(
-            URL: 'wordlist/' + wl[0],
-            PAGEID: i,
-            TEXT: text
-          )
-        end
-      end
-      f.write $T['vocab/index.html'].with(
-        ITEMS: items.join("\n"),
-        PAGECOUNT: wordlists.size
-      )
-    end
-    
-    File.open($OUTDIR+'/vocab/wordlist/wordlist.css','w:UTF-8') do |f|
-      f.write $T['vocab/flashcard/flashcard.css'].apply_ifdef('REPORT')
-    end
-
-    File.open('report-vocab.html','w') do |f|
-      f.write $T['vocab/report.html'].with(OUTDIR: $OUTDIR)
-    end
   end
 
 
