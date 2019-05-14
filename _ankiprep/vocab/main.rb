@@ -1,5 +1,4 @@
 ﻿require 'set'
-require 'fileutils'
 require 'json'
 require 'edict'
 require 'kanjidic'

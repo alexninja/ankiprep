@@ -1,5 +1,4 @@
 require '../../../../libs/misc/template'
-require 'fileutils'
 
 $GIFDIR = 'D:/Japanese/_dict/gif'
 $HEISIG_DIR = "D:/Japanese/_dict/heisig"

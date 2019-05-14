@@ -1,6 +1,4 @@
-﻿require 'fileutils'
-
-module Vocab
+﻿module Vocab
 
 private
 

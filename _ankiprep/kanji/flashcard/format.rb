@@ -2,7 +2,6 @@ require 'json'
 require 'misc/template'
 require 'misc/jsontrim'
 require 'kanjidic'
-require 'fileutils'
 require_relative '../stats'
 
 $GIFDIR = 'D:/Japanese/_dict/gif'

@@ -1,5 +1,4 @@
-﻿require 'fileutils'
-require 'kanjidic'
+﻿require 'kanjidic'
 require 'misc/template'
 require 'misc/progress'
 require 'misc/utf16'
