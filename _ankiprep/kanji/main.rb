@@ -5,8 +5,6 @@ require_relative 'wordlist/format'
 require_relative 'flashcard/format'
 require_relative 'index/index'
 
-$OUTDIR = '__OUT__'
-
 
 module Kanji
 
