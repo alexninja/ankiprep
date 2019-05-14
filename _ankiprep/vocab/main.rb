@@ -16,12 +16,12 @@ require_relative 'report/report'
 module Vocab
 
   def Vocab.makeall
-    anki_words, rikai_words = parse_input()
+    anki_words, rikai_words = Vocab.parse_input()
 
     Vocab::Report.make_htmls(rikai_words)
     make_anki(rikai_words)
 
-    @vocab_list = make_vocab_list(anki_words, rikai_words)
+    @vocab_list = Vocab.make_vocab_list(anki_words, rikai_words)
   end
 
   def Vocab.input_file_present?
@@ -35,7 +35,7 @@ module Vocab
 
 private
 
-  def Vocab.parse_input
+  def self.parse_input
     print "[Vocab] reading #{$ANKIDIR}/vocab.anki... "
     anki_words = Anki.read("#{$ANKIDIR}/vocab.anki").map do |expr,json|
       Word.from_anki(expr,json)
@@ -60,7 +60,7 @@ private
   end
 
 
-  def Vocab.make_anki(rikai_words)
+  def self.make_anki(rikai_words)
     rikai_words_good = rikai_words.select {|w| w.flags_none? :dupe_in_anki, :dupe_in_rikai}.
                                    select {|w| !w.error}
 
@@ -97,7 +97,7 @@ private
   end
 
 
-  def Vocab.make_vocab_list(anki_words, rikai_words)
+  def self.make_vocab_list(anki_words, rikai_words)
     rikai_words_good = rikai_words.select {|w| w.flags_none? :dupe_in_anki, :dupe_in_rikai}.
                                    select {|w| !w.error}
 
