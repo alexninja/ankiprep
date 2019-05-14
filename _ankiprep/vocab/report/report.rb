@@ -87,6 +87,7 @@
     ]
 
     print "[Vocab::Report] generating HTML reports... "
+
     Progress.new(groups.size) do |pr|
       groups.each_with_index do |gr,i|
         make_html gr[0], gr[1], gr[2], i
