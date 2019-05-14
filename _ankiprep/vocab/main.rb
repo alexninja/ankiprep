@@ -8,7 +8,6 @@ require 'misc/gray'
 require 'misc/template'
 require 'misc/progress'
 require_relative 'word'
-require_relative 'string'
 require_relative 'audio'
 require_relative 'report/report'
 
@@ -113,3 +112,19 @@ private
   end
 
 end # module
+
+
+##
+
+class String
+
+  def highlight(substr, cond = true)
+    if cond
+      self.gsub(substr, "<span class='hl'>" + substr + "</span>")
+    else
+      self
+    end
+  end
+
+end
+
