@@ -7,4 +7,7 @@
 
 [x] __OUT__/kanji/ wordlists and flashcards make singular
 
-    vocab/wordlist is improperly named - this is just a report of the current run from rikaichan.txt
+[x] vocab/wordlist is improperly named - this is just a report of the current run from rikaichan.txt
+    --renamed to Report
+
+    NB kanji also has a Report now, and now *this* seems to be improperly named, TBD
