@@ -33,12 +33,7 @@ end
 
 ANK,POM,MON,EDI=0,1,2,3
 
-
-$SOURCEDIR = if ARGV[0] == 'short'
-  "__!sources!__/wordfreq_short"
-else
-  "__!sources!__/wordfreq_full"
-end
+$WORDFREQ_DIR = "__!sources!__/wordfreq"
 
 
 module Kanji; module Stats
@@ -58,18 +53,18 @@ private
 
 
   def self.parse_sources
-    if File.exist? $SOURCEDIR+'/_marshal'
+    if File.exist? $WORDFREQ_DIR+'/_marshal'
       print "[Kanji::Stats] loading preparsed data... "
       Progress.new(1) do |pr|
-        @k = File.open($SOURCEDIR+'/_marshal/k.marshal', "rb") {|f| Marshal.load(f)}
-        @yfreq = File.open($SOURCEDIR+'/_marshal/yfreq.marshal', "rb") {|f| Marshal.load(f)}
+        @k = File.open($WORDFREQ_DIR+'/_marshal/k.marshal', "rb") {|f| Marshal.load(f)}
+        @yfreq = File.open($WORDFREQ_DIR+'/_marshal/yfreq.marshal', "rb") {|f| Marshal.load(f)}
         pr.tick
       end
       return
     end
 
     # POM, MON, EDI were not preparsed, parse now (and save for future runs)
-    kw = add_source(POM, "#{$SOURCEDIR}/pomax/base_aggregates.txt") do |line|
+    kw = add_source(POM, "#{$WORDFREQ_DIR}/pomax/base_aggregates.txt") do |line|
       m = line.match(/(\d+)\t(.*)\t.+/)
       if m
         expr, n = m[2], m[1].to_i
@@ -80,7 +75,7 @@ private
     end
     @k[POM] = postprocess(kw)
 
-    kw = add_source(MON, "#{$SOURCEDIR}/monash/wordfreq.utf8") do |line|
+    kw = add_source(MON, "#{$WORDFREQ_DIR}/monash/wordfreq.utf8") do |line|
       m = line.match(/(.+)\+\d+\t(\d+)/)
       if m
         expr, n = m[1].split('+').last, m[2].to_i
@@ -91,7 +86,7 @@ private
     end
     @k[MON] = postprocess(kw)
 
-    kw = add_source(EDI, "#{$SOURCEDIR}/goo/edict-freq-20081002") do |line|
+    kw = add_source(EDI, "#{$WORDFREQ_DIR}/goo/edict-freq-20081002") do |line|
       m = line.match(/(.+?) .+\/###(\d+)\//)
       if m
         expr, n = m[1], m[2].to_i
@@ -103,10 +98,10 @@ private
     @k[EDI] = postprocess(kw)
 
     print "[Kanji::Stats] saving preparsed data... "
-    FileUtils.mkdir_p $SOURCEDIR+'/_marshal'
+    FileUtils.mkdir_p $WORDFREQ_DIR+'/_marshal'
     Progress.new(1) do |pr|
-      File.open($SOURCEDIR+'/_marshal/k.marshal', "wb") {|f| Marshal.dump(@k, f)}
-      File.open($SOURCEDIR+'/_marshal/yfreq.marshal', "wb") {|f| Marshal.dump(@yfreq, f)}
+      File.open($WORDFREQ_DIR+'/_marshal/k.marshal', "wb") {|f| Marshal.dump(@k, f)}
+      File.open($WORDFREQ_DIR+'/_marshal/yfreq.marshal', "wb") {|f| Marshal.dump(@yfreq, f)}
       pr.tick
     end
   end
@@ -161,7 +156,7 @@ private
 
     @k[ANK] = postprocess(kw)
 
-    puts "#{@vocab_kanji.size} kanji (#{(@vocab_kanji - @known_kanji).size} new)"
+    puts "[Kanji::Stats] #{@vocab_kanji.size} kanji (#{(@vocab_kanji - @known_kanji).size} new)"
   end
 
 
@@ -172,7 +167,7 @@ private
     words = Hash.new
 
     # a half-hack to load all words from edict (to complement goo, which is really old)
-    if src == EDI && $SOURCEDIR.include?("/__full__")
+    if src == EDI && $WORDFREQ_DIR.include?("/__full__")
       print "[Kanji::Stats] priming with Edict... "
       Progress.new(Edict.size) do |pr|
         Edict.each do |e|
