@@ -3,7 +3,6 @@ require 'misc/template'
 require 'misc/progress'
 require 'misc/utf16'
 require 'misc/gray'
-require_relative '../stats'
 
 
 module Kanji; module Wordlist
