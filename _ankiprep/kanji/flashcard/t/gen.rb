@@ -1,7 +1,6 @@
+require 'FileUtils'
 require '../../../../libs/misc/template'
 
-$GIFDIR = 'D:/Japanese/_dict/gif'
-$HEISIG_DIR = "D:/Japanese/_dict/heisig"
 
 FileUtils.mkdir_p "__OUT__/kanji/flashcard"
 FileUtils.mkdir_p "__OUT__/kanji/wordlist"
@@ -9,17 +8,7 @@ FileUtils.mkdir_p "__OUT__/kanji/wordlist"
 
 # make report flashcard files
 
-File.open("__OUT__/kanji/flashcard/k4f1a.html", 'w') do |f|
-  f.write $T['../flashcard.html'].apply_ifdef('REPORT').with(
-    UTF16: "4f1a",
-    DATA: File.read('data.json', mode:'r:UTF-8'),
-    WORD_COUNTS: File.read('word_counts.json', mode:'r:UTF-8'),
-    GIFDIR: $GIFDIR,
-    HEISIG_DIR: $HEISIG_DIR,
-    HEISIG_PNG: '',
-    HEISIG_IMG_TAG: ''
-  ).check
-end
+FileUtils.cp_r "k4f1a.html", "__OUT__/kanji/flashcard/k4f1a.html", remove_destination: true
 
 File.open("__OUT__/kanji/flashcard/flashcard.js", 'w') do |f|
   f.write $T['../flashcard.js'].apply_ifdef('REPORT')

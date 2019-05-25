@@ -39,13 +39,13 @@ end
 # make anki templates
 
 File.open('__OUT__/recog.html','w') do |f|
-  f.write $T['../anki-template.html'].with(
+  f.write $T['../anki-snippet.html'].with(
     JS_EXT_GARBLED: "<script src='recog.js'></script>".reverse
   ).check.gsub("\n",'').gsub('  ','')
 end
 
 File.open('__OUT__/answer.html','w') do |f|
-  f.write $T['../anki-template.html'].with(
+  f.write $T['../anki-snippet.html'].with(
     JS_EXT_GARBLED: "<script src='answer.js'></script>".reverse
   ).check.gsub("\n",'').gsub('  ','')
 end

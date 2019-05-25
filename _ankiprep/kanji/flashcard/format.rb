@@ -129,7 +129,7 @@ module Kanji; module Flashcard
     # answer
 
     File.open($OUTDIR+'/kanji/anki/templates/answer.html','w') do |f|
-      f.write $T['kanji/flashcard/anki-template.html'].with(
+      f.write $T['kanji/flashcard/anki-snippet.html'].with(
         JS_EXT_GARBLED: "<script src='answer.js'></script>".reverse
       ).check.gsub("\n",'').gsub('  ','')
     end
@@ -144,7 +144,7 @@ module Kanji; module Flashcard
     # recognition
 
     File.open($OUTDIR+'/kanji/anki/templates/recog.html','w') do |f|
-      f.write $T['kanji/flashcard/anki-template.html'].with(
+      f.write $T['kanji/flashcard/anki-snippet.html'].with(
         JS_EXT_GARBLED: "<script src='recog.js'></script>".reverse
       ).check.gsub("\n",'').gsub('  ','')
     end
@@ -159,7 +159,7 @@ module Kanji; module Flashcard
     # production
 
     File.open($OUTDIR+'/kanji/anki/templates/prod.html','w') do |f|
-      f.write $T['kanji/flashcard/anki-template.html'].with(
+      f.write $T['kanji/flashcard/anki-snippet.html'].with(
         JS_EXT_GARBLED: "<script src='prod.js'></script>".reverse
       ).check.gsub("\n",'').gsub('  ','')
     end
