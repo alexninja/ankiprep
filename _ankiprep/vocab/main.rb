@@ -15,7 +15,7 @@ require_relative 'report/report'
 
 module Vocab
 
-  def Vocab.makeall
+  def self.makeall
     anki_words, rikai_words = Vocab.parse_input()
 
     Vocab::Report.make_htmls(rikai_words)
@@ -24,11 +24,11 @@ module Vocab
     @vocab_list = Vocab.make_vocab_list(anki_words, rikai_words)
   end
 
-  def Vocab.input_file_present?
+  def self.input_file_present?
     @input_file_present
   end
 
-  def Vocab.vocab_list
+  def self.vocab_list
     @vocab_list
   end
 

@@ -8,7 +8,7 @@ require_relative 'report/report'
 
 module Kanji
 
-  def Kanji.makeall
+  def self.makeall
     Kanji::Stats.init
     Kanji::Flashcard.makeall
     Kanji::Wordlist.makeall

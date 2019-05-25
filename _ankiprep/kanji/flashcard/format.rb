@@ -34,7 +34,9 @@ module Kanji; module Flashcard
       end
     end
 
-    make_anki_templates
+    make_anki_snippets
+    make_anki_js
+
     FileUtils.copy Dir['kanji/flashcard/png/*.png'], $OUTDIR+'/kanji/flashcard'
   end
 
@@ -124,53 +126,43 @@ module Kanji; module Flashcard
   end
 
 
-  def self.make_anki_templates
-
-    # answer
-
-    File.open($OUTDIR+'/kanji/anki/templates/answer.html','w') do |f|
+  def self.make_anki_snippets
+    File.open($OUTDIR+'/kanji/anki/answer.html','w') do |f|
       f.write $T['kanji/flashcard/anki-snippet.html'].with(
         JS_EXT_GARBLED: "<script src='answer.js'></script>".reverse
       ).check.gsub("\n",'').gsub('  ','')
     end
+    File.open($OUTDIR+'/kanji/anki/recog.html','w') do |f|
+      f.write $T['kanji/flashcard/anki-snippet.html'].with(
+        JS_EXT_GARBLED: "<script src='recog.js'></script>".reverse
+      ).check.gsub("\n",'').gsub('  ','')
+    end
+    File.open($OUTDIR+'/kanji/anki/prod.html','w') do |f|
+      f.write $T['kanji/flashcard/anki-snippet.html'].with(
+        JS_EXT_GARBLED: "<script src='prod.js'></script>".reverse
+      ).check.gsub("\n",'').gsub('  ','')
+    end
+  end
 
+  def self.make_anki_js
     File.open($OUTDIR+'/kanji/anki/media/answer.js','w') do |f|
       f.write $T['kanji/flashcard/flashcard.js'].apply_ifdef('ANKI','ANSWER').with(
         HTML: $T['kanji/flashcard/flashcard.html'].apply_ifdef('ANKI','ANSWER').check.gsub("\n",'').gsub('  ',''),
         CSS: $T['kanji/flashcard/flashcard.css'].apply_ifdef('ANKI','ANSWER').check.gsub("\n",'').gsub('  ','').gsub(/\/\*.*?\*\//,'')
       ).check
     end
-
-    # recognition
-
-    File.open($OUTDIR+'/kanji/anki/templates/recog.html','w') do |f|
-      f.write $T['kanji/flashcard/anki-snippet.html'].with(
-        JS_EXT_GARBLED: "<script src='recog.js'></script>".reverse
-      ).check.gsub("\n",'').gsub('  ','')
-    end
-
     File.open($OUTDIR+'/kanji/anki/media/recog.js','w') do |f|
       f.write $T['kanji/flashcard/flashcard.js'].apply_ifdef('ANKI','RECOG').with(
         HTML: $T['kanji/flashcard/flashcard.html'].apply_ifdef('ANKI','RECOG').check.gsub("\n",'').gsub('  ',''),
         CSS: $T['kanji/flashcard/flashcard.css'].apply_ifdef('ANKI','RECOG').check.gsub("\n",'').gsub('  ','').gsub(/\/\*.*?\*\//,'')
       ).check
     end
-
-    # production
-
-    File.open($OUTDIR+'/kanji/anki/templates/prod.html','w') do |f|
-      f.write $T['kanji/flashcard/anki-snippet.html'].with(
-        JS_EXT_GARBLED: "<script src='prod.js'></script>".reverse
-      ).check.gsub("\n",'').gsub('  ','')
-    end
-
     File.open($OUTDIR+'/kanji/anki/media/prod.js','w') do |f|
       f.write $T['kanji/flashcard/flashcard.js'].apply_ifdef('ANKI','PROD').with(
         HTML: $T['kanji/flashcard/flashcard.html'].apply_ifdef('ANKI','PROD').check.gsub("\n",'').gsub('  ',''),
         CSS: $T['kanji/flashcard/flashcard.css'].apply_ifdef('ANKI','PROD').check.gsub("\n",'').gsub('  ','').gsub(/\/\*.*?\*\//,'')
       ).check
     end
-
   end
 
 end; end

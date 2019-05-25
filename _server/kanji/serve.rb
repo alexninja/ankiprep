@@ -8,7 +8,7 @@ module Kanji
 
   @data = Hash.new
 
-  def Kanji.serve(url, s)
+  def self.serve(url, s)
 
     @data.delete_if {|k,v| (Time.now - v.time) > 10}
 
