@@ -37,6 +37,9 @@
 #endif
     font-family: "MS Mincho";
     font-size: 38pt;
+#ifdef PROD
+    color: white;
+#endif
   }
 
 
@@ -65,11 +68,11 @@
     padding-left: 10px;
     padding-right: 20px;
     padding-bottom: 0px;
-#ifdef QUESTION
+#ifdef RECOG
     border-top: 1px solid white;
     color: white;
 #endif
-#ifdef ANSWER || TESTPAGE || REPORT
+#ifdef ANSWER || PROD || TESTPAGE || REPORT
     border-top: 1px solid #E8E8E8;
 #endif
   }
@@ -87,11 +90,11 @@
     padding-left: 30px;
     padding-right: 10px;
     padding-bottom: 0px;
-#ifdef QUESTION
+#ifdef RECOG
     border-top: 1px solid white;
     color: white;
 #endif
-#ifdef ANSWER || TESTPAGE || REPORT
+#ifdef ANSWER || PROD || TESTPAGE || REPORT
     border-top: 1px solid #E8E8E8;
 #endif
   }
@@ -102,10 +105,10 @@
     text-align: left;
     padding-top: 13px;
     padding-bottom: 18px;
-#ifdef QUESTION
+#ifdef RECOG
     color: white;
 #endif
-#ifdef ANSWER || TESTPAGE
+#ifdef ANSWER || PROD || TESTPAGE
     color: black;
 #endif
 #ifdef REPORT
@@ -114,7 +117,7 @@
 #endif
     padding-left: 10px;
     padding-right: 10px;
-#ifdef ANSWER || TESTPAGE
+#ifdef ANSWER || PROD || TESTPAGE
     border-bottom: 1px solid #E8E8E8;
 #endif
   }
@@ -132,10 +135,10 @@
 #endif
 
   span.gray {
-#ifdef QUESTION
+#ifdef RECOG
     color: white;
 #endif
-#ifdef ANSWER || TESTPAGE || REPORT
+#ifdef ANSWER || PROD || TESTPAGE || REPORT
     color: #A2A2A2;
 #endif
   }

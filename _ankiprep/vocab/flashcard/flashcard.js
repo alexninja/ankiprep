@@ -25,7 +25,7 @@
   var _audio = null;
   var _audio_volume = 600;
 
-#ifdef ANSWER || TESTPAGE
+#ifdef ANSWER || PROD || TESTPAGE
   var _mp3list = [];
   var _replaying = false;
 #endif
@@ -50,13 +50,13 @@
         kana_html = gray(kana);
       }
 
-#ifdef ANSWER || TESTPAGE
+#ifdef ANSWER || PROD || TESTPAGE
       var kana_audio = [];
 #endif
 
       alts_expr = yomi.alts[1].map( function(a) {
         a = undecorate(a);
-#ifdef ANSWER || TESTPAGE
+#ifdef ANSWER || PROD || TESTPAGE
         if (_audio == true && audio_main_kana) {
           // use this alt expr for audio. mark current kana as 'used'.
           var filename = kana + ' - ' + a + '.mp3';
@@ -72,7 +72,7 @@
 
       alts_kana = yomi.alts[0].map( function(a) {
         a = undecorate(a);
-#ifdef ANSWER || TESTPAGE
+#ifdef ANSWER || PROD || TESTPAGE
         if (_audio == true) {
           var filename = a + ' - ' + _data.expr + '.mp3';
           _mp3list.push(filename);
@@ -86,7 +86,7 @@
 
       var alts_html = alts_kana.concat(alts_expr).join('　');
 
-#ifdef ANSWER || TESTPAGE
+#ifdef ANSWER || PROD || TESTPAGE
       if (audio_main_kana == true) {
         if (kana_audio.indexOf(kana) == -1) {
           // insert at front of playback list
@@ -114,7 +114,7 @@
 
     document.getElementById("kanaeigo").innerHTML = kanaeigo_tr;
 
-#ifdef ANSWER || TESTPAGE
+#ifdef ANSWER || PROD || TESTPAGE
     server_audio_play(_mp3list);
 #endif
   }
@@ -150,7 +150,7 @@
   }
 
 
-#ifdef ANSWER || TESTPAGE
+#ifdef ANSWER || PROD || TESTPAGE
 
   /* audio functions */
 

@@ -1,3 +1,4 @@
+require 'FileUtils'
 require '../../../../libs/misc/template'
 
 FileUtils.mkdir_p "__OUT__"
@@ -28,6 +29,13 @@ File.open('__OUT__/recog.js','w') do |f|
   ).check
 end
 
+File.open('__OUT__/prod.js','w') do |f|
+  f.write $T['../flashcard.js'].apply_ifdef('ANKI','PROD').with(
+    HTML: $T['../flashcard.html'].apply_ifdef('ANKI','PROD').check.gsub("\n",'').gsub('  ',''),
+    CSS: $T['../flashcard.css'].apply_ifdef('ANKI','PROD').check.gsub("\n",'').gsub('  ','').gsub('  ','').gsub(/\/\*.*?\*\//,''),
+  ).check
+end
+
 File.open('__OUT__/answer.js','w') do |f|
   f.write $T['../flashcard.js'].apply_ifdef('ANKI','ANSWER').with(
     HTML: $T['../flashcard.html'].apply_ifdef('ANKI','ANSWER').check.gsub("\n",'').gsub('  ',''),
@@ -36,11 +44,17 @@ File.open('__OUT__/answer.js','w') do |f|
 end
 
 
-# make anki templates
+# make anki snippets
 
 File.open('__OUT__/recog.html','w') do |f|
   f.write $T['../anki-snippet.html'].with(
     JS_EXT_GARBLED: "<script src='recog.js'></script>".reverse
+  ).check.gsub("\n",'').gsub('  ','')
+end
+
+File.open('__OUT__/prod.html','w') do |f|
+  f.write $T['../anki-snippet.html'].with(
+    JS_EXT_GARBLED: "<script src='prod.js'></script>".reverse
   ).check.gsub("\n",'').gsub('  ','')
 end
 
