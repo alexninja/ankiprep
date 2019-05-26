@@ -21,8 +21,6 @@ end
 
 # make anki files
 
-# answer
-
 File.open('__OUT__/answer.js','w') do |f|
   f.write $T['../flashcard.js'].apply_ifdef('ANKI','ANSWER').with(
     HTML: $T['../flashcard.html'].apply_ifdef('ANKI','ANSWER').check.gsub("\n",'').gsub('  ',''),
@@ -30,16 +28,12 @@ File.open('__OUT__/answer.js','w') do |f|
   ).check
 end
 
-# recognition
-
 File.open('__OUT__/recog.js','w') do |f|
   f.write $T['../flashcard.js'].apply_ifdef('ANKI','RECOG').with(
     HTML: $T['../flashcard.html'].apply_ifdef('ANKI','RECOG').check.gsub("\n",'').gsub('  ',''),
     CSS: $T['../flashcard.css'].apply_ifdef('ANKI','RECOG').check.gsub("\n",'').gsub('  ','').gsub('  ','').gsub(/\/\*.*?\*\//,'')
   ).check
 end
-
-# production
 
 File.open('__OUT__/prod.js','w') do |f|
   f.write $T['../flashcard.js'].apply_ifdef('ANKI','PROD').with(

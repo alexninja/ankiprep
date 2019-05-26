@@ -143,19 +143,19 @@ module Kanji; module Flashcard
   end
 
   def self.make_anki_js
-    File.open($OUTDIR+'/kanji/anki/media/answer.js','w') do |f|
+    File.open($OUTDIR+'/kanji/anki/answer.js','w') do |f|
       f.write $T['kanji/flashcard/flashcard.js'].apply_ifdef('ANKI','ANSWER').with(
         HTML: $T['kanji/flashcard/flashcard.html'].apply_ifdef('ANKI','ANSWER').check.gsub("\n",'').gsub('  ',''),
         CSS: $T['kanji/flashcard/flashcard.css'].apply_ifdef('ANKI','ANSWER').check.gsub("\n",'').gsub('  ','').gsub(/\/\*.*?\*\//,'')
       ).check
     end
-    File.open($OUTDIR+'/kanji/anki/media/recog.js','w') do |f|
+    File.open($OUTDIR+'/kanji/anki/recog.js','w') do |f|
       f.write $T['kanji/flashcard/flashcard.js'].apply_ifdef('ANKI','RECOG').with(
         HTML: $T['kanji/flashcard/flashcard.html'].apply_ifdef('ANKI','RECOG').check.gsub("\n",'').gsub('  ',''),
         CSS: $T['kanji/flashcard/flashcard.css'].apply_ifdef('ANKI','RECOG').check.gsub("\n",'').gsub('  ','').gsub(/\/\*.*?\*\//,'')
       ).check
     end
-    File.open($OUTDIR+'/kanji/anki/media/prod.js','w') do |f|
+    File.open($OUTDIR+'/kanji/anki/prod.js','w') do |f|
       f.write $T['kanji/flashcard/flashcard.js'].apply_ifdef('ANKI','PROD').with(
         HTML: $T['kanji/flashcard/flashcard.html'].apply_ifdef('ANKI','PROD').check.gsub("\n",'').gsub('  ',''),
         CSS: $T['kanji/flashcard/flashcard.css'].apply_ifdef('ANKI','PROD').check.gsub("\n",'').gsub('  ','').gsub(/\/\*.*?\*\//,'')
