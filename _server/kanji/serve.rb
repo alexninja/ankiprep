@@ -16,7 +16,7 @@ module Kanji
       utf16 = m[1]
       s.print "HTTP/1.1 200/OK\r\n"
       s.print "Content-type: text/html\r\n\r\n"
-      s.print $T['redirect.html'].with(UTF16: utf16)
+      s.print $T['kanji/redirect.html'].with(UTF16: utf16)
 
     elsif m = url.match(/^kanji\/(set|copy)\/([0-9a-fA-F]{4})\/(\d+)\/(\d+)\/(.+)$/)
       op, utf16, cur, tot, chunk = m[1], m[2], m[3], m[4], m[5]
@@ -59,20 +59,20 @@ module Kanji
       s.print "Content-type: text/html\r\n\r\n"
       if @data.has_key?(utf16) && @data[utf16].chunks.all? {|c| c != nil}
         # data available, load the two-frame html
-        s.print $T['report.html'].with(UTF16: utf16)
+        s.print $T['kanji/report.html'].with(UTF16: utf16)
       else
         # keep redirecting until we have data
-        s.print $T['redirect.html'].with(UTF16: utf16)
+        s.print $T['kanji/redirect.html'].with(UTF16: utf16)
       end
 
-    elsif m = url.match(/^kanji\/show\/(kanji-flashcards|kanji-wordlists)\/(.+)\.(.+)$/)
+    elsif m = url.match(/^kanji\/show\/(flashcard|wordlist)\/(.+)\.(.+)$/)
       dir, file, ext = m[1], m[2], m[3]
-      path = "../_ankiprep/__report__/#{dir}/#{file}.#{ext}"
+      path = "../_ankiprep/__OUT__/kanji/#{dir}/#{file}.#{ext}"
       if ext == "html"
         return unless m = file.match(/^([kw])([0-9a-fA-F]{4})$/)
         prefix, utf16 = m[1], m[2]
         html = File.read(path, mode:'r:UTF-8')
-        if dir == "kanji-flashcards" && prefix == "k"
+        if dir == "flashcard" && prefix == "k"
           data_override = CGI.unescape( @data[utf16].chunks.join )
           html.sub!("var _data_override = null", "var _data_override = #{data_override}")
 #          @data.delete utf16
