@@ -54,6 +54,13 @@
       var kana_audio = [];
 #endif
 
+#ifdef PROD
+      var expr_kanji = _data.expr.split("").filter( function(c) {
+        const n = c.charCodeAt(0);
+        return (n >= 0x4E00 && n <= 0x9FBF);
+      } );
+#endif
+
       alts_expr = yomi.alts[1].map( function(a) {
         a = undecorate(a);
 #ifdef ANSWER || PROD || TESTPAGE
@@ -63,6 +70,11 @@
           _mp3list.push(filename);
           kana_audio.push(kana);
         }
+#endif
+#ifdef PROD
+        expr_kanji.forEach( function(k) {
+          a = a.replace(k, '◇');
+        } );
 #endif
         if (_pr == false) {
           a = gray(a);
