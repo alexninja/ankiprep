@@ -1,3 +1,4 @@
+require 'URI'
 
 $AUDIODIR = 'D:\Japanese\_dict\audio'
 
@@ -21,12 +22,8 @@ module Audio
 
   def Audio.watchdog_tick
     if Time.now - @timestamp > 0.1 && @filename
-      result = `bassplay.exe #{@volume} #{$AUDIODIR}\\#{@filename}` # no idea why this works without quotes (filename contains spaces)
-      result.chomp!
-      puts result
-      if result.include? 'File Not Found'
-#        puts `bassplay.exe 10000 audio\\ding.wav` # while this doesn't
-      end
+      puts "Playing (#{@volume}): #{URI.unescape(@filename)}"
+      `bassplay.exe #{@volume} #{$AUDIODIR}\\#{@filename}`
       @filename, @volume = nil, nil
     end
   end
