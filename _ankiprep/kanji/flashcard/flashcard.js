@@ -410,7 +410,7 @@
       expr = expr.replace(/\*PLACEHOLDER\*/g, _data.kanji);
 #endif
       var mouse_code =
-        "onmouseover='word_hover(" + '"' + expr + '","' + kana + '","' + eigo.replace(/'/g,"&#39;").replace(/"/g,"\\\"")
+        "onmouseover='word_hover(" + '"' + escape(expr) + '","' + escape(kana) + '","' + eigo.replace(/'/g,"&#39;").replace(/"/g,"\\\"")
         + '","' + alts + '",' + _word_id + ");' "
         + "onmouseout='word_hover(" + '"","","","",' + _word_id + ");'";
       html += "<tr>"
@@ -557,7 +557,7 @@
       document.body.onkeyup = function(e) {
         if (e.keyCode == 115 /*s*/ || e.keyCode == 83 /*S*/) {
           var url = "http://127.0.0.1/kanji/vocabsave";
-          var str = expr + "\t" + kana.replace(/[\[\]\(\)]/g,'') + "\t" + eigo;
+          var str = unescape(expr) + "\t" + unescape(kana).replace(/[\[\]\(\)]/g,'') + "\t" + eigo;
           server_send_chunked(url, str, 1, 1, null); //assuming 1 chunk is enough, until I switch to POST
         }
       };
