@@ -9,7 +9,7 @@
       ],
       [
         'group-exact-expr.html',
-        '├─exact !expr',
+        '├─!exact expr',
         rikai_words.select {|w| w.flags_all? :exact_expr}
       ],
       [
@@ -46,7 +46,7 @@
       ],
       [
         'group-skip-edict.html',
-        '└─skip Edict',
+        '└─*skip Edict',
         rikai_words.select {|w| w.flags_all? :skip_edict}
       ],
       [
