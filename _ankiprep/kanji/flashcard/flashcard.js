@@ -410,9 +410,9 @@
       expr = expr.replace(/\*PLACEHOLDER\*/g, _data.kanji);
 #endif
       var mouse_code =
-        "onmouseover='word_hover(" + '"' + eigo.replace(/'/g,"&#39;").replace(/"/g,"\\\"")
+        "onmouseover='word_hover(" + '"' + expr + '","' + kana + '","' + eigo.replace(/'/g,"&#39;").replace(/"/g,"\\\"")
         + '","' + alts + '",' + _word_id + ");' "
-        + "onmouseout='word_hover(" + '"","",' + _word_id + ");'";
+        + "onmouseout='word_hover(" + '"","","","",' + _word_id + ");'";
       html += "<tr>"
         + "<td class='" + kana_css + "' " + mouse_code + "><nobr>" + format_kana(kana) + "</nobr></td>"
         + "<td class='" + expr_css + "' " + mouse_code + "><nobr>" + expr + "</nobr></td>";
@@ -539,7 +539,7 @@
   }
 
 #ifdef REPORT || ANSWER || PROD
-  function word_hover(eigo, alts, word_id) {
+  function word_hover(expr, kana, eigo, alts, word_id) {
     var html = eigo;
     if (alts != "") {
       html += "<div class='alts'>"
@@ -552,6 +552,24 @@
     html = html.replace(new RegExp(_data.kanji,'g'), '◇');
 #endif
     document.getElementById("eigo_" + word_id).innerHTML = html;
+#ifdef REPORT || ANSWER
+    if (eigo.length > 0) {
+      document.body.onkeyup = function(e) {
+        if (e.keyCode == 115 /*s*/ || e.keyCode == 83 /*S*/) {
+          var url = "http://127.0.0.1/kanji/vocabsave";
+          var str = expr + "\t" + kana.replace(/[\[\]\(\)]/g,'') + "\t" + eigo;
+          var tot = Math.floor(str.length / _chunk_size);
+          if (str.length % _chunk_size > 0) {
+            tot++;
+          }
+          server_send_chunked(url, str, 1, tot, null);
+        }
+      };
+    }
+    else {
+      document.body.onkeyup = null;
+    }
+#endif
   }
 #endif
 

@@ -1,6 +1,7 @@
 require 'misc/template'
 
 $HEISIG_DIR = "D:/Japanese/_dict/heisig"
+$RIKAICHAN_TXT = "D:/_rikaichan.txt"
 
 module Kanji
 
@@ -108,6 +109,21 @@ module Kanji
       s.print "Accept-Ranges: bytes\r\n"
       s.print "Content-Length: #{File.size(path)}\r\n\r\n"
       s.print open(path,'rb') {|io| io.read}
+
+    elsif m = url.match(/^kanji\/vocabsave\/1\/1\/(.+)$/)
+      # FIXME: server_send_chunked() is an atrocious hack, why didn't it occur to me to use POST???
+      # I'm counting on always sending one 512-byte chunk which "ought to be enough for everyone"...
+      if m[1] != @last_vocab_save
+        expr, kana, eigo = CGI.unescape(m[1]).split("\t")
+        str = "#{expr}\t#{kana}\t#{eigo}"
+        puts "Saving to #{$RIKAICHAN_TXT}: #{str}"
+        File.open($RIKAICHAN_TXT, 'a') {|f| f.puts str}
+        @last_vocab_save = m[1]
+        Audio.ding()
+      else
+        # my accept loop seems to be wrong, look into it sometime
+        puts "unexplained repeated request ignored..."
+      end
 
     end
   end

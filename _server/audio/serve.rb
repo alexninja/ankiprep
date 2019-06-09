@@ -28,4 +28,8 @@ module Audio
     end
   end
 
+  def Audio.ding
+    p `bassplay.exe 1000 audio\\ding.wav`
+  end
+
 end

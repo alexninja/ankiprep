@@ -58,14 +58,13 @@ loop do
     else
       next
     end
-    puts "#{method.to_s.upcase} #{url} #{args}"
+
+    puts "[#{Time.now.strftime('%Y-%m-%d %H:%M:%S.%6N')}] #{method.to_s.upcase} #{url} #{args}"
 
     if method == :get && url.index("kanji/") == 0
       Kanji.serve(url, s)
     elsif method == :get && url.index("audio/") == 0
       Audio.serve(url, s)
-#    elsif method == :get
-#      Shosai.serve(url, s)
     else
       puts req
     end
