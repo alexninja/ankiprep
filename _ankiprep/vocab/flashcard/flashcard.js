@@ -127,7 +127,7 @@
     document.getElementById("kanaeigo").innerHTML = kanaeigo_tr;
 
 #ifdef ANSWER || PROD || TESTPAGE
-    server_audio_play(_mp3list);
+    server_audio_play(_mp3list.reverse());
 #endif
   }
 
