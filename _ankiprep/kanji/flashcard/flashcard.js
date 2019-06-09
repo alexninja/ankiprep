@@ -558,11 +558,7 @@
         if (e.keyCode == 115 /*s*/ || e.keyCode == 83 /*S*/) {
           var url = "http://127.0.0.1/kanji/vocabsave";
           var str = expr + "\t" + kana.replace(/[\[\]\(\)]/g,'') + "\t" + eigo;
-          var tot = Math.floor(str.length / _chunk_size);
-          if (str.length % _chunk_size > 0) {
-            tot++;
-          }
-          server_send_chunked(url, str, 1, tot, null);
+          server_send_chunked(url, str, 1, 1, null); //assuming 1 chunk is enough, until I switch to POST
         }
       };
     }
