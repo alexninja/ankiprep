@@ -125,8 +125,8 @@
 
 #ifdef REPORT
   table.kanaeigo td.error {
-    font-family: "Courier New";
-    font-size: 8pt;
+    font-family: "Consolas";
+    font-size: 10pt;
     text-align: left;
     color: red;
     padding-left: 10px;
@@ -146,8 +146,8 @@
 
 #ifdef REPORT
   div.line {
-    font-family: "Courier New";
-    font-size: 9pt;
+    font-family: "Consolas";
+    font-size: 10pt;
     background-color: #EEEEEE;
     border-top: 2px solid blue;
     margin-top: 3px;
