@@ -1,5 +1,6 @@
 # encoding: UTF-8
 require 'set'
+require 'FileUtils'
 require 'json' # gem
 require 'edict'
 require 'kanjidic'
@@ -161,6 +162,8 @@ private
 
 
   def self.add_source(src, filename)
+
+    puts "[Kanji::Stats] adding word frequency source: " + %w[ANK POM MON EDI][src]
 
     kw = Hash.new {|h,k| h[k] = Set.new}
 
