@@ -167,7 +167,7 @@ private
     words = Hash.new
 
     # a half-hack to load all words from edict (to complement goo, which is really old)
-    if src == EDI && $WORDFREQ_DIR.include?("/__full__")
+    if src == EDI
       print "[Kanji::Stats] priming with Edict... "
       Progress.new(Edict.size) do |pr|
         Edict.each do |e|
