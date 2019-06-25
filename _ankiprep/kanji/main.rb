@@ -167,17 +167,7 @@ private
 
     kw = Hash.new {|h,k| h[k] = Set.new}
 
-    words = Hash.new
-
-    # a half-hack to load all words from edict (to complement goo, which is really old)
-    if src == EDI
-      print "[Kanji::Stats] priming with Edict... "
-      Progress.new(Edict.size) do |pr|
-        Edict.each do |e|
-          words[e.expr] = 0
-        end
-      end
-    end
+    words = Hash.new {|h,k| h[k] = 0}
 
     print "[Kanji::Stats] reading #{filename}... "
     lines = Utf8.readlines(filename)
@@ -198,6 +188,16 @@ private
         end
 
         pr.tick
+      end
+    end
+
+    # EDICT has grown since; throw in everything not covered by goo
+    if src == EDI
+      print "[Kanji::Stats] adding newer Edict entries... "
+      Progress.new(Edict.size) do |pr|
+        Edict.each do |e|
+          words[e.expr] = 1 if !words.has_key?(e.expr)
+        end
       end
     end
 
