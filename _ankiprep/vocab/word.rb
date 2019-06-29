@@ -110,10 +110,12 @@ module Vocab
 
 
     def Word.from_line(line, lineno)
-      w = Word.new
 
       if m = line.match(/^(.+)\t(.+)\t(.+)$/)
         expr, kana, eigo = m[1], m[2], m[3]
+      elsif m = line.match(/\s*(.+?)\s+\u3010(.+?)\u3011\s+(.+)/)
+        expr, kana, eigo = m[1], m[2], m[3]
+        expr = expr.split('; ').sort_by {|e| e.chars.count {|c| Kanjidic.kanji?(c)}}.reverse[0]
       elsif m = line.match(/^(.+)\t(.+)$/)
         if m[2].ascii_only?
           expr, kana, eigo = m[1], m[1], m[2]
@@ -123,8 +125,12 @@ module Vocab
       elsif !line.include?(' ') && !line.include?("\t")
         expr, kana, eigo = line, nil, nil
       else
-        abort "bad line (#{lineno}): #{line}"
+        return nil
       end
+
+      return nil if expr.ascii_only?
+
+      w = Word.new
 
       if expr[0] == '*'
         expr = expr[1..-1]

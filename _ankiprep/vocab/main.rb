@@ -48,7 +48,7 @@ private
       @input_file_present = true
       rikai_words = Utf8::readlines("D:/_rikaichan.txt").map.with_index do |line,i|
         Word.from_line(line, i+1)
-      end
+      end.compact
       puts
     else
       @input_file_present = false
