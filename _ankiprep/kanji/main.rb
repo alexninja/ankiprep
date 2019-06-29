@@ -113,16 +113,19 @@ private
 
     print "[Kanji::Stats] reading #{$ANKIDIR}/kanji.anki... "
     @known_kanji = Anki.read("#{$ANKIDIR}/kanji.anki").map do |kanji,json|
-      json_q = json.gsub('use:',    '"use":'   ).
-                    gsub('freq:',   '"freq":'  ).
-                    gsub('words:',  '"words":' ).
-                    gsub('other:',  '"other":' ).
-                    gsub('yomi:',   '"yomi":'  ).
-                    gsub('nanori:', '"nanori":').
-                    gsub('eigo:',   '"eigo":'  ).
-                    gsub('utf16:',  '"utf16":' ).
-                    gsub('kanji:',  '"kanji":' ).
-                    gsub('kjt:',    '"kjt":'   )
+      json_q = json.
+        gsub('comp_rank:', '"comp_rank":').
+        gsub('comp_freq:', '"comp_freq":').
+        gsub('use:',       '"use":'      ).
+        gsub('freq:',      '"freq":'     ).
+        gsub('words:',     '"words":'    ).
+        gsub('yomi:',      '"yomi":'     ).
+        gsub('nanori:',    '"nanori":'   ).
+        gsub('eigo:',      '"eigo":'     ).
+        gsub('utf16:',     '"utf16":'    ).
+        gsub('kanji:',     '"kanji":'    ).
+        gsub('kjt:',       '"kjt":'      ).
+        gsub('other:',     '"other":'    )
       if kanji != JSON.parse(json_q)['kanji']
         errors_kanji << "mismatch: [#{kanji.inspect}] | " + JSON.parse(json_q)['kanji']
 #        errors_kanji << json
@@ -143,7 +146,7 @@ private
     kw = Hash.new {|h,k| h[k] = Set.new}
     @vocab_kanji = Set.new
     @relevant_kanji = Set.new
-    Vocab.vocab_list.each do |w|
+    (Vocab.vocab_list || []).each do |w|
       wordinfo = Wordinfo.new(w.expr, 1, w.entries)
       kanji_in_word = w.expr.chars.select {|c| c.kanji?}
       kanji_in_word.each do |k|

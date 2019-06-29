@@ -283,15 +283,18 @@
     var url = "http://127.0.0.1/kanji/copy/" + _data.utf16;
     var str = JSON.stringify(_data)
     /* strip quotes around key names where possible */
-      .replace(/"use":/g, "use:")
-      .replace(/"freq":/g, "freq:")
-      .replace(/"words":/g, "words:")
-      .replace(/"yomi":/g, "yomi:")
-      .replace(/"nanori":/g, "nanori:")
-      .replace(/"eigo":/g, "eigo:")
-      .replace(/"utf16":/g, "utf16:")
-      .replace(/"kanji":/g, "kanji:")
-      .replace(/"kjt":/g, "kjt:")
+      .replace(/"comp_rank":/g, "comp_rank:")
+      .replace(/"comp_freq":/g, "comp_freq:")
+      .replace(/"use":/g,       "use:"      )
+      .replace(/"freq":/g,      "freq:"     )
+      .replace(/"words":/g,     "words:"    )
+      .replace(/"yomi":/g,      "yomi:"     )
+      .replace(/"nanori":/g,    "nanori:"   )
+      .replace(/"eigo":/g,      "eigo:"     )
+      .replace(/"utf16":/g,     "utf16:"    )
+      .replace(/"kanji":/g,     "kanji:"    )
+      .replace(/"kjt":/g,       "kjt:"      )
+      .replace(/"other":/g,     "other:"    )
     /* format single and escaped-double quotes to Anki's liking */
       .replace(/'/g, "\\'")
       .replace(/\\"/g, '\\\\\\"');
