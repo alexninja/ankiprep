@@ -38,7 +38,19 @@
       clearInterval(_timer);
     }
 #endif
-    document.getElementById("expr").innerHTML = _data.expr;
+    var expr_innerHTML = _data.expr;
+#ifdef ANSWER || TESTPAGE
+    expr_innerHTML = 
+     '<a style="color:inherit; text-decoration:none;"'
+     + ' href="https://www.google.co.jp/search?q=' + _data.expr + '&tbm=isch"'
+     + ' onclick="_mp3list = [];">'
+     + '<div style="height:100%;width:100%">'
+     + expr_innerHTML
+     +'</div>'
+     + '</a>';
+#endif
+    document.getElementById("expr").innerHTML = expr_innerHTML;
+
     var kanaeigo_tr = "";
 
     for (var i in _data.yomi) {
@@ -177,7 +189,7 @@
     if (mp3list.length > 1) {
       setTimeout(
         function() { server_audio_play(mp3list.slice(1)); },
-        1500 );
+        5000 );
     }
   }
 
@@ -193,7 +205,7 @@
   function replay_looped() {
     if (_replaying) {
       server_audio_play(_mp3list);
-      setTimeout( replay_looped, 3000);
+      setTimeout( replay_looped, 10000);
     }
   }
 
