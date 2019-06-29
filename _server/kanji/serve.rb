@@ -21,11 +21,11 @@ module Kanji
       s.print "HTTP/1.1 200/OK\r\n"
       s.print "Content-type: text/html\r\n\r\n"
       @data[utf16] ||= Struct.new(:time, :chunks).new(Time.now, [nil] * tot.to_i)
-      if @data[utf16].chunks[cur.to_i - 1] != nil
-        puts "chunk aborted! (chunk #{cur}/#{tot} was already present)"
-        @data.delete utf16
-        return
-      end
+#      if @data[utf16].chunks[cur.to_i - 1] != nil
+#        puts "chunk aborted! (chunk #{cur}/#{tot} was already present)"
+#        @data.delete utf16
+#        return
+#      end
       @data[utf16].chunks[cur.to_i - 1] = chunk
       @data[utf16].time = Time.now
       puts "[got chunk #{cur}/#{tot} for #{utf16}]"
