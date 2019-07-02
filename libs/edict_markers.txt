@@ -52,6 +52,7 @@ vs	noun or participle which takes the aux. verb suru
 vs-i	suru verb - irregular
 vs-s	suru verb - special class
 vt	transitive verb
+yoji	yojijukugo
 Buddh	Buddhist term
 MA	martial arts term
 comp	computer terminology
