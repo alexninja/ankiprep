@@ -189,7 +189,7 @@
     if (mp3list.length > 1) {
       setTimeout(
         function() { server_audio_play(mp3list.slice(1)); },
-        5000 );
+        1500 );
     }
   }
 
