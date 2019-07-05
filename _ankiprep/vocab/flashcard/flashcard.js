@@ -205,7 +205,7 @@
   function replay_looped() {
     if (_replaying) {
       server_audio_play(_mp3list);
-      setTimeout( replay_looped, 10000);
+      setTimeout( replay_looped, 5000);
     }
   }
 
