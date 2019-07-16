@@ -6,6 +6,7 @@ require 'cgi'
 #require_relative 'shosai/serve'
 require_relative 'kanji/serve'
 require_relative 'audio/serve'
+require_relative 'vocab/serve'
 
 $GIFDIR = 'D:/Japanese/_dict/gif'
 
@@ -65,8 +66,8 @@ loop do
       Kanji.serve(url, s)
     elsif method == :get && url.index("audio/") == 0
       Audio.serve(url, s)
-    else
-      puts req
+    elsif method == :get && url.index("vocab_DE") == 0
+      Vocab.serve(url, s)
     end
 
   rescue Errno::EAGAIN, Errno::ECONNABORTED, Errno::EPROTO, Errno::EINTR, Errno::EWOULDBLOCK
