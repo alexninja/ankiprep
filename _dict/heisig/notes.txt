@@ -1,0 +1,11 @@
+when importing from ramen, preserve meanings (except clean up the edict garbage), but pull readings from edict (some in ramen are incomplete).
+after each heisig kanji:
+  - for each KUNYOMI
+    + two word from freqlists, with the kanji in question FIRST and all other kanji already known*
+    + one word from freqlists, with the kanji in question NOT FIRST and all other kanji already known
+  - for each ONYOMI
+    + one word from freqlists with all other kanji already known
+  + all words from ramen with the kanji in question, provided all other kanji in those words are already known.
+    the words added from ramen are marked to prevent reinclusion.
+  *kanji already known = already learned from heisig or from ramen.
+	
