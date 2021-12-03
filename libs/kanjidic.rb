@@ -1,8 +1,6 @@
 require 'kana'
 require 'misc/progress'
 
-$EDICTDIR ||= "D:/Japanese/_dict/edict"
-
 module Kanjidic
 
   @yomi_cache = Hash.new
@@ -83,12 +81,12 @@ private
 
     Progress.new do |pr|
 
-      filename = $EDICTDIR+'/kanjidic.utf8'
+      filename = $DICT_DIR+"/edict/kanjidic.utf8"
 
       unless File.exist? filename
         print 'converting... '
         File.open(filename,'w') do |f|
-          Utf8.readlines($EDICTDIR+'/kanjidic','euc-jp').each {|line| f.puts line}
+          Utf8.readlines($DICT_DIR+"/edict/kanjidic",'euc-jp').each {|line| f.puts line}
         end
       end
 

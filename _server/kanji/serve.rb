@@ -1,6 +1,5 @@
 require 'misc/template'
 
-$HEISIG_DIR = "D:/Japanese/_dict/heisig"
 $RIKAICHAN_TXT = "D:/_rikaichan.txt"
 
 module Kanji
@@ -94,7 +93,7 @@ module Kanji
       end
 
     elsif m = url.match(/^kanji\/heisig\/(\d+\.png)$/)
-      path = "#{$HEISIG_DIR}/#{m[1]}"
+      path = "#{$DICT_DIR+'/heisig'}/#{m[1]}"
       s.print "HTTP/1.1 200/OK\r\n"
       s.print "Content-Type: image/png\r\n"
       s.print "Accept-Ranges: bytes\r\n"

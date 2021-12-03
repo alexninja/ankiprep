@@ -5,8 +5,6 @@ require 'json'
 require 'misc/utf16'
 require_relative '../_ankiprep/anki/anki.rb'
 
-$GIFDIR = 'D:/Japanese/_dict/gif'
-
 
 $anki_kanji = Anki.read("#{$ANKIDIR}/kanji.anki").map do |kanji,json|
   json_q = json.gsub('use:',    '"use":'   ).
@@ -26,7 +24,7 @@ $anki_kanji = Anki.read("#{$ANKIDIR}/kanji.anki").map do |kanji,json|
 end
 
 
-$gif_kanji = Dir["#{$GIFDIR}/kanji/u????.gif"].map do |file|
+$gif_kanji = Dir["#{$DICT_DIR}/gif/kanji/u????.gif"].map do |file|
   file.split('/').last.split('.').first[1..4].charfrom_utf16
 end
 

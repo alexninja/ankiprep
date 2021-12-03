@@ -26,4 +26,7 @@ _server/log.txt
 
 
 
-_ankiprep_DE/__OUT__/
+_dict/edict/edict.marshal
+_dict/edict/edict.utf8
+_dict/edict/kanjidic.utf8
+

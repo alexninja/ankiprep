@@ -8,8 +8,6 @@ require_relative 'kanji/serve'
 require_relative 'audio/serve'
 require_relative 'vocab/serve'
 
-$GIFDIR = 'D:/Japanese/_dict/gif'
-
 
 server = TCPServer.new('127.0.0.1', 80)
 

@@ -1,7 +1,5 @@
 require 'URI'
 
-$AUDIODIR = 'D:\Japanese\_dict\audio'
-
 
 module Audio
 
@@ -23,7 +21,7 @@ module Audio
   def Audio.watchdog_tick
     if Time.now - @timestamp > 0.1 && @filename
       puts "Playing (#{@volume}): #{URI.unescape(@filename)}"
-      `bassplay.exe #{@volume} #{$AUDIODIR}\\#{@filename}`
+      `bassplay.exe #{@volume} #{$DICT_DIR}\\audio\\#{@filename}`
       @filename, @volume = nil, nil
     end
   end

@@ -1,8 +1,6 @@
 require 'misc/progress'
 require 'misc/utf8'
 
-$EDICTDIR ||= "D:/Japanese/_dict/edict"
-
 module Edict
 
   class Entry
@@ -208,10 +206,10 @@ private
 
     print "preparsing... "
 
-    lines = Utf8.readlines($EDICTDIR+'/edict','euc-jp')
+    lines = Utf8.readlines($DICT_DIR+'/edict/edict','euc-jp')
 
     # save a copy of edict as utf-8 purely for convenience
-    File.open($EDICTDIR+'/edict.utf8','w') {|f| lines.each {|line| f.puts line}}
+    File.open($DICT_DIR+'/edict/edict.utf8','w') {|f| lines.each {|line| f.puts line}}
 
     lines[1..-1].each_with_index do |line,i|
       if m = line.match(/(.+?) \[(.+?)\] (\/.+\/)/)
@@ -227,14 +225,14 @@ private
 
     e.default = nil
     k.default = nil
-    File.open($EDICTDIR+"/edict.marshal", "wb") {|f| Marshal.dump(EdictMarshal.new(e,k), f)}
+    File.open($DICT_DIR+"/edict/edict.marshal", "wb") {|f| Marshal.dump(EdictMarshal.new(e,k), f)}
   end
 
   def Edict.load!
     print "Loading Edict... "
     Progress.new do |pr|
-      preparse unless File.exist?($EDICTDIR+"/edict.marshal")
-      edict_marshal = File.open($EDICTDIR+"/edict.marshal", "rb") {|f| Marshal.load(f)}
+      preparse unless File.exist?($DICT_DIR+"/edict/edict.marshal")
+      edict_marshal = File.open($DICT_DIR+"/edict/edict.marshal", "rb") {|f| Marshal.load(f)}
       @e = edict_marshal.e
       @k = edict_marshal.k
     end

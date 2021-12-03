@@ -4,10 +4,8 @@ $LOAD_PATH << File.expand_path(File.dirname(__FILE__) + '/../libs')
 require 'kanjidic'
 require 'misc/utf16'
 
-$GIFDIR = 'D:/Japanese/_dict/gif'
 
-
-$gif_kanji = Dir["#{$GIFDIR}/kanji/u????.gif"].map do |file|
+$gif_kanji = Dir["#{$DICT_DIR}/gif/kanji/u????.gif"].map do |file|
   file.split('/').last.split('.').first[1..4].charfrom_utf16
 end
 
