@@ -187,7 +187,7 @@ module Edict
       kana = kana.join(JoinChar)
         
       Merged.new(expr, kana)
-      end
+    end
     raise 'Edict.merge > 1' if ret.size > 1
     ret[0]
   end
