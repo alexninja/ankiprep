@@ -5,6 +5,8 @@ $DICT_DIR = '../_dict'
 
 $OUTDIR = '__OUT__'
 
+$ANKIDIR = '/Japanese/_anki/_current'
+
 
 start = Time.now
 

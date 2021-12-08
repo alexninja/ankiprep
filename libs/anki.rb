@@ -1,7 +1,5 @@
 require 'sqlite3'
 
-$ANKIDIR = 'D:/Japanese/_anki/_current'
-
 
 module Anki
 
