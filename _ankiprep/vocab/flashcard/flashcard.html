@@ -1,0 +1,35 @@
+#ifdef TESTPAGE
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link type="text/css" rel="stylesheet" href="flashcard.css">
+  <script language="javascript">
+    var _data = $DATA;
+  </script>
+  <body onload="populate();">
+</head>
+<body>
+#endif
+
+<table class="flashcard">
+  <tr>
+#ifdef ANSWER || TESTPAGE
+    <td class="expr" id="expr" onmouseover="replay_start();" onmouseout="replay_stop();">
+#endif
+#ifdef RECOG || PROD
+    <td class="expr" id="expr">
+#endif
+    </td>
+  <tr>
+  <tr>
+    <td>
+      <table class="kanaeigo" id="kanaeigo">
+      </table>
+    </td>
+  </tr>
+</table>
+
+#ifdef TESTPAGE
+</body>
+<script language="javascript" src="flashcard.js">
+</script>
+#endif

@@ -1,0 +1,94 @@
+#ifdef REPORT
+<head>
+  <script language="javascript">
+    var _data = $DATA;
+    var _data_override = null; /* server may replace this line */
+    if (_data_override) {
+      _data = _data_override;
+    }
+    var _word_counts = $WORD_COUNTS;
+    var _gifdir = "$GIFDIR";
+    var _heisig_dir = "$HEISIG_DIR";
+    var _heisig_png = "$HEISIG_PNG";
+  </script>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <body onload="prepare(); parent.wordlist.location.href='../wordlist/w$UTF16.html'; parent.index.frameloaded('$UTF16');">
+  <link type="text/css" rel="stylesheet" href="flashcard.css">
+</head>
+<body>
+#endif
+
+<table class="flashcard">
+  <tr>
+
+    <td>
+      <table class="kakijun">
+        <tr>
+#ifdef REPORT || ANSWER || RECOG || PROD
+          <td class="kanjipic" id="kanjipic" onmouseover="animate_pic();" onmouseout="static_pic();">
+          </td>
+#endif
+#ifdef PROD
+          <td class="kanjipic" id="kanjipic">
+          </td>
+#endif
+        </tr>
+        <tr>
+#ifdef ANSWER || RECOG || PROD
+          <td class="yomieigo" id="yomieigo" onmouseover="animate_pic();" onmouseout="static_pic();">
+#endif
+#ifdef REPORT 
+          <td class="yomieigo-visible" id="yomieigo" onmouseover="animate_pic();" onmouseout="static_pic();">
+#endif
+            <div id="yomi" class="yomi"></div>
+            <div id="eigo" class="eigo"></div>
+          </td>
+        </tr>
+      </table>
+    </td>
+
+    <td class="yomibig-holder">
+#ifdef REPORT || ANSWER || PROD
+      <table class="yomibig">
+        <tr>
+          <td id="yomibig-td" class="yomibig-td">
+          </td>
+        </tr>
+      </table>
+#endif
+    </td>
+
+    <td>
+      <table id="wordlist" class="wordlist">
+      </table>
+      <table class="footer">
+        <tr>
+          <td class="kjt" id="kjt">
+          </td>
+          <td class="edit">
+#ifdef ANSWER
+            <span id="url"></span>
+#endif
+#ifdef REPORT
+            <span id="copybtn"></span>
+#endif
+          </td>
+        </tr>
+      </table>
+    </td>
+
+    <td>
+    </td>
+
+  </tr>
+</table>
+
+#ifdef REPORT
+$HEISIG_IMG_TAG
+#endif
+
+#ifdef REPORT
+</body>
+<script language="javascript" src="flashcard.js">
+</script>
+#endif

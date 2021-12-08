@@ -1,0 +1,61 @@
+﻿<script type="text/javascript" language="JavaScript">
+
+var frameids = [$FRAMEIDS];
+var curr_id = 0;
+
+parent.flashcard.location.href = 'flashcard/k' + frameids[curr_id]+'.html';
+
+function loadframe(id) {
+  if (id >=0 && id < frameids.length) {
+    parent.flashcard.location.href =
+      parent.flashcard.location.href.split('/').slice(0,-1).join('/') + '/k' + frameids[id] + '.html';
+  }
+}
+
+function frameloaded(frameid) {
+  highlight_curr_kanji('');
+  curr_id = frameids.indexOf(frameid);
+  highlight_curr_kanji('#C6E2FF');
+  parent.wordlist.focus();
+}
+
+function highlight_curr_kanji(bgcol) {
+  document.getElementById('k'+frameids[curr_id]).style.backgroundColor = bgcol;
+}
+
+function keydown(event) {
+  which = event.which;
+  if (which == 37)
+    loadframe(curr_id - 1);
+  else if (which == 39)
+    loadframe(curr_id + 1);
+}
+
+</script>
+
+
+<style type="text/css">
+  body {
+    background-color: white;
+    color: black;
+  }
+</style>
+
+
+<html onkeydown="keydown(event);">
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<style type="text/css">
+$CSS
+</style>
+
+</head>
+
+<body>
+$BODY
+</body>
+
+</html>

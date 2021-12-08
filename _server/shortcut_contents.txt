@@ -1,0 +1,1 @@
+...\Tools\ConEmu\ConEmu64_Anki.exe -Min -TSA -NoCloseConfirm -Icon ...\ankiprep\_server\dictionary.ico -NoSingle -NoUpdate -cmd ...\ankiprep\_server\server.rb

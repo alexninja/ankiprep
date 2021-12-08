@@ -1,0 +1,83 @@
+  /* wordlist (wordlist/style.css) */
+
+  body {
+    background-color: white;
+    color: black;
+  }
+
+  table.wordlist {
+    margin: 0;
+    border-collapse: collapse;
+  }
+  table.wordlist p {
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+  table.wordlist td {
+    border: 1px dotted #D0D0D0;
+    vertical-align: middle;
+    padding-top: 1px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 0px;
+  }
+  table.wordlist td.title {
+    font-family: "Georgia";
+    background-color: #EEEEFF;
+    font-size: 10pt;
+    text-align: left;
+    border: none;
+    padding-top: 10px;
+    padding-bottom: 4px;
+  }
+  table.wordlist td.count {
+    font-family: "Georgia";
+    font-size: 9pt;
+    color: red;
+    min-width: 20px;
+    text-align: right;
+  }
+  table.wordlist td.expr {
+    font-family: "MS PMincho";
+    font-size: 12pt;
+    min-width: 80px;
+    text-align: left;
+  }
+  table.wordlist td.details {
+    min-width: 50px;
+    text-align: left;
+  }
+  td.details A:link    {text-decoration: none; color: 0;}
+  td.details A:visited {text-decoration: none; color: 0;}
+  td.details A:active  {text-decoration: none; color: 0;}
+  td.details A:hover   {text-decoration: none; background-color: yellow;}
+
+  table.wordlist td span.on {
+    color: #3366FF;
+  }
+  table.wordlist td span.kun {
+    color: #BB0000;
+  }
+
+  table.wordlist td span.kana {
+    font-family: "MS PMincho";
+    font-size: 10pt;
+  }
+  table.wordlist td span.eigo {
+    font-family: "Georgia";
+    font-size: 8pt;
+  }
+  table.wordlist td span.alts {
+    font-family: "MS PMincho";
+    font-size: 10pt;
+  }
+  table.wordlist td span.note {
+    font-family: "Georgia";
+    font-size: 8pt;
+    font-variant: small-caps;
+    color: red;
+  }
+
+  span.gray {
+    color: #A8A8A8;
+  }

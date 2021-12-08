@@ -1,0 +1,194 @@
+#ifdef ANKI
+<style type="text/css">
+#endif
+
+#ifdef ANKI
+  body {
+    zoom: 150%;
+  }
+#endif
+
+  table.flashcard {
+    border-collapse: collapse;
+#ifdef RECOG || PROD || ANSWER || TESTPAGE
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+#endif
+  }
+
+  table.flashcard td {
+    vertical-align: top;
+#ifdef RECOG || PROD || ANSWER || TESTPAGE
+    text-align: center;
+#endif
+#ifdef REPORT
+    text-align: left;
+#endif
+  }
+
+  table.flashcard td.expr {
+#ifdef RECOG || PROD || ANSWER || TESTPAGE
+    height: 250px;
+    padding-top: 60px;
+#endif
+#ifdef REPORT
+    padding: 10px;
+#endif
+    font-family: "MS Mincho";
+    font-size: 38pt;
+#ifdef PROD
+    color: white;
+#endif
+  }
+
+
+  table.kanaeigo {
+    border-collapse: collapse;
+    width: 500px;
+    max-width: 600px;
+  }
+
+  table.kanaeigo td {
+    vertical-align: middle;
+  }
+
+  table.kanaeigo td.kana {
+    font-family: "MS PMincho";
+    font-weight: bold;
+    text-align: left;
+#ifdef RECOG || PROD || ANSWER || TESTPAGE
+    padding-top: 17px;
+    font-size: 15pt;
+#endif
+#ifdef REPORT
+    padding-top: 8px;
+    font-size: 13pt;
+#endif
+    padding-left: 10px;
+    padding-right: 20px;
+    padding-bottom: 0px;
+#ifdef RECOG
+    border-top: 1px solid white;
+    color: white;
+#endif
+#ifdef ANSWER || PROD || TESTPAGE || REPORT
+    border-top: 1px solid #E8E8E8;
+#endif
+  }
+
+  table.kanaeigo td.alts {
+    font-family: "MS PMincho";
+    font-size: 12pt;
+    text-align: right;
+#ifdef RECOG || PROD || ANSWER || TESTPAGE
+    padding-top: 17px;
+#endif
+#ifdef REPORT
+    padding-top: 8px;
+#endif
+    padding-left: 30px;
+    padding-right: 10px;
+    padding-bottom: 0px;
+#ifdef RECOG
+    border-top: 1px solid white;
+    color: white;
+#endif
+#ifdef ANSWER || PROD || TESTPAGE || REPORT
+    border-top: 1px solid #E8E8E8;
+#endif
+  }
+
+  table.kanaeigo td.eigo {
+    font-family: "Tahoma";
+    font-size: 9pt;
+    text-align: left;
+    padding-top: 13px;
+    padding-bottom: 18px;
+#ifdef RECOG
+    color: white;
+#endif
+#ifdef ANSWER || PROD || TESTPAGE
+    color: black;
+#endif
+#ifdef REPORT
+    padding-top: 8px;
+    padding-bottom: 12px;
+#endif
+    padding-left: 10px;
+    padding-right: 10px;
+#ifdef ANSWER || PROD || TESTPAGE
+    border-bottom: 1px solid #E8E8E8;
+#endif
+  }
+
+
+#ifdef REPORT
+  table.kanaeigo td.error {
+    font-family: "Consolas";
+    font-size: 10pt;
+    text-align: left;
+    color: red;
+    padding-left: 10px;
+    padding-bottom: 8px;
+  }
+#endif
+
+  span.gray {
+#ifdef RECOG
+    color: white;
+#endif
+#ifdef ANSWER || PROD || TESTPAGE || REPORT
+    color: #A2A2A2;
+#endif
+  }
+
+
+#ifdef REPORT
+  div.line {
+    font-family: "Consolas";
+    font-size: 10pt;
+    background-color: #EEEEEE;
+    border-top: 2px solid blue;
+    margin-top: 3px;
+    margin-bottom: 2px;
+    padding-top: 3px;
+    padding-bottom: 2px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  h1 {
+    font-family: "Georgia";
+    font-size: 14pt;
+    padding: 5px;
+  }
+
+  span.hl {
+    padding-top: 1px;
+    padding-left: 2px;
+    padding-right: 1px;
+    padding-bottom: 0px;
+    border: 1px solid red;
+  }
+
+  span.audio {
+    font-family: "Times New Roman";
+    font-size: 7pt;
+    font-weight: normal;
+    color: blue;
+    border: 1px solid blue;
+    background-color: #EEEEFF;
+    padding-left: 4px;
+    padding-right: 4px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    margin-left: 5px;
+    vertical-align: middle;
+  }
+#endif
+
+
+#ifdef ANKI
+</style>
+#endif
