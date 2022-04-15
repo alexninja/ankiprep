@@ -16,7 +16,15 @@ require_relative 'report/report'
 module Vocab
 
   def self.makeall
-    anki_words, rikai_words = Vocab.parse_input()
+    @regenerate_wordlists = false
+
+    if ARGV.size == 1 && ARGV[0] == '!'
+      @regenerate_wordlists = true
+      return
+    end
+
+    anki_words = Vocab.parse_anki()
+    rikai_words = Vocab.parse_input()
 
     Vocab::Report.make_htmls(rikai_words)
     make_anki(rikai_words)
@@ -24,8 +32,8 @@ module Vocab
     @vocab_list = Vocab.make_vocab_list(anki_words, rikai_words)
   end
 
-  def self.input_file_present?
-    @input_file_present
+  def self.regenerate_wordlists?
+    @regenerate_wordlists
   end
 
   def self.vocab_list
@@ -35,28 +43,24 @@ module Vocab
 
 private
 
-  def self.parse_input
+  def self.parse_anki
     print "[Vocab] reading #{$ANKIDIR}/vocab.anki... "
-    anki_words = Anki.read("#{$ANKIDIR}/vocab.anki").map do |expr,json|
+    words = Anki.read("#{$ANKIDIR}/vocab.anki").map do |expr,json|
       Word.from_anki(expr,json)
     end
-    puts "#{anki_words.size} vocab entries"
+    puts "#{words.size} vocab entries"
+    words.freeze
+  end
 
-    print "[Vocab] reading D:/_rikaichan.txt... "
-    rikai_words = []
-    if File.exists?("D:/_rikaichan.txt")
-      @input_file_present = true
-      rikai_words = Utf8::readlines("D:/_rikaichan.txt").map.with_index do |line,i|
+  def self.parse_input
+    Dir['D:/*.txt'].select {|f| f =~ /.?rikaichan.*\.txt/}.map do |f|
+      print "[Vocab] reading #{f}... "
+      words = Utf8::readlines(f).map.with_index do |line,i|
         Word.from_line(line, i+1)
       end.compact
-      puts
-    else
-      @input_file_present = false
-      puts "Not Found. Will Regenerate Everything in __OUT__!"
-    end
-    #p (anki.values + rikai.values).map {|ar| ar.size}.to_set
-
-    [ anki_words.freeze, rikai_words.freeze ]
+      puts "#{words.size} entries"
+      words
+    end.flatten.freeze
   end
 
 

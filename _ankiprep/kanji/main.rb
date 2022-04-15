@@ -329,18 +329,18 @@ public
   end
 
   def self.new_kanji
-    if Vocab.input_file_present?
-      @vocab_kanji - @known_kanji
-    else
+    if Vocab.regenerate_wordlists?
       all_kanji
+    else
+      @vocab_kanji - @known_kanji
     end
   end
 
   def self.relevant_kanji
-    if Vocab.input_file_present?
-      @relevant_kanji  # kanji for which Wordlists will be regenerated
-    else
+    if Vocab.regenerate_wordlists?
       all_kanji
+    else
+      @relevant_kanji
     end
   end
 
