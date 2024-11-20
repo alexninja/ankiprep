@@ -13,4 +13,4 @@ copy ..\png\*.png                       __OUT__\kanji\flashcard
 copy w4f1a.html                         __OUT__\kanji\wordlist
 copy ..\..\wordlist\wordlist.css        __OUT__\kanji\wordlist
 
-start firefox                           __OUT__\testpage.html
+start firefox                           file:///__OUT__/testpage.html
