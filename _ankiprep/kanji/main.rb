@@ -128,15 +128,14 @@ private
         gsub('other:',     '"other":'    )
       if kanji != JSON.parse(json_q)['kanji']
         errors_kanji << "mismatch: [#{kanji.inspect}] | " + JSON.parse(json_q)['kanji']
-#        errors_kanji << json
       end
       kanji.chomp
     end.to_set
     puts "#{@known_kanji.size} known kanji"
 
     print "[Kanji::Stats] reading #{$ANKIDIR}/bak/kanji.anki... "
-    @kanji_bak = Anki.read("#{$ANKIDIR}/bak/kanji.anki")
-    puts "#{@kanji_bak.size} bak kanji"
+    @prepop_kanji = Anki.read("#{$ANKIDIR}/bak/kanji.anki")
+    puts "#{@prepop_kanji.size} prepopulated kanji"
 
     if errors_kanji.size > 0
       File.open('__errors.txt','w:UTF-8') do |f|
@@ -324,8 +323,8 @@ public
     @known_kanji.include? k
   end
 
-  def self.kanji_bak
-    @kanji_bak
+  def self.prepop_kanji
+    @prepop_kanji
   end
 
   def self.vocab_kanji?(k)

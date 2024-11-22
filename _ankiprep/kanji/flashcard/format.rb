@@ -20,9 +20,9 @@ module Kanji; module Flashcard
           data_json = make_card(k)
           # ... and create a line for importing to kanji.anki (unless it's already there)
           unless Kanji::Stats.known_kanji? k
-            if Kanji::Stats.kanji_bak.has_key?(k)
+            if Kanji::Stats.prepop_kanji.has_key?(k)
               # reuse json previously populated with example words
-              data_json_escaped = Kanji::Stats.kanji_bak[k]
+              data_json_escaped = Kanji::Stats.prepop_kanji[k]
             else
               # create bare json
               data_json_escaped = data_json.split('\"').join('\\\\\"').split("'").join("\\'")
