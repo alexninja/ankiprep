@@ -134,6 +134,10 @@ private
     end.to_set
     puts "#{@known_kanji.size} known kanji"
 
+    print "[Kanji::Stats] reading #{$ANKIDIR}/bak/kanji.anki... "
+    @kanji_bak = Anki.read("#{$ANKIDIR}/bak/kanji.anki")
+    puts "#{@kanji_bak.size} bak kanji"
+
     if errors_kanji.size > 0
       File.open('__errors.txt','w:UTF-8') do |f|
         f.puts "*** #{errors_kanji.size} errors in #{$ANKIDIR}/kanji.anki ***"
@@ -318,6 +322,10 @@ public
 
   def self.known_kanji?(k)
     @known_kanji.include? k
+  end
+
+  def self.kanji_bak
+    @kanji_bak
   end
 
   def self.vocab_kanji?(k)
