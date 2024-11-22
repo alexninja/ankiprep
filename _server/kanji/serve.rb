@@ -80,7 +80,7 @@ module Kanji
         s.print "Content-type: text/css\r\n\r\n"
         s.print File.read(path, mode:'r:UTF-8')
       elsif ext == "png" || ext == "gif"
-        path = "#{$GIFDIR}/#{file}.#{ext}" if ext == "gif"
+        path = "#{$DICT_DIR}/gif/#{file}.#{ext}" if ext == "gif"
         if File.exist? path
           s.print "HTTP/1.1 200/OK\r\n"
           s.print "Content-Type: image/#{ext}\r\n"

@@ -1,7 +1,7 @@
 # encoding: UTF-8
 $LOAD_PATH << File.expand_path(File.dirname(__FILE__) + '/../libs')
 
-$DICT_DIR = '../_dict'
+$DICT_DIR = 'D:/Dev/ankiprep/_dict'
 
 $OUTDIR = '__OUT__'
 

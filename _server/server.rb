@@ -1,6 +1,8 @@
 # encoding: UTF-8
 $: << File.expand_path(File.dirname(__FILE__) + '/../libs')
 
+$DICT_DIR = 'D:/Dev/ankiprep/_dict'
+
 require 'socket'
 require 'cgi'
 #require_relative 'shosai/serve'
