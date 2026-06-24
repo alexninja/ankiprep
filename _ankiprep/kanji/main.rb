@@ -108,11 +108,8 @@ private
   end
 
 
-  def self.parse_anki
-    errors_kanji = []
-
-    print "[Kanji::Stats] reading #{$ANKIDIR}/kanji.anki... "
-    @known_kanji = Anki.read("#{$ANKIDIR}/kanji.anki").map do |kanji,json|
+  def self.validate_anki_json(h)
+    h.each do |kanji,json|
       json_q = json.
         gsub('comp_rank:', '"comp_rank":').
         gsub('comp_freq:', '"comp_freq":').
@@ -127,23 +124,23 @@ private
         gsub('kjt:',       '"kjt":'      ).
         gsub('other:',     '"other":'    )
       if kanji != JSON.parse(json_q)['kanji']
-        errors_kanji << "mismatch: [#{kanji.inspect}] | " + JSON.parse(json_q)['kanji']
+        abort "mismatch in imported data: [#{kanji.inspect}] | " + JSON.parse(json_q)['kanji']
       end
-      kanji.chomp
-    end.to_set
+    end
+  end
+
+
+  def self.parse_anki
+
+    print "[Kanji::Stats] reading #{$ANKIDIR}/kanji.anki... "
+    @known_kanji = Anki.read("#{$ANKIDIR}/kanji.anki")
+    validate_anki_json(@known_kanji)
     puts "#{@known_kanji.size} known kanji"
 
     print "[Kanji::Stats] reading #{$ANKIDIR}/bak/kanji.anki... "
     @prepop_kanji = Anki.read("#{$ANKIDIR}/bak/kanji.anki")
+    validate_anki_json(@prepop_kanji)
     puts "#{@prepop_kanji.size} prepopulated kanji"
-
-    if errors_kanji.size > 0
-      File.open('__errors.txt','w:UTF-8') do |f|
-        f.puts "*** #{errors_kanji.size} errors in #{$ANKIDIR}/kanji.anki ***"
-        errors_kanji.each {|err| f.puts err}
-      end
-      abort "Errors in kanji.anki! [see __errors.txt]" #abort
-    end
 
     puts "[Kanji::Stats] parsing vocab..."
     kw = Hash.new {|h,k| h[k] = Set.new}
@@ -155,7 +152,7 @@ private
       kanji_in_word.each do |k|
         kw[k] << wordinfo
         @vocab_kanji << k
-      if kanji_in_word.any? {|k| !known_kanji?(k)}
+      if kanji_in_word.any? {|k| !@known_kanji.has_key?(k)}
         kanji_in_word.each {|k| @relevant_kanji << k}
       end
       end
@@ -163,7 +160,7 @@ private
 
     @k[ANK] = postprocess(kw)
 
-    puts "[Kanji::Stats] #{@vocab_kanji.size} kanji (#{(@vocab_kanji - @known_kanji).size} new)"
+    puts "[Kanji::Stats] #{@vocab_kanji.size} kanji (#{(@vocab_kanji - @known_kanji.keys).size} new)"
   end
 
 
@@ -319,8 +316,8 @@ public
     @valid_chars.include? c
   end
 
-  def self.known_kanji?(k)
-    @known_kanji.include? k
+  def self.known_kanji
+    @known_kanji
   end
 
   def self.prepop_kanji
@@ -332,14 +329,14 @@ public
   end
 
   def self.all_kanji
-    @vocab_kanji + @known_kanji
+    @vocab_kanji + @known_kanji.keys
   end
 
   def self.new_kanji
     if Vocab.regenerate_wordlists?
       all_kanji
     else
-      @vocab_kanji - @known_kanji
+      @vocab_kanji - @known_kanji.keys
     end
   end
 
