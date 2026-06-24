@@ -9,7 +9,6 @@
 - KANJIDIC lookup
 - EDICT lookup
 - **Create kanji flashcards**: stroke order/meaning/yomi/example words
-- User can add more example words from priority-sorted lists
 - Recognition: user is shown kanji only; must recall meaning/yomi
 - Production: user is shown yomi/example words (kanji hidden); must hand-write kanji from memory
 - **Create vocab flashcards**: word/translation/audio
