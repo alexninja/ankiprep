@@ -1,1 +1,3 @@
-![](misc/demo.mp4)
+![](misc/screenshot-kanji.png)
+
+![](misc/screenshot-vocab.png)
