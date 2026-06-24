@@ -8,10 +8,10 @@
 - Normalize on-yomi e.g. **吉兆** きっちょう ⇨ きち.ちょう ⇨ キチ.チョウ
 - KANJIDIC lookup
 - EDICT lookup
-- **Create kanji flashcards**: stroke order/meaning/reading/example words
+- **Create kanji flashcards**: stroke order/meaning/yomi/example words
 - User can add more example words from priority-sorted lists
-- Recognition: user is shown kanji only; must recall meaning/reading
-- Production: user is shown reading/example words (kanji hidden); must hand-write kanji from memory
+- Recognition: user is shown kanji only; must recall meaning/yomi
+- Production: user is shown yomi/example words (kanji hidden); must hand-write kanji from memory
 - **Create vocab flashcards**: word/translation/audio
 - Recognition: user is shown word only; must recall meaning/pronunciation
 
