@@ -210,10 +210,9 @@ private
     e = Hash.new {|hh,kk| hh[kk] = []}
     k = Hash.new {|hh,kk| hh[kk] = []}
 
-    print "preparsing... "
     lines = Utf8.readlines($DICT_DIR+'/edict/edict','euc-jp')
 
-    # save a copy of edict as utf-8 purely for convenience
+    # save a utf-8 copy for convenience
     File.open($DICT_DIR+'/edict/edict.utf8','w') {|f| lines.each {|line| f.puts line}}
 
     bad_lines = []
