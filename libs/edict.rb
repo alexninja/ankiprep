@@ -201,8 +201,8 @@ private
   EdictMarshal = Struct.new(:e,:k)
 
   def Edict.load_marshaled
-    if File.exist?($RES_DIR+"/edict/edict.marshal") &&
-       File.stat($RES_DIR+"/edict/edict.marshal").mtime > File.stat($RES_DIR+'/edict/edict').mtime
+    if File.exist?($RES_DIR+"/.marshal/edict.marshal") &&
+       File.stat($RES_DIR+"/.marshal/edict.marshal").mtime > File.stat($RES_DIR+'/edict/edict').mtime
       edict_marshal = File.open($RES_DIR+"/edict/edict.marshal", "rb") {|f| Marshal.load(f)}
       return [edict_marshal.e, edict_marshal.k]
     end
@@ -233,7 +233,7 @@ private
     print "marshaling... "
     e.default = nil
     k.default = nil
-    File.open($RES_DIR+"/edict/edict.marshal", "wb") {|f| Marshal.dump(EdictMarshal.new(e,k), f)}
+    File.open($RES_DIR+"/.marshal/edict.marshal", "wb") {|f| Marshal.dump(EdictMarshal.new(e,k), f)}
 
     [e, k]
   end
