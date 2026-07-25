@@ -9,8 +9,10 @@ module Vocab; module Audio
     `cmd /u /c dir /b #{win_path} > vocab\\mp3list.tmp`
     @mp3list = File.read('vocab/mp3list.tmp', mode:'r:UTF-16LE:UTF-8').split("\n").to_set
     FileUtils.rm 'vocab/mp3list.tmp'
-    print "marshaling... "
-    File.open("#{$RES_DIR}/.marshal/audio.marshal", 'wb') {|f| Marshal.dump(@mp3list, f)}
+    unless @mp3list.empty?
+      print "marshaling... "
+      File.open("#{$RES_DIR}/.marshal/audio.marshal", 'wb') {|f| Marshal.dump(@mp3list, f)}
+    end
   end
   puts "#{@mp3list.size} files"
 
