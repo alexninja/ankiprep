@@ -80,7 +80,7 @@ module Kanji
         s.print "Content-type: text/css\r\n\r\n"
         s.print File.read(path, mode:'r:UTF-8')
       elsif ext == "png" || ext == "gif"
-        path = "#{$DICT_DIR}/gif/#{file}.#{ext}" if ext == "gif"
+        path = "#{$RES_DIR}/gif/#{file}.#{ext}" if ext == "gif"
         if File.exist? path
           s.print "HTTP/1.1 200/OK\r\n"
           s.print "Content-Type: image/#{ext}\r\n"
@@ -93,7 +93,7 @@ module Kanji
       end
 
     elsif m = url.match(/^kanji\/heisig\/(\d+\.png)$/)
-      path = "#{$DICT_DIR+'/heisig'}/#{m[1]}"
+      path = "#{$RES_DIR+'/heisig'}/#{m[1]}"
       s.print "HTTP/1.1 200/OK\r\n"
       s.print "Content-Type: image/png\r\n"
       s.print "Accept-Ranges: bytes\r\n"

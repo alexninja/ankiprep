@@ -4,7 +4,7 @@ require 'misc/jsontrim'
 
 module Kanji; module Flashcard
 
-  @heisig_list = Dir[$DICT_DIR+"/heisig/*.png"].map {|f| f.match(/\/(\d{4})\.png/)[1].to_i}.to_set
+  @heisig_list = Dir[$RES_DIR+"/heisig/*.png"].map {|f| f.match(/\/(\d{4})\.png/)[1].to_i}.to_set
 
   def self.makeall
     print "[Kanji::Flashcard] generating #{Kanji::Stats.new_kanji.size} html files... "
@@ -95,8 +95,8 @@ module Kanji; module Flashcard
         UTF16: utf16,
         DATA: data_json,
         WORD_COUNTS: word_counts_brk.to_json,
-        GIFDIR: $DICT_DIR+"/gif",
-        HEISIG_DIR: $DICT_DIR+"/heisig",
+        GIFDIR: $RES_DIR+"/gif",
+        HEISIG_DIR: $RES_DIR+"/heisig",
         HEISIG_PNG: heisig_png,
         HEISIG_IMG_TAG: heisig_img_tag
       ).check

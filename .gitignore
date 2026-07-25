@@ -1,4 +1,7 @@
-_ankiprep/__!sources!__/wordfreq/_marshal/
+_res/.marshal/
+_res/edict/edict.marshal
+_res/edict/edict.utf8
+_res/edict/kanjidic.utf8
 
 _ankiprep/__OUT__/
 
@@ -24,9 +27,4 @@ _server/copytocb.exe
 
 _server/log.txt
 
-
-
-_dict/edict/edict.marshal
-_dict/edict/edict.utf8
-_dict/edict/kanjidic.utf8
 

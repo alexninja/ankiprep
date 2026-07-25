@@ -1,7 +1,7 @@
 # encoding: UTF-8
 $: << File.expand_path(File.dirname(__FILE__) + '/../libs')
 
-$DICT_DIR = 'D:/Dev/ankiprep/_dict'
+$RES_DIR = 'D:/Dev/ankiprep/_res'
 
 require 'socket'
 require 'cgi'

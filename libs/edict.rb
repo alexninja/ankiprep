@@ -201,19 +201,19 @@ private
   EdictMarshal = Struct.new(:e,:k)
 
   def Edict.load_marshaled
-    if File.exist?($DICT_DIR+"/edict/edict.marshal") &&
-       File.stat($DICT_DIR+"/edict/edict.marshal").mtime > File.stat($DICT_DIR+'/edict/edict').mtime
-      edict_marshal = File.open($DICT_DIR+"/edict/edict.marshal", "rb") {|f| Marshal.load(f)}
+    if File.exist?($RES_DIR+"/edict/edict.marshal") &&
+       File.stat($RES_DIR+"/edict/edict.marshal").mtime > File.stat($RES_DIR+'/edict/edict').mtime
+      edict_marshal = File.open($RES_DIR+"/edict/edict.marshal", "rb") {|f| Marshal.load(f)}
       return [edict_marshal.e, edict_marshal.k]
     end
 
     e = Hash.new {|hh,kk| hh[kk] = []}
     k = Hash.new {|hh,kk| hh[kk] = []}
 
-    lines = Utf8.readlines($DICT_DIR+'/edict/edict','euc-jp')
+    lines = Utf8.readlines($RES_DIR+'/edict/edict','euc-jp')
 
     # save a utf-8 copy for convenience
-    File.open($DICT_DIR+'/edict/edict.utf8','w') {|f| lines.each {|line| f.puts line}}
+    File.open($RES_DIR+'/edict/edict.utf8','w') {|f| lines.each {|line| f.puts line}}
 
     bad_lines = []
     lines[1..-1].each_with_index do |line,i|
@@ -233,7 +233,7 @@ private
     print "marshaling... "
     e.default = nil
     k.default = nil
-    File.open($DICT_DIR+"/edict/edict.marshal", "wb") {|f| Marshal.dump(EdictMarshal.new(e,k), f)}
+    File.open($RES_DIR+"/edict/edict.marshal", "wb") {|f| Marshal.dump(EdictMarshal.new(e,k), f)}
 
     [e, k]
   end

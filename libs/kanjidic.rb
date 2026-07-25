@@ -81,10 +81,10 @@ private
 
     Progress.new do |pr|
 
-      lines = Utf8.readlines($DICT_DIR+"/edict/kanjidic",'euc-jp')
+      lines = Utf8.readlines($RES_DIR+"/edict/kanjidic",'euc-jp')
 
       # save a utf-8 copy for convenience
-      File.open($DICT_DIR+'/edict/kanjidic.utf8','w') {|f| lines.each {|line| f.puts line}}
+      File.open($RES_DIR+'/edict/kanjidic.utf8','w') {|f| lines.each {|line| f.puts line}}
 
       @k = Hash.new()
       lines[1..-1].each do |line|

@@ -34,8 +34,6 @@ end
 
 ANK,POM,MON,EDI=0,1,2,3
 
-$WORDFREQ_DIR = "__!sources!__/wordfreq"
-
 
 module Kanji; module Stats
 
@@ -54,18 +52,19 @@ private
 
 
   def self.parse_sources
-    if File.exist? $WORDFREQ_DIR+'/_marshal'
+    if File.exist?("#{$RES_DIR}/.marshal/k.marshal") &&
+       File.exist?("#{$RES_DIR}/.marshal/yfreq.marshal")
       print "[Kanji::Stats] loading preparsed data... "
       Progress.new(1) do |pr|
-        @k = File.open($WORDFREQ_DIR+'/_marshal/k.marshal', "rb") {|f| Marshal.load(f)}
-        @yfreq = File.open($WORDFREQ_DIR+'/_marshal/yfreq.marshal', "rb") {|f| Marshal.load(f)}
+        @k = File.open("#{$RES_DIR}/.marshal/k.marshal", "rb") {|f| Marshal.load(f)}
+        @yfreq = File.open("#{$RES_DIR}/.marshal/yfreq.marshal", "rb") {|f| Marshal.load(f)}
         pr.tick
       end
       return
     end
 
     # POM, MON, EDI were not preparsed, parse now (and save for future runs)
-    kw = add_source(POM, "#{$WORDFREQ_DIR}/pomax/base_aggregates.txt") do |line|
+    kw = add_source(POM, "#{$RES_DIR}/wordfreq/pomax/base_aggregates.txt") do |line|
       m = line.match(/(\d+)\t(.*)\t.+/)
       if m
         expr, n = m[2], m[1].to_i
@@ -76,7 +75,7 @@ private
     end
     @k[POM] = postprocess(kw)
 
-    kw = add_source(MON, "#{$WORDFREQ_DIR}/monash/wordfreq.utf8") do |line|
+    kw = add_source(MON, "#{$RES_DIR}/wordfreq/monash/wordfreq.utf8") do |line|
       m = line.match(/(.+)\+\d+\t(\d+)/)
       if m
         expr, n = m[1].split('+').last, m[2].to_i
@@ -87,7 +86,7 @@ private
     end
     @k[MON] = postprocess(kw)
 
-    kw = add_source(EDI, "#{$WORDFREQ_DIR}/goo/edict-freq-20081002") do |line|
+    kw = add_source(EDI, "#{$RES_DIR}/wordfreq/goo/edict-freq-20081002") do |line|
       m = line.match(/(.+?) .+\/###(\d+)\//)
       if m
         expr, n = m[1], m[2].to_i
@@ -98,11 +97,11 @@ private
     end
     @k[EDI] = postprocess(kw)
 
-    print "[Kanji::Stats] saving preparsed data... "
-    FileUtils.mkdir_p $WORDFREQ_DIR+'/_marshal'
+    print "[Kanji::Stats] marshaling... "
+    FileUtils.mkdir_p "#{$RES_DIR}/.marshal"
     Progress.new(1) do |pr|
-      File.open($WORDFREQ_DIR+'/_marshal/k.marshal', "wb") {|f| Marshal.dump(@k, f)}
-      File.open($WORDFREQ_DIR+'/_marshal/yfreq.marshal', "wb") {|f| Marshal.dump(@yfreq, f)}
+      File.open("#{$RES_DIR}/.marshal/k.marshal", "wb") {|f| Marshal.dump(@k, f)}
+      File.open("#{$RES_DIR}/.marshal/yfreq.marshal", "wb") {|f| Marshal.dump(@yfreq, f)}
       pr.tick
     end
   end
@@ -276,7 +275,7 @@ private
   def self.parse_kjt
     print "[Kanji::Stats] reading kyuujitai list... "
     @kjt = Hash.new {|h,k| h[k] = ''}
-    File.read('__!sources!__/kjt/asahi/old_chara.html', mode:'r:Shift_JIS:UTF-8')
+    File.read("#{$RES_DIR}/old_chara.html", mode:'r:Shift_JIS:UTF-8')
         .scan(/\s+<td class="ch">(.+)<\/td>\n\s+<td class="ch">(.+)<\/td>/)
         .each do |new,old|
           old = old[3..6].charfrom_utf16 if old.match(/&#x.{4};/)

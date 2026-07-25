@@ -21,7 +21,7 @@ module Audio
   def Audio.watchdog_tick
     if Time.now - @timestamp > 0.1 && @filename
       puts "Playing (#{@volume}): #{URI.unescape(@filename)}"
-      `bassplay.exe #{@volume} #{$DICT_DIR}\\audio\\#{@filename}`
+      `bassplay.exe #{@volume} #{$RES_DIR}\\audio\\#{@filename}`
       @filename, @volume = nil, nil
     end
   end
