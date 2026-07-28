@@ -23,7 +23,7 @@ module Kanji; module Flashcard
   def self.make_anki_import_txt
     FileUtils.rm_f 'D:/kanji.[IMPORT].txt'
     return if Kanji::Stats.new_kanji.empty?
-    File.open('D:/kanji.[IMPORT].txt','w') do |ankiimp|
+    File.open('D:/kanji.[IMPORT].txt','w:UTF-8') do |ankiimp|
       Progress.new(Kanji::Stats.new_kanji.size) do |pr|
         Kanji::Stats.new_kanji.each do |k|
           # create the html flashcard...
