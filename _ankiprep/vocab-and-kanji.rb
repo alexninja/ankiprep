@@ -10,9 +10,9 @@ $ANKIDIR = '/Japanese/_anki/_current'
 
 start = Time.now
 
-require 'etc/time'
 require 'vocab/main'
 require 'kanji/main'
+require 'etc/time'
 
 FileUtils.mkdir_p $OUTDIR
 
