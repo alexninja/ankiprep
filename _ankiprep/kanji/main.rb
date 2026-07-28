@@ -5,7 +5,6 @@ require 'json' # gem
 require 'dict/edict'
 require 'dict/kanjidic'
 require 'dict/kana'
-require 'anki'
 require 'misc/utf8'
 require 'misc/utf16'
 require 'misc/progress'

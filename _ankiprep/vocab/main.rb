@@ -1,7 +1,7 @@
 ﻿require 'set'
 require 'json'
 require 'dict/edict'
-require 'anki'
+require 'misc/anki'
 require 'misc/utf8'
 require 'misc/gray'
 require 'misc/template'
