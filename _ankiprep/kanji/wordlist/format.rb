@@ -1,4 +1,4 @@
-﻿require 'kanjidic'
+﻿require 'dict/kanjidic'
 require 'misc/template'
 require 'misc/progress'
 require 'misc/utf16'

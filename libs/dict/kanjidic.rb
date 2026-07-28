@@ -1,4 +1,4 @@
-require 'kana'
+require 'dict/kana'
 require 'misc/progress'
 
 module Kanjidic
