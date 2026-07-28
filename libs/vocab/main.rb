@@ -66,6 +66,9 @@ private
     rikai_words_good = rikai_words.select {|w| w.flags_none? :dupe_in_anki, :dupe_in_rikai}.
                                    select {|w| !w.error}
 
+    FileUtils.rm_f 'D:/vocab.[IMPORT].txt'
+    return if rikai_words_good.empty?
+
     File.open('D:/vocab.[IMPORT].txt','w:UTF-8') do |f|
       rikai_words_good.each do |w|
         hash = Hash.new
