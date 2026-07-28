@@ -146,9 +146,9 @@ private
       kanji_in_word.each do |k|
         kw[k] << wordinfo
         @vocab_kanji << k
-      if kanji_in_word.any? {|k| !@known_kanji.has_key?(k)}
-        kanji_in_word.each {|k| @relevant_kanji << k}
-      end
+        if kanji_in_word.any? {|k| !@known_kanji.has_key?(k)}
+          kanji_in_word.each {|k| @relevant_kanji << k}
+        end
       end
     end
 
