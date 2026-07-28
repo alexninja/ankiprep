@@ -51,12 +51,10 @@ private
 
 
   def self.parse_sources
-    if File.exist?("#{$RES_DIR}/.marshal/k.marshal") &&
-       File.exist?("#{$RES_DIR}/.marshal/yfreq.marshal")
-      print "[Kanji::Stats] loading preparsed data... "
+    if File.exist?("#{$RES_DIR}/.marshal/kanji.marshal")
+      print "[Kanji::Stats] loading marshaled data... "
       Progress.new(1) do |pr|
-        @k = File.open("#{$RES_DIR}/.marshal/k.marshal", "rb") {|f| Marshal.load(f)}
-        @yfreq = File.open("#{$RES_DIR}/.marshal/yfreq.marshal", "rb") {|f| Marshal.load(f)}
+        @k, @yfreq = File.open("#{$RES_DIR}/.marshal/kanji.marshal", "rb") {|f| Marshal.load(f)}
         pr.tick
       end
       return
@@ -99,8 +97,7 @@ private
     print "[Kanji::Stats] marshaling... "
     FileUtils.mkdir_p "#{$RES_DIR}/.marshal"
     Progress.new(1) do |pr|
-      File.open("#{$RES_DIR}/.marshal/k.marshal", "wb") {|f| Marshal.dump(@k, f)}
-      File.open("#{$RES_DIR}/.marshal/yfreq.marshal", "wb") {|f| Marshal.dump(@yfreq, f)}
+      File.open("#{$RES_DIR}/.marshal/kanji.marshal", "wb") {|f| Marshal.dump([@k,@yfreq], f)}
       pr.tick
     end
   end

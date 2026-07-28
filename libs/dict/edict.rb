@@ -198,17 +198,19 @@ module Edict
 
 private
 
-  EdictMarshal = Struct.new(:e,:k)
-
   def Edict.load_marshaled
     if File.exist?($RES_DIR+"/.marshal/edict.marshal") &&
        File.stat($RES_DIR+"/.marshal/edict.marshal").mtime > File.stat($RES_DIR+'/edict/edict').mtime
-      edict_marshal = File.open($RES_DIR+"/.marshal/edict.marshal", "rb") {|f| Marshal.load(f)}
-      return [edict_marshal.e, edict_marshal.k]
+      @e, @k = File.open($RES_DIR+"/.marshal/edict.marshal", "rb") {|f| Marshal.load(f)}
+      true
+    else
+      false
     end
+  end
 
-    e = Hash.new {|hh,kk| hh[kk] = []}
-    k = Hash.new {|hh,kk| hh[kk] = []}
+  def Edict.load_from_file
+    @e = Hash.new {|hh,kk| hh[kk] = []}
+    @k = Hash.new {|hh,kk| hh[kk] = []}
 
     lines = Utf8.readlines($RES_DIR+'/edict/edict','euc-jp')
 
@@ -218,11 +220,11 @@ private
     bad_lines = []
     lines[1..-1].each_with_index do |line,i|
       if m = line.match(/(.+?) \[(.+?)\] (\/.+\/)/)
-        e[m[1]] << line
-        k[m[2]] << line
+        @e[m[1]] << line
+        @k[m[2]] << line
       elsif m = line.match(/(.+?) (\/.+\/)/)
-        e[m[1]] << line
-        k[m[1]] << line
+        @e[m[1]] << line
+        @k[m[1]] << line
       else
         bad_lines << line
       end
@@ -231,17 +233,17 @@ private
     print "(#{bad_lines.size} bad lines)... " if !bad_lines.empty?
 
     print "marshaling... "
-    e.default = nil
-    k.default = nil
-    File.open($RES_DIR+"/.marshal/edict.marshal", "wb") {|f| Marshal.dump(EdictMarshal.new(e,k), f)}
-
-    [e, k]
+    @e.default = nil
+    @k.default = nil
+    File.open($RES_DIR+"/.marshal/edict.marshal", "wb") {|f| Marshal.dump([@e,@k], f)}
   end
 
   def Edict.load!
     print "Loading Edict... "
     Progress.new do |pr|
-      @e, @k = load_marshaled
+      if !load_marshaled
+        load_from_file
+      end
     end
   end
 
