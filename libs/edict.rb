@@ -203,7 +203,7 @@ private
   def Edict.load_marshaled
     if File.exist?($RES_DIR+"/.marshal/edict.marshal") &&
        File.stat($RES_DIR+"/.marshal/edict.marshal").mtime > File.stat($RES_DIR+'/edict/edict').mtime
-      edict_marshal = File.open($RES_DIR+"/edict/edict.marshal", "rb") {|f| Marshal.load(f)}
+      edict_marshal = File.open($RES_DIR+"/.marshal/edict.marshal", "rb") {|f| Marshal.load(f)}
       return [edict_marshal.e, edict_marshal.k]
     end
 
