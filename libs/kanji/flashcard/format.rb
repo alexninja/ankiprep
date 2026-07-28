@@ -1,6 +1,6 @@
 require 'json'
-require 'misc/template'
-require 'misc/jsontrim'
+require 'etc/template'
+require 'etc/jsontrim'
 
 module Kanji; module Flashcard
 

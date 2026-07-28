@@ -1,8 +1,8 @@
 ﻿require 'dict/kanjidic'
-require 'misc/template'
-require 'misc/progress'
-require 'misc/utf16'
-require 'misc/gray'
+require 'etc/template'
+require 'etc/progress'
+require 'etc/utf16'
+require 'etc/gray'
 
 
 module Kanji; module Wordlist

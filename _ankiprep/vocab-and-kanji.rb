@@ -10,7 +10,7 @@ $ANKIDIR = '/Japanese/_anki/_current'
 
 start = Time.now
 
-require 'misc/time'
+require 'etc/time'
 require 'vocab/main'
 require 'kanji/main'
 

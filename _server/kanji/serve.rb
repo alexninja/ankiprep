@@ -1,4 +1,4 @@
-require 'misc/template'
+require 'etc/template'
 
 $RIKAICHAN_TXT = "D:/_rikaichan.txt"
 

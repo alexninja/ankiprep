@@ -2,7 +2,7 @@
 $LOAD_PATH << File.expand_path(File.dirname(__FILE__) + '/../libs')
 
 require 'json'
-require 'misc/utf16'
+require 'etc/utf16'
 require_relative '../_ankiprep/anki/anki.rb'
 
 

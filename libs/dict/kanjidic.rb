@@ -1,5 +1,5 @@
 require 'dict/kana'
-require 'misc/progress'
+require 'etc/progress'
 
 module Kanjidic
 

@@ -1,5 +1,5 @@
 require 'set'
-require 'misc/utf8'
+require 'etc/utf8'
 
 
 module Kana

@@ -2,7 +2,7 @@
 $LOAD_PATH << File.expand_path(File.dirname(__FILE__) + '/../libs')
 
 require 'kanjidic'
-require 'misc/utf16'
+require 'etc/utf16'
 
 
 $gif_kanji = Dir["#{$DICT_DIR}/gif/kanji/u????.gif"].map do |file|

@@ -1,5 +1,5 @@
-require 'misc/progress'
-require 'misc/utf8'
+require 'etc/progress'
+require 'etc/utf8'
 
 module Edict
 
