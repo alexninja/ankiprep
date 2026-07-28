@@ -184,7 +184,7 @@ module Vocab
         else
           if w.flags_all? :exact_kana
             w.error = "No such kana: [#{kana}], but have: [" + entries.map {|e| e.kana}.join(', ') + "]"
-          w.flags << :not_in_edict
+            w.flags << :not_in_edict
             return w
           end
         end
