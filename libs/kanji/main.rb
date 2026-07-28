@@ -53,9 +53,8 @@ private
   def self.parse_sources
     if File.exist?("#{$RES_DIR}/.marshal/kanji.marshal")
       print "[Kanji::Stats] loading marshaled data... "
-      Progress.new(1) do |pr|
+      Progress.new do |pr|
         @k, @yfreq = File.open("#{$RES_DIR}/.marshal/kanji.marshal", "rb") {|f| Marshal.load(f)}
-        pr.tick
       end
       return
     end
