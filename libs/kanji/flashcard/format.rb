@@ -20,6 +20,71 @@ module Kanji; module Flashcard
     FileUtils.copy Dir['kanji/flashcard/png/*.png'], $OUTDIR+'/kanji/flashcard'
   end
 
+  def self.make_anki_import_txt
+    FileUtils.rm_f 'D:/kanji.[IMPORT].txt'
+    return if Kanji::Stats.new_kanji.empty?
+    File.open('D:/kanji.[IMPORT].txt','w') do |ankiimp|
+      Progress.new(Kanji::Stats.new_kanji.size) do |pr|
+        Kanji::Stats.new_kanji.each do |k|
+          # create the html flashcard...
+          data_json = make_card(k)
+          # ... and create a line for importing to kanji.anki (unless it's already there)
+          unless Kanji::Stats.known_kanji.has_key? k
+            if Kanji::Stats.prepop_kanji.has_key?(k)
+              # reuse json previously populated with example words
+              data_json_escaped = Kanji::Stats.prepop_kanji[k]
+            else
+              # create bare json
+              data_json_escaped = data_json.split('\"').join('\\\\\"').split("'").join("\\'")
+            end
+            ankiimp.puts "#{data_json_escaped}\t#{k}"
+          end
+          pr.tick
+        end
+      end
+    end
+  end
+
+
+  def self.make_anki_snippets
+    File.open($OUTDIR+'/kanji/anki/answer.html','w') do |f|
+      f.write $T['../libs/kanji/flashcard/anki-snippet.html'].with(
+        JS_EXT_GARBLED: "<script src='answer.js'></script>".reverse
+      ).check.gsub("\n",'').gsub('  ','')
+    end
+    File.open($OUTDIR+'/kanji/anki/recog.html','w') do |f|
+      f.write $T['../libs/kanji/flashcard/anki-snippet.html'].with(
+        JS_EXT_GARBLED: "<script src='recog.js'></script>".reverse
+      ).check.gsub("\n",'').gsub('  ','')
+    end
+    File.open($OUTDIR+'/kanji/anki/prod.html','w') do |f|
+      f.write $T['../libs/kanji/flashcard/anki-snippet.html'].with(
+        JS_EXT_GARBLED: "<script src='prod.js'></script>".reverse
+      ).check.gsub("\n",'').gsub('  ','')
+    end
+  end
+
+  def self.make_anki_js
+    File.open($OUTDIR+'/kanji/anki/answer.js','w') do |f|
+      f.write $T['../libs/kanji/flashcard/flashcard.js'].apply_ifdef('ANKI','ANSWER').with(
+        HTML: $T['../libs/kanji/flashcard/flashcard.html'].apply_ifdef('ANKI','ANSWER').check.gsub("\n",'').gsub('  ',''),
+        CSS: $T['../libs/kanji/flashcard/flashcard.css'].apply_ifdef('ANKI','ANSWER').check.gsub("\n",'').gsub('  ','').gsub(/\/\*.*?\*\//,'')
+      ).check
+    end
+    File.open($OUTDIR+'/kanji/anki/recog.js','w') do |f|
+      f.write $T['../libs/kanji/flashcard/flashcard.js'].apply_ifdef('ANKI','RECOG').with(
+        HTML: $T['../libs/kanji/flashcard/flashcard.html'].apply_ifdef('ANKI','RECOG').check.gsub("\n",'').gsub('  ',''),
+        CSS: $T['../libs/kanji/flashcard/flashcard.css'].apply_ifdef('ANKI','RECOG').check.gsub("\n",'').gsub('  ','').gsub(/\/\*.*?\*\//,'')
+      ).check
+    end
+    File.open($OUTDIR+'/kanji/anki/prod.js','w') do |f|
+      f.write $T['../libs/kanji/flashcard/flashcard.js'].apply_ifdef('ANKI','PROD').with(
+        HTML: $T['../libs/kanji/flashcard/flashcard.html'].apply_ifdef('ANKI','PROD').check.gsub("\n",'').gsub('  ',''),
+        CSS: $T['../libs/kanji/flashcard/flashcard.css'].apply_ifdef('ANKI','PROD').check.gsub("\n",'').gsub('  ','').gsub(/\/\*.*?\*\//,'')
+      ).check
+    end
+  end
+
   def self.make_card(k)
     # creates the kanji's html flashcard in __OUT__/kanji/flashcard/ (for display by server.rb),
     # prepopulated with the data json and the word_counts json.
@@ -102,73 +167,6 @@ module Kanji; module Flashcard
       yhead, ytail = y.split('.')
       ytail ||= ''
       '(' + yhead + ')' + ytail
-    end
-  end
-
-
-  def self.make_anki_import_txt
-    FileUtils.rm 'D:/kanji.[IMPORT].txt'
-    return if Kanji::Stats.new_kanji.empty?
-
-    File.open('D:/kanji.[IMPORT].txt','w') do |ankiimp|
-      Progress.new(Kanji::Stats.new_kanji.size) do |pr|
-        Kanji::Stats.new_kanji.each do |k|
-          # create the html flashcard...
-          data_json = make_card(k)
-          # ... and create a line for importing to kanji.anki (unless it's already there)
-          unless Kanji::Stats.known_kanji.has_key? k
-            if Kanji::Stats.prepop_kanji.has_key?(k)
-              # reuse json previously populated with example words
-              data_json_escaped = Kanji::Stats.prepop_kanji[k]
-            else
-              # create bare json
-              data_json_escaped = data_json.split('\"').join('\\\\\"').split("'").join("\\'")
-            end
-            ankiimp.puts "#{data_json_escaped}\t#{k}"
-          end
-          pr.tick
-        end
-      end
-    end
-  end
-
-
-  def self.make_anki_snippets
-    File.open($OUTDIR+'/kanji/anki/answer.html','w') do |f|
-      f.write $T['../libs/kanji/flashcard/anki-snippet.html'].with(
-        JS_EXT_GARBLED: "<script src='answer.js'></script>".reverse
-      ).check.gsub("\n",'').gsub('  ','')
-    end
-    File.open($OUTDIR+'/kanji/anki/recog.html','w') do |f|
-      f.write $T['../libs/kanji/flashcard/anki-snippet.html'].with(
-        JS_EXT_GARBLED: "<script src='recog.js'></script>".reverse
-      ).check.gsub("\n",'').gsub('  ','')
-    end
-    File.open($OUTDIR+'/kanji/anki/prod.html','w') do |f|
-      f.write $T['../libs/kanji/flashcard/anki-snippet.html'].with(
-        JS_EXT_GARBLED: "<script src='prod.js'></script>".reverse
-      ).check.gsub("\n",'').gsub('  ','')
-    end
-  end
-
-  def self.make_anki_js
-    File.open($OUTDIR+'/kanji/anki/answer.js','w') do |f|
-      f.write $T['../libs/kanji/flashcard/flashcard.js'].apply_ifdef('ANKI','ANSWER').with(
-        HTML: $T['../libs/kanji/flashcard/flashcard.html'].apply_ifdef('ANKI','ANSWER').check.gsub("\n",'').gsub('  ',''),
-        CSS: $T['../libs/kanji/flashcard/flashcard.css'].apply_ifdef('ANKI','ANSWER').check.gsub("\n",'').gsub('  ','').gsub(/\/\*.*?\*\//,'')
-      ).check
-    end
-    File.open($OUTDIR+'/kanji/anki/recog.js','w') do |f|
-      f.write $T['../libs/kanji/flashcard/flashcard.js'].apply_ifdef('ANKI','RECOG').with(
-        HTML: $T['../libs/kanji/flashcard/flashcard.html'].apply_ifdef('ANKI','RECOG').check.gsub("\n",'').gsub('  ',''),
-        CSS: $T['../libs/kanji/flashcard/flashcard.css'].apply_ifdef('ANKI','RECOG').check.gsub("\n",'').gsub('  ','').gsub(/\/\*.*?\*\//,'')
-      ).check
-    end
-    File.open($OUTDIR+'/kanji/anki/prod.js','w') do |f|
-      f.write $T['../libs/kanji/flashcard/flashcard.js'].apply_ifdef('ANKI','PROD').with(
-        HTML: $T['../libs/kanji/flashcard/flashcard.html'].apply_ifdef('ANKI','PROD').check.gsub("\n",'').gsub('  ',''),
-        CSS: $T['../libs/kanji/flashcard/flashcard.css'].apply_ifdef('ANKI','PROD').check.gsub("\n",'').gsub('  ','').gsub(/\/\*.*?\*\//,'')
-      ).check
     end
   end
 
