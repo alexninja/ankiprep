@@ -1,7 +1,7 @@
 # encoding: UTF-8
 $LOAD_PATH << File.expand_path(File.dirname(__FILE__) + '/../libs')
 
-$RES_DIR = 'D:/Dev/ankiprep/_res'
+$RES_DIR = '../_res'
 
 $OUTDIR = '__OUT__'
 

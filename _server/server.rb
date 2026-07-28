@@ -1,11 +1,10 @@
 # encoding: UTF-8
 $: << File.expand_path(File.dirname(__FILE__) + '/../libs')
 
-$RES_DIR = 'D:/Dev/ankiprep/_res'
+$RES_DIR = '../_res'
 
 require 'socket'
 require 'cgi'
-#require_relative 'shosai/serve'
 require_relative 'kanji/serve'
 require_relative 'audio/serve'
 
