@@ -5,8 +5,8 @@ _res/edict/kanjidic.utf8
 
 _ankiprep/__OUT__/
 
-_ankiprep/kanji/flashcard/t/__OUT__/
-_ankiprep/vocab/flashcard/t/__OUT__/
+libs/kanji/flashcard/t/__OUT__/
+libs/vocab/flashcard/t/__OUT__/
 
 _ankiprep/report-kanji.html
 _ankiprep/report-vocab.html

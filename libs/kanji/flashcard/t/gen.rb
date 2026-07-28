@@ -1,5 +1,5 @@
 require 'FileUtils'
-require '../../../../libs/misc/template'
+require '../../../etc/template'
 
 
 FileUtils.mkdir_p "__OUT__/kanji/flashcard"
