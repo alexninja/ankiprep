@@ -19,7 +19,7 @@ module Kanji; module Wordlist
       end
     end
 
-    FileUtils.cp 'kanji/wordlist/wordlist.css', $OUTDIR+'/kanji/wordlist'
+    FileUtils.cp '../libs/kanji/wordlist/wordlist.css', $OUTDIR+'/kanji/wordlist'
   end
 
 
@@ -39,7 +39,7 @@ private
     end
 
     File.open(filename, 'w') do |f|
-      f.write $T['kanji/wordlist/page.html'].with(BODY: body)
+      f.write $T['../libs/kanji/wordlist/page.html'].with(BODY: body)
     end
   end
 
@@ -49,7 +49,7 @@ private
     return '' if wi_list.empty?
 
     word_trs = wi_list.map do |wi|
-      $T['kanji/wordlist/word-tr.html'].with(
+      $T['../libs/kanji/wordlist/word-tr.html'].with(
         COUNT: wi.n,
         EXPR: "<nobr>" + wi.expr.html_gray_if(wi.entries.all? {|e| !e.priority?}) + "</nobr>",
         DETAILS: wi.entries.map do |e|
@@ -61,7 +61,7 @@ private
                       alts_js = ',"' + e.alts[0].join(' ') + (e.alts[0].empty? || e.alts[1].empty? ? '' : ';') + e.alts[1].join(' ') + '"'
                       alts = '&nbsp;'*4 + e.alts.flatten.map { |a| (a[0]=='~' ? a[1..-1].gray : a) }.join(Utf8::Space)
                     end
-                    $T['kanji/wordlist/details.html'].with(
+                    $T['../libs/kanji/wordlist/details.html'].with(
                       YOMI_JS: Flashcard.bracket_yomi(yomi),
                       KANA_JS: kana_brk,
                       EXPR_JS: wi.expr,
@@ -84,7 +84,7 @@ private
       ' ' +
       ["Anki","Pomax","Monash","Edict"][src]
 
-    $T['kanji/wordlist/wordlist.html'].with(
+    $T['../libs/kanji/wordlist/wordlist.html'].with(
       ANCHOR: %w[ank pom mon edi][src] + '_' + Flashcard.bracket_yomi(yomi),
       TITLE: "#{title} (#{wi_list.size} words)",
       WORD_TRS: word_trs)

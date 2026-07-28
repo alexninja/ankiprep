@@ -91,7 +91,7 @@ module Kanji; module Flashcard
     data_json = data.to_json.trim_keys(data)
 
     File.open($OUTDIR+"/kanji/flashcard/k#{k.utf16_code}.html", 'w') do |f|
-      f.write $T['kanji/flashcard/flashcard.html'].apply_ifdef('REPORT').with(
+      f.write $T['../libs/kanji/flashcard/flashcard.html'].apply_ifdef('REPORT').with(
         UTF16: utf16,
         DATA: data_json,
         WORD_COUNTS: word_counts_brk.to_json,
@@ -103,11 +103,11 @@ module Kanji; module Flashcard
     end
 
     File.open($OUTDIR+"/kanji/flashcard/flashcard.js", 'w') do |f|
-      f.write $T['kanji/flashcard/flashcard.js'].apply_ifdef('REPORT')
+      f.write $T['../libs/kanji/flashcard/flashcard.js'].apply_ifdef('REPORT')
     end
 
     File.open($OUTDIR+"/kanji/flashcard/flashcard.css", 'w') do |f|
-      f.write $T['kanji/flashcard/flashcard.css'].apply_ifdef('REPORT')
+      f.write $T['../libs/kanji/flashcard/flashcard.css'].apply_ifdef('REPORT')
     end
 
     return data_json
@@ -128,17 +128,17 @@ module Kanji; module Flashcard
 
   def self.make_anki_snippets
     File.open($OUTDIR+'/kanji/anki/answer.html','w') do |f|
-      f.write $T['kanji/flashcard/anki-snippet.html'].with(
+      f.write $T['../libs/kanji/flashcard/anki-snippet.html'].with(
         JS_EXT_GARBLED: "<script src='answer.js'></script>".reverse
       ).check.gsub("\n",'').gsub('  ','')
     end
     File.open($OUTDIR+'/kanji/anki/recog.html','w') do |f|
-      f.write $T['kanji/flashcard/anki-snippet.html'].with(
+      f.write $T['../libs/kanji/flashcard/anki-snippet.html'].with(
         JS_EXT_GARBLED: "<script src='recog.js'></script>".reverse
       ).check.gsub("\n",'').gsub('  ','')
     end
     File.open($OUTDIR+'/kanji/anki/prod.html','w') do |f|
-      f.write $T['kanji/flashcard/anki-snippet.html'].with(
+      f.write $T['../libs/kanji/flashcard/anki-snippet.html'].with(
         JS_EXT_GARBLED: "<script src='prod.js'></script>".reverse
       ).check.gsub("\n",'').gsub('  ','')
     end
@@ -146,21 +146,21 @@ module Kanji; module Flashcard
 
   def self.make_anki_js
     File.open($OUTDIR+'/kanji/anki/answer.js','w') do |f|
-      f.write $T['kanji/flashcard/flashcard.js'].apply_ifdef('ANKI','ANSWER').with(
-        HTML: $T['kanji/flashcard/flashcard.html'].apply_ifdef('ANKI','ANSWER').check.gsub("\n",'').gsub('  ',''),
-        CSS: $T['kanji/flashcard/flashcard.css'].apply_ifdef('ANKI','ANSWER').check.gsub("\n",'').gsub('  ','').gsub(/\/\*.*?\*\//,'')
+      f.write $T['../libs/kanji/flashcard/flashcard.js'].apply_ifdef('ANKI','ANSWER').with(
+        HTML: $T['../libs/kanji/flashcard/flashcard.html'].apply_ifdef('ANKI','ANSWER').check.gsub("\n",'').gsub('  ',''),
+        CSS: $T['../libs/kanji/flashcard/flashcard.css'].apply_ifdef('ANKI','ANSWER').check.gsub("\n",'').gsub('  ','').gsub(/\/\*.*?\*\//,'')
       ).check
     end
     File.open($OUTDIR+'/kanji/anki/recog.js','w') do |f|
-      f.write $T['kanji/flashcard/flashcard.js'].apply_ifdef('ANKI','RECOG').with(
-        HTML: $T['kanji/flashcard/flashcard.html'].apply_ifdef('ANKI','RECOG').check.gsub("\n",'').gsub('  ',''),
-        CSS: $T['kanji/flashcard/flashcard.css'].apply_ifdef('ANKI','RECOG').check.gsub("\n",'').gsub('  ','').gsub(/\/\*.*?\*\//,'')
+      f.write $T['../libs/kanji/flashcard/flashcard.js'].apply_ifdef('ANKI','RECOG').with(
+        HTML: $T['../libs/kanji/flashcard/flashcard.html'].apply_ifdef('ANKI','RECOG').check.gsub("\n",'').gsub('  ',''),
+        CSS: $T['../libs/kanji/flashcard/flashcard.css'].apply_ifdef('ANKI','RECOG').check.gsub("\n",'').gsub('  ','').gsub(/\/\*.*?\*\//,'')
       ).check
     end
     File.open($OUTDIR+'/kanji/anki/prod.js','w') do |f|
-      f.write $T['kanji/flashcard/flashcard.js'].apply_ifdef('ANKI','PROD').with(
-        HTML: $T['kanji/flashcard/flashcard.html'].apply_ifdef('ANKI','PROD').check.gsub("\n",'').gsub('  ',''),
-        CSS: $T['kanji/flashcard/flashcard.css'].apply_ifdef('ANKI','PROD').check.gsub("\n",'').gsub('  ','').gsub(/\/\*.*?\*\//,'')
+      f.write $T['../libs/kanji/flashcard/flashcard.js'].apply_ifdef('ANKI','PROD').with(
+        HTML: $T['../libs/kanji/flashcard/flashcard.html'].apply_ifdef('ANKI','PROD').check.gsub("\n",'').gsub('  ',''),
+        CSS: $T['../libs/kanji/flashcard/flashcard.css'].apply_ifdef('ANKI','PROD').check.gsub("\n",'').gsub('  ','').gsub(/\/\*.*?\*\//,'')
       ).check
     end
   end

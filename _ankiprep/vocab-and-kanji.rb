@@ -11,8 +11,8 @@ $ANKIDIR = '/Japanese/_anki/_current'
 start = Time.now
 
 require 'misc/time'
-require_relative 'vocab/main'
-require_relative 'kanji/main'
+require 'vocab/main'
+require 'kanji/main'
 
 FileUtils.mkdir_p $OUTDIR
 

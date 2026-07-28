@@ -100,29 +100,29 @@
       groups.each_with_index do |gr,i|
         text = "#{gr[1]} (#{gr[2].size})"
         headers << if gr[2].empty?
-          $T['vocab/report/header-d.html'].with(
+          $T['../libs/vocab/report/header-d.html'].with(
             TEXT: text
           )
         else
-          $T['vocab/report/header.html'].with(
+          $T['../libs/vocab/report/header.html'].with(
             URL: 'report/' + gr[0],
             GROUPID: i,
             TEXT: text
           )
         end
       end
-      f.write $T['vocab/report/index.html'].with(
+      f.write $T['../libs/vocab/report/index.html'].with(
         HEADERS: headers.join("\n"),
         GROUPCOUNT: groups.size
       )
     end
     
     File.open($OUTDIR+'/vocab/report/report.css','w:UTF-8') do |f|
-      f.write $T['vocab/flashcard/flashcard.css'].apply_ifdef('REPORT')
+      f.write $T['../libs/vocab/flashcard/flashcard.css'].apply_ifdef('REPORT')
     end
 
     File.open('report-vocab.html','w') do |f|
-      f.write $T['vocab/report/report.html'].with(OUTDIR: $OUTDIR)
+      f.write $T['../libs/vocab/report/report.html'].with(OUTDIR: $OUTDIR)
     end
   end
 
@@ -161,19 +161,19 @@ private
               highlight(w.expr, a.gsub('~','')==w.expr) +
               Audio.html_marker(a.gsub('~',''), e.kana)
           end
-        $T['vocab/report/kanaeigo.html'].with(
+        $T['../libs/vocab/report/kanaeigo.html'].with(
           KANA: e.kana.gray_if(!e.priority?) + Audio.html_marker(expr, e.kana),
           ALTS: alts.join(Utf8::Space),
           EIGO: e.eigoc
         )
       end.join("\n")
-      $T['vocab/report/entry.html'].with(
+      $T['../libs/vocab/report/entry.html'].with(
         ANCHOR: w.lineno,
         LINE: "<b>#{w.lineno}.</b>&nbsp;" + w.line.highlight(w.expr),
         BGCOL: bgcol,
         EXPR: expr.highlight(w.expr, expr==w.expr),
         KANAEIGO: kanaeigo,
-        ERROR: error ? $T['vocab/report/error.html'].with(ERROR: error) : ''
+        ERROR: error ? $T['../libs/vocab/report/error.html'].with(ERROR: error) : ''
       )
     end.join("\n")
 
@@ -182,7 +182,7 @@ private
     heading = title.gsub('&nbsp;','').chars.to_a.select {|c| c.ascii_only?}.join + " (#{group.size})"
 
     File.open($OUTDIR+'/vocab/report/'+filename,'w:UTF-8') do |f|
-      f.write $T['vocab/report/group.html'].with(
+      f.write $T['../libs/vocab/report/group.html'].with(
         GROUPID: groupid,
         HEADING: heading,
         ENTRIES: entries

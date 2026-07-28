@@ -12,7 +12,7 @@ start = Time.now
 
 require 'fileutils'
 require 'misc/time'
-require_relative 'vocab/main'
+require 'vocab/main'
 
 FileUtils.mkdir_p $OUTDIR
 
