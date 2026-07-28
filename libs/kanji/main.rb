@@ -7,14 +7,14 @@ require 'dict/kanjidic'
 require 'dict/kana'
 require 'dict/yomi/parse'
 require 'dict/yomi/has_yomi'
+require 'kanji/wordlist/format'
+require 'kanji/flashcard/format'
+require 'kanji/report/report'
 require 'etc/utf8'
 require 'etc/utf16'
 require 'etc/progress'
 require 'etc/template'
 require 'etc/urlify'
-require_relative 'wordlist/format'
-require_relative 'flashcard/format'
-require_relative 'report/report'
 
 
 module Kanji

@@ -6,10 +6,9 @@ require 'etc/utf8'
 require 'etc/gray'
 require 'etc/template'
 require 'etc/progress'
-require_relative 'word'
-require_relative 'audio'
-require_relative 'report/report'
-
+require 'vocab/word'
+require 'vocab/audio'
+require 'vocab/report/report'
 
 
 module Vocab
