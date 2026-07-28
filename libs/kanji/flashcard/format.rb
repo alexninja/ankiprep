@@ -13,27 +13,7 @@ module Kanji; module Flashcard
     FileUtils.mkdir_p $OUTDIR+'/kanji/anki/templates'
     FileUtils.mkdir_p $OUTDIR+'/kanji/anki/media'
 
-    File.open('D:/kanji.[IMPORT].txt','w') do |ankiimp|
-      Progress.new(Kanji::Stats.new_kanji.size) do |pr|
-        Kanji::Stats.new_kanji.each do |k|
-          # create the html flashcard...
-          data_json = make_card(k)
-          # ... and create a line for importing to kanji.anki (unless it's already there)
-          unless Kanji::Stats.known_kanji.has_key? k
-            if Kanji::Stats.prepop_kanji.has_key?(k)
-              # reuse json previously populated with example words
-              data_json_escaped = Kanji::Stats.prepop_kanji[k]
-            else
-              # create bare json
-              data_json_escaped = data_json.split('\"').join('\\\\\"').split("'").join("\\'")
-            end
-            ankiimp.puts "#{data_json_escaped}\t#{k}"
-          end
-          pr.tick
-        end
-      end
-    end
-
+    make_anki_import_txt
     make_anki_snippets
     make_anki_js
 
@@ -122,6 +102,33 @@ module Kanji; module Flashcard
       yhead, ytail = y.split('.')
       ytail ||= ''
       '(' + yhead + ')' + ytail
+    end
+  end
+
+
+  def self.make_anki_import_txt
+    FileUtils.rm 'D:/kanji.[IMPORT].txt'
+    return if Kanji::Stats.new_kanji.empty?
+
+    File.open('D:/kanji.[IMPORT].txt','w') do |ankiimp|
+      Progress.new(Kanji::Stats.new_kanji.size) do |pr|
+        Kanji::Stats.new_kanji.each do |k|
+          # create the html flashcard...
+          data_json = make_card(k)
+          # ... and create a line for importing to kanji.anki (unless it's already there)
+          unless Kanji::Stats.known_kanji.has_key? k
+            if Kanji::Stats.prepop_kanji.has_key?(k)
+              # reuse json previously populated with example words
+              data_json_escaped = Kanji::Stats.prepop_kanji[k]
+            else
+              # create bare json
+              data_json_escaped = data_json.split('\"').join('\\\\\"').split("'").join("\\'")
+            end
+            ankiimp.puts "#{data_json_escaped}\t#{k}"
+          end
+          pr.tick
+        end
+      end
     end
   end
 
