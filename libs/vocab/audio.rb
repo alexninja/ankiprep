@@ -4,21 +4,10 @@ module Vocab; module Audio
 
   print "[Vocab::Audio] loading mp3 list... "
   Progress.new do |pr|
-    if File.exist? "#{$RES_DIR}/.marshal/audio.marshal"
-        print "unmarshaling... "
-        @mp3list = File.open("#{$RES_DIR}/.marshal/audio.marshal", 'rb') {|f| Marshal.load(f)}
-    else
-      win_path = "#{$RES_DIR}/audio".gsub('/','\\')
-      tempfile = "~mp3list.tmp"
-      `cmd /u /c dir /b #{win_path} > #{tempfile}`
-      @mp3list = File.read(tempfile, mode:'r:UTF-16LE:UTF-8').split("\n").to_set
-      FileUtils.rm tempfile
-      unless @mp3list.empty?
-        print "marshaling... "
-        FileUtils.mkdir_p "#{$RES_DIR}/.marshal"
-        File.open("#{$RES_DIR}/.marshal/audio.marshal", 'wb') {|f| Marshal.dump(@mp3list, f)}
-      end
-    end
+    win_path = "#{$RES_DIR}/audio".gsub('/','\\')
+    @mp3list = `cmd /u /c dir /b #{win_path}`
+      .force_encoding('utf-16le').encode("utf-8")
+      .split("\n").reject(&:empty?).to_set
   end
   puts "#{@mp3list.size} files"
 
