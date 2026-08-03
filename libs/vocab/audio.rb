@@ -6,11 +6,12 @@ module Vocab; module Audio
     @mp3list = File.open("#{$RES_DIR}/.marshal/audio.marshal", 'rb') {|f| Marshal.load(f)}
   else
     win_path = "#{$RES_DIR}/audio".gsub('/','\\')
-    `cmd /u /c dir /b #{win_path} > vocab\\mp3list.tmp`
-    @mp3list = File.read('vocab/mp3list.tmp', mode:'r:UTF-16LE:UTF-8').split("\n").to_set
-    FileUtils.rm 'vocab/mp3list.tmp'
+    `cmd /u /c dir /b #{win_path} > mp3list.tmp`
+    @mp3list = File.read('mp3list.tmp', mode:'r:UTF-16LE:UTF-8').split("\n").to_set
+    FileUtils.rm 'mp3list.tmp'
     unless @mp3list.empty?
       print "marshaling... "
+      FileUtils.mkdir_p "#{$RES_DIR}/.marshal"
       File.open("#{$RES_DIR}/.marshal/audio.marshal", 'wb') {|f| Marshal.dump(@mp3list, f)}
     end
   end

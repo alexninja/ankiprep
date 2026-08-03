@@ -44,7 +44,7 @@ private
 
   def Edict.load_marshaled
     if File.exist?($RES_DIR+"/.marshal/edict.marshal") &&
-        File.stat($RES_DIR+"/.marshal/edict.marshal").mtime > File.stat($RES_DIR+'/edict/edict').mtime
+        File.stat($RES_DIR+"/.marshal/edict.marshal").mtime > File.stat($RES_DIR+'/dict/edict').mtime
       print "  unmarshaling... "
       Progress.new do |pr|
         @@expr, @@kana = File.open($RES_DIR+"/.marshal/edict.marshal", "rb") {|f| Marshal.load(f)}
@@ -57,6 +57,7 @@ private
     Progress.new do |pr|
       @@expr.default = nil
       @@kana.default = nil
+      FileUtils.mkdir_p "#{$RES_DIR}/.marshal"
       File.open($RES_DIR+"/.marshal/edict.marshal", "wb") {|f| Marshal.dump([@@expr,@@kana], f)}
     end
   end
@@ -65,10 +66,10 @@ private
     print "  reading file... "
     lines = nil
     Progress.new do |pr|
-      lines = Utf8.readlines($RES_DIR+'/edict/edict','euc-jp')
+      lines = Utf8.readlines($RES_DIR+'/dict/edict','euc-jp')
     end
 
-    File.open($RES_DIR+'/edict/edict.utf8','w') {|f| lines.each {|line| f.puts line}}
+    File.open($RES_DIR+'/dict/edict.utf8','w') {|f| lines.each {|line| f.puts line}}
 
     print "  parsing #{lines.size-1} lines... "
     entries = []
