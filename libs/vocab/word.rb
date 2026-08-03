@@ -166,14 +166,14 @@ module Vocab
 
       else
         # Edict lookup, see input.png
-        ent1, ent2 = Edict.lookup_expr(expr).partition {|e| e.kana == kana}
-        entries = ent1 + ent2.partition {|e| e.priority?}.flatten
-
-        if entries.empty?
+        if !Edict.contains?(expr)
           w.error = "Not found in Edict: #{expr}"
           w.flags << :not_in_edict
           return w
         end
+
+        ent1, ent2 = Edict.lookup_expr(expr).partition {|e| e.kana == kana}
+        entries = ent1 + ent2.partition {|e| e.priority?}.flatten
 
         process_expr = true
 

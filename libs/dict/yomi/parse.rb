@@ -1,3 +1,4 @@
+require 'etc/utf8'
 require_relative 'recparse'
 
 
