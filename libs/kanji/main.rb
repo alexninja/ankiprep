@@ -1,6 +1,6 @@
 # encoding: UTF-8
 require 'set'
-require 'FileUtils'
+require 'fileutils'
 require 'json' # gem
 require 'dict/edict'
 require 'dict/kana'

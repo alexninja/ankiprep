@@ -1,4 +1,4 @@
-require 'FileUtils'
+require 'fileutils'
 require '../../../../libs/misc/template'
 
 FileUtils.mkdir_p "__OUT__"
