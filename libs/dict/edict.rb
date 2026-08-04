@@ -1,3 +1,4 @@
+require 'fileutils'
 require 'dict/kanjidic'
 require 'dict/yomi/parse'
 require 'etc/progress'
