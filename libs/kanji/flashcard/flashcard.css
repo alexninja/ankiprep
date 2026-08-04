@@ -36,7 +36,7 @@
   /**********************************************************/
 
   table.kakijun {
-    width: 190px;
+    width: 250px;
     border-collapse: collapse;
   }
 
@@ -63,10 +63,12 @@
   }
 
   table.kakijun td.yomieigo {
+    width: 250px;
     height: 202px;
   }
 
   table.kakijun td.yomieigo-visible {
+    width: 250px;
     height: 202px;
   }
 
