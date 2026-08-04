@@ -11,7 +11,7 @@
 
 #ifdef ANKI
   body {
-    zoom: 150%;
+    zoom: 100%;
   }
 #endif
 
@@ -41,9 +41,6 @@
   }
 
   table.kakijun td.kanjipic {
-#ifdef ANKI
-    zoom: 66.7%;
-#endif
     height: 250px;
     width: 188px;
     font-family: "EPSON 教科書体Ｍ", "MS PGothic";
@@ -56,9 +53,6 @@
   }
 
   table.kakijun td.kanjipic-hover {
-#ifdef ANKI
-    zoom: 66.7%;
-#endif
     height: 250px;
     width: 188px;
     font-family: "MS PMincho";
