@@ -17,7 +17,6 @@ class Word
     end
   end
 
-  # thanks for the mindfuck, "matz"
   def hash
     [expr, kana, priority?].hash
   end
