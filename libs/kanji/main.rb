@@ -127,8 +127,8 @@ private
     validate_anki_json(@known_kanji)
     puts "#{@known_kanji.size} known kanji"
 
-    print "[Kanji::Stats] reading #{$ANKIDIR}/_bak/kanji.anki... "
-    @prepop_kanji = Anki.read("#{$ANKIDIR}/_bak/kanji.anki")
+    print "[Kanji::Stats] reading #{$RES_DIR}/kanji.anki.prepop... "
+    @prepop_kanji = Anki.read("#{$RES_DIR}/kanji.anki.prepop")
     validate_anki_json(@prepop_kanji)
     puts "#{@prepop_kanji.size} prepopulated kanji"
 
