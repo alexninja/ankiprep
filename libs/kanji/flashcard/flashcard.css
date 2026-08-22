@@ -339,25 +339,19 @@
     -webkit-box-shadow:inset 0px 0px 0px 1px #999999;
   }
   table.wordlist td.expr-smaller span.hide-on {
-    font-size: 21pt;
+    font-size: 22pt;
     color: white;
-    border: 1px dotted #3366FF;
-    margin-left: 1px;
-    margin-right: 1px;
+    -webkit-box-shadow:inset 0px 0px 0px 1px #3366FF;
   }
   table.wordlist td.expr-smaller span.hide-kun {
-    font-size: 21pt;
+    font-size: 22pt;
     color: white;
-    border: 1px dotted #BB0000;
-    margin-left: 1px;
-    margin-right: 1px;
+    -webkit-box-shadow:inset 0px 0px 0px 1px #BB0000;
   }
   table.wordlist td.expr-smaller span.hide-gray {
-    font-size: 21pt;
+    font-size: 22pt;
     color: white;
-    border: 1px dotted #999999;
-    margin-left: 1px;
-    margin-right: 1px;
+    -webkit-box-shadow:inset 0px 0px 0px 1px #999999;
   }
 #endif
 
