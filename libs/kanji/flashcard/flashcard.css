@@ -324,11 +324,19 @@
 
 #ifdef PROD
   table.wordlist td.expr span.hide-on {
-    font-size: 28pt;
+    font-size: 30pt;
     color: white;
-    border: 1px dotted #3366FF;
-    margin-left: 1px;
-    margin-right: 1px;
+    -webkit-box-shadow:inset 0px 0px 0px 1px #3366FF;
+  }
+  table.wordlist td.expr span.hide-kun {
+    font-size: 30pt;
+    color: white;
+    -webkit-box-shadow:inset 0px 0px 0px 1px #BB0000;
+  }
+  table.wordlist td.expr span.hide-gray {
+    font-size: 30pt;
+    color: white;
+    -webkit-box-shadow:inset 0px 0px 0px 1px #999999;
   }
   table.wordlist td.expr-smaller span.hide-on {
     font-size: 21pt;
@@ -337,24 +345,10 @@
     margin-left: 1px;
     margin-right: 1px;
   }
-  table.wordlist td.expr span.hide-kun {
-    font-size: 28pt;
-    color: white;
-    border: 1px dotted #BB0000;
-    margin-left: 1px;
-    margin-right: 1px;
-  }
   table.wordlist td.expr-smaller span.hide-kun {
     font-size: 21pt;
     color: white;
     border: 1px dotted #BB0000;
-    margin-left: 1px;
-    margin-right: 1px;
-  }
-  table.wordlist td.expr span.hide-gray {
-    font-size: 28pt;
-    color: white;
-    border: 1px dotted #999999;
     margin-left: 1px;
     margin-right: 1px;
   }
