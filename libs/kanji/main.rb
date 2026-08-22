@@ -1,17 +1,13 @@
 # encoding: UTF-8
 require 'set'
-require 'FileUtils'
+require 'fileutils'
 require 'json' # gem
 require 'dict/edict'
-require 'dict/kanjidic'
 require 'dict/kana'
-require 'dict/yomi/parse'
 require 'dict/yomi/has_yomi'
 require 'kanji/wordlist/format'
 require 'kanji/flashcard/format'
 require 'kanji/report/report'
-require 'etc/utf8'
-require 'etc/utf16'
 require 'etc/progress'
 require 'etc/template'
 require 'etc/urlify'
@@ -131,12 +127,11 @@ private
     validate_anki_json(@known_kanji)
     puts "#{@known_kanji.size} known kanji"
 
-    print "[Kanji::Stats] reading #{$ANKIDIR}/bak/kanji.anki... "
-    @prepop_kanji = Anki.read("#{$ANKIDIR}/bak/kanji.anki")
+    print "[Kanji::Stats] reading #{$RES_DIR}/kanji.anki.prepop... "
+    @prepop_kanji = Anki.read("#{$RES_DIR}/kanji.anki.prepop")
     validate_anki_json(@prepop_kanji)
     puts "#{@prepop_kanji.size} prepopulated kanji"
 
-    puts "[Kanji::Stats] parsing vocab..."
     kw = Hash.new {|h,k| h[k] = Set.new}
     @vocab_kanji = Set.new
     @relevant_kanji = Set.new

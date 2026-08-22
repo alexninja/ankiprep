@@ -80,11 +80,8 @@ private
     print "Loading Kanjidic... "
 
     Progress.new do |pr|
-
-      lines = Utf8.readlines($RES_DIR+"/edict/kanjidic",'euc-jp')
-
-      # save a utf-8 copy for convenience
-      File.open($RES_DIR+'/edict/kanjidic.utf8','w') {|f| lines.each {|line| f.puts line}}
+      lines = Utf8.readlines($RES_DIR+"/dict/kanjidic",'euc-jp')
+      File.open($RES_DIR+'/dict/kanjidic.utf8','w') {|f| lines.each {|line| f.puts line}}
 
       @k = Hash.new()
       lines[1..-1].each do |line|
@@ -92,7 +89,6 @@ private
         raise "duplicate kanji in kanjidic" if @k.has_key?(kanji)
         @k[kanji] = line
       end
-
     end
 
     @k.freeze

@@ -1,9 +1,10 @@
 _res/.marshal/
 
-_res/edict/edict.utf8
-_res/edict/kanjidic.utf8
+_res/dict/edict.utf8
+_res/dict/kanjidic.utf8
 
 _ankiprep/__OUT__/
+_ankiprep/scratch*.rb
 
 libs/kanji/flashcard/t/__OUT__/
 libs/vocab/flashcard/t/__OUT__/

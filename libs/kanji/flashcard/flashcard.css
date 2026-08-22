@@ -11,7 +11,7 @@
 
 #ifdef ANKI
   body {
-    zoom: 150%;
+    zoom: 100%;
   }
 #endif
 
@@ -36,14 +36,11 @@
   /**********************************************************/
 
   table.kakijun {
-    width: 190px;
+    width: 250px;
     border-collapse: collapse;
   }
 
   table.kakijun td.kanjipic {
-#ifdef ANKI
-    zoom: 66.7%;
-#endif
     height: 250px;
     width: 188px;
     font-family: "EPSON 教科書体Ｍ", "MS PGothic";
@@ -56,9 +53,6 @@
   }
 
   table.kakijun td.kanjipic-hover {
-#ifdef ANKI
-    zoom: 66.7%;
-#endif
     height: 250px;
     width: 188px;
     font-family: "MS PMincho";
@@ -69,10 +63,12 @@
   }
 
   table.kakijun td.yomieigo {
+    width: 250px;
     height: 202px;
   }
 
   table.kakijun td.yomieigo-visible {
+    width: 250px;
     height: 202px;
   }
 
