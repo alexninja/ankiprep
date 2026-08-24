@@ -14,6 +14,7 @@
   catch(e) {
     alert('kanji data eval exception: name = [' + e.name  + ']; message = [' + e.message + ']');
   }
+  // TODO what is this?
   function clean_garbage(str) {
     return str.replace(/&quot;/g,'"').replace(/<span class=".+">/,"").replace('</span>',"");
   }
@@ -165,6 +166,7 @@
       html += "<div><span style='color:" + format_onyomibig_color(_data[y].freq, on_max_freq) + "'>" + ycln + "</span></div>";
     }
 #ifdef KUNYOMI_BIG
+// TODO remove
     if (onarr.length > 0) {
       html += "<div class='on-separator'></div>";
     }
@@ -191,10 +193,7 @@
 
 #ifdef REPORT || ANSWER || PROD
   function populate_yomieigo() {
-    var html = format_kana(_data.yomi.map( function(y) {return "<nobr>"+y+"</nobr>";} ).join('、<wbr>')) + "<p/>";
-    if (_data.nanori.length > 0) {
-      html += "<span class='nanori-heading'>名乗り</span>" + _data.nanori.map( function(y) {return "<nobr>"+y+"</nobr>";} ).join('、<wbr>');
-    }
+    var html = _data.yomi.map( function(y) {return "<nobr>"+format_kana(y)+"</nobr>";} ).join('、<wbr>');
     document.getElementById("yomi").innerHTML = html;
     document.getElementById("eigo").innerHTML = _data.eigo;
   }
@@ -326,6 +325,7 @@
       }
     }
 #ifdef REPORT
+// TODO remove
     else {
       /* on the same domain, can afford to see results */
       http.onreadystatechange = function() {
@@ -347,11 +347,11 @@
 
 #ifdef REPORT
   function sum_word_counts(yomi) {
-    var sum = 0;
-    for (var i in _word_counts[yomi]) {
-      sum += _word_counts[yomi][i];
-    }
-    return sum;
+  var sum = 0;
+  for (var i in _word_counts[yomi]) {
+    sum += _word_counts[yomi][i];
+  }
+  return sum;
   }
 #endif
 
@@ -395,7 +395,7 @@
       }
 #endif
 #ifdef PROD
-      var brlist = kana.split("").filter( function(c) { return c == '[' || c == '('; } );
+      var brlist = kana.split("").filter( function(c) { return c == '[' || c == '(' || c == '{'; } );
       var kn = expr.split("").filter( function(c) { return c == _data.kanji } ).length;
       for (var j = 0; j < kn; j++) {
         if (j < brlist.length) {
@@ -404,6 +404,9 @@
           }
           else if (brlist[j] == '(') {
             expr = expr.replace(_data.kanji, "<span class='hide-kun'>*PLACEHOLDER*</span>");
+          }
+          else if (brlist[j] == '{') {
+            expr = expr.replace(_data.kanji, "<span class='hide-nanori'>*PLACEHOLDER*</span>");
           }
         }
         else {
@@ -458,7 +461,14 @@
 #endif
 
   function format_kana(kana) {
-    return kana.replace(/\[/g, "<span class='on'>").replace(/\(/g, "<span class='kun'>").replace(/\]/g, "</span>").replace(/\)/g, "</span>");
+    return kana
+      .replace(/\[/g, "<span class='on'>")
+      .replace(/\]/g, "</span>")
+      .replace(/\(/g, "<span class='kun'>")
+      .replace(/\)/g, "</span>")
+      .replace(/\{/g, "<span class='nanori'>")
+      .replace(/\}/g, "</span>")
+      ;
   }
 
   function format_onyomibig_color(freq, on_max_freq) {
