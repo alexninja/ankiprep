@@ -406,7 +406,7 @@
             expr = expr.replace(_data.kanji, "<span class='hide-kun'>*PLACEHOLDER*</span>");
           }
           else if (brlist[j] == '{') {
-            expr = expr.replace(_data.kanji, "<span class='hide-nanori'>*PLACEHOLDER*</span>");
+            expr = expr.replace(_data.kanji, "<span class='hide-na'>*PLACEHOLDER*</span>");
           }
         }
         else {
@@ -466,7 +466,7 @@
       .replace(/\]/g, "</span>")
       .replace(/\(/g, "<span class='kun'>")
       .replace(/\)/g, "</span>")
-      .replace(/\{/g, "<span class='nanori'>")
+      .replace(/\{/g, "<span class='na'>")
       .replace(/\}/g, "</span>")
       ;
   }
