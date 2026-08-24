@@ -3,6 +3,9 @@ require 'dict/kanjidic'
 require 'dict/yomi/parse'
 require 'etc/progress'
 
+require 'sqlite3'
+
+
 module Edict
 
   @@expr = Hash.new {|hh,kk| hh[kk] = []}
@@ -64,6 +67,11 @@ private
   end
 
   def Edict.load_from_file
+
+    FileUtils.rm_f 'edict.sqlite'
+    db = SQLite3::Database.new('edict.sqlite')
+    db.execute "CREATE TABLE edict (expr TEXT, kana TEXT, eigo TEXT, eigoc TEXT, alts TEXT)"
+
     print "  reading file... "
     lines = nil
     Progress.new do |pr|
@@ -100,15 +108,32 @@ private
       end
     end
 
+    print "  writing edict.sqlite... "
+    db.execute "BEGIN"
+    Progress.new(entries.size) do |pr|
+      entries.each do |entry|
+        expr, kana, eigo, eigoc, alts =
+          entry.expr,
+          entry.kana,
+          entry.eigo.gsub("'","''"),
+          entry.eigoc.gsub("'","''"),
+          alts.inspect
+        cmd = "INSERT INTO edict VALUES ('#{expr}', '#{kana}', '#{eigo}', '#{eigoc}, '#{alts}')"
+        db.execute cmd
+        pr.tick
+      end
+    end
+    db.execute "END"
+  
   end
 
   def Edict.load!
     puts "Loading Edict... "
-    load_marshaled
-    if @@expr.empty? && @@kana.empty?
+    # load_marshaled
+    # if @@expr.empty? && @@kana.empty?
       load_from_file
-      save_marshaled
-    end
+    #   save_marshaled
+    # end
   end
 
 
