@@ -270,7 +270,7 @@
     if (str.length % _chunk_size > 0) {
       tot++;
     }
-    server_send_chunked(url, str, 1, tot, null);
+    server_send_chunked(url, str, 1, tot);
   }
 #endif
 
@@ -301,46 +301,21 @@
     if (str.length % _chunk_size > 0) {
       tot++;
     }
-    server_send_chunked(url, str, 1, tot,
-      function(resp) {
-        populate_copybtn(resp, resp == "COPIED" ? 1 : -1);
-        setTimeout( "populate_copybtn();", 1500 );
-      }
-    );
+    server_send_chunked(url, str, 1, tot);
   }
 #endif
 
-  function server_send_chunked(url, str, cur, tot, callback) {
+  function server_send_chunked(url, str, cur, tot) {
     var chunk = str.substr(0, _chunk_size);
     var http = new XMLHttpRequest();
     http.open("GET", url + "/" + cur + "/" + tot + "/" + encodeURIComponent(chunk), true);
 
-    if (callback == null) {
-      /* we're cross-domain so send chunks blind, with a timeout in between */
-      if (cur < tot) {
-        setTimeout( function() {
-            var remainder = str.substr(_chunk_size);
-            server_send_chunked(url, remainder, cur+1, tot, null);
-        }, 5);
-      }
+    if (cur < tot) {
+      setTimeout( function() {
+          var remainder = str.substr(_chunk_size);
+          server_send_chunked(url, remainder, cur+1, tot);
+      }, 5);
     }
-#ifdef REPORT
-// TODO remove
-    else {
-      /* on the same domain, can afford to see results */
-      http.onreadystatechange = function() {
-        if (http.readyState == 4 && http.status == 200) {
-          if (cur < tot) {
-            var remainder = str.substr(_chunk_size);
-            server_send_chunked(url, remainder, cur+1, tot, callback);
-          }
-          else {
-            callback(http.responseText);
-          }
-        }
-      }    
-    }
-#endif
 
     http.send(null);
   }
@@ -567,11 +542,12 @@
     document.getElementById("eigo_" + word_id).innerHTML = html;
 #ifdef REPORT || ANSWER
     if (eigo.length > 0) {
+      // TODO needed?
       document.body.onkeyup = function(e) {
         if (e.keyCode == 115 /*s*/ || e.keyCode == 83 /*S*/) {
           var url = "http://127.0.0.1/kanji/vocabsave";
           var str = unescape(expr) + "\t" + unescape(kana).replace(/[\[\]\(\)]/g,'') + "\t" + eigo;
-          server_send_chunked(url, str, 1, 1, null); //assuming 1 chunk is enough, until I switch to POST
+          server_send_chunked(url, str, 1, 1); //assuming 1 chunk is enough, until I switch to POST
         }
       };
     }
