@@ -145,37 +145,6 @@
     height: 57px;
   }
 
-#ifdef KUNYOMI_BIG
-  table.yomibig td.yomibig-td div.on-separator {
-    padding-bottom: 30px;
-    height: 0;
-  }
-
-  table.yomibig td.yomibig-td span.kun-stem {
-    font-size: 22pt;
-    font-weight: bold;
-    color: #9E7E7E;
-  }
-
-  table.yomibig td.yomibig-td span.kun-gobi-unique {
-    font-size: 20pt;
-    font-weight: normal;
-    color: #DDDDDD;
-  }
-
-  table.yomibig td.yomibig-td span.kun-gobi-multiple {
-    font-size: 20pt;
-    font-weight: normal;
-    color: #DDDDDD;
-  }
-
-  table.yomibig td.yomibig-td span.kun-gobi-ellipsis {
-    font-size: 12pt;
-    font-weight: normal;
-    color: #DDDDDD;
-  }
-#endif
-
   /**********************************************************/
 
   table.wordlist {

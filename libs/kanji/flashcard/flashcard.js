@@ -130,10 +130,6 @@
   function populate_yomibig() {
     var on_max_freq = 0;
     var onarr = [];
-#ifdef KUNYOMI_BIG
-    var kunarr = [];
-    var kuncount = {};
-#endif
     for (var i in _yarr) {
       var y = _yarr[i];
       if (!_data[y].use || y == "other") {
@@ -145,18 +141,6 @@
           on_max_freq = _data[y].freq;
         }
       }
-#ifdef KUNYOMI_BIG
-      else {
-        var stem = y.replace("(","").split(")")[0]
-        if (stem in kuncount) {
-          kuncount[stem]++;
-        }
-        else {
-          kuncount[stem] = 1;
-          kunarr.push(y);
-        }
-      }
-#endif
     }
     var html = "";
     for (var i in onarr) {
@@ -164,28 +148,6 @@
       var ycln = y.replace("[","").replace("]","");
       html += "<div><span style='color:" + format_onyomibig_color(_data[y].freq, on_max_freq) + "'>" + ycln + "</span></div>";
     }
-#ifdef KUNYOMI_BIG
-// TODO remove
-    if (onarr.length > 0) {
-      html += "<div class='on-separator'></div>";
-    }
-    for (var i in kunarr) {
-      var y = kunarr[i];
-      var stem_gobi = y.replace("(","").split(")")
-      var stem = stem_gobi[0];
-      var gobi = stem_gobi[1];
-      html += "<div><span class='kun-stem'>" + stem + "</span>";
-      if (gobi) {
-        if (kuncount[stem] == 1) {
-          html += "<span class='kun-gobi-unique'>" + gobi + "</span>";
-        }
-        else {
-          html += "<span class='kun-gobi-multiple'>" + gobi + "</span><span class='kun-gobi-ellipsis'>…</span>";
-        }
-      }
-      html += "</div>";
-    }
-#endif
     document.getElementById("yomibig-td").innerHTML = html;
   }
 #endif
