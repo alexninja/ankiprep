@@ -540,21 +540,6 @@
     html = html.replace(new RegExp(_data.kanji,'g'), '◇');
 #endif
     document.getElementById("eigo_" + word_id).innerHTML = html;
-#ifdef REPORT || ANSWER
-    if (eigo.length > 0) {
-      // TODO needed?
-      document.body.onkeyup = function(e) {
-        if (e.keyCode == 115 /*s*/ || e.keyCode == 83 /*S*/) {
-          var url = "http://127.0.0.1/kanji/vocabsave";
-          var str = unescape(expr) + "\t" + unescape(kana).replace(/[\[\]\(\)]/g,'') + "\t" + eigo;
-          server_send_chunked(url, str, 1, 1); //assuming 1 chunk is enough, until I switch to POST
-        }
-      };
-    }
-    else {
-      document.body.onkeyup = null;
-    }
-#endif
   }
 #endif
 
