@@ -10,7 +10,7 @@ module Anki
     entries = Hash.new {|h,k| h[k] = Entry.new(nil, nil)}
     db = SQLite3::Database.new(filename)
 
-    db.execute('select factId, value from fields') do |row|
+    db.execute('SELECT factId, value FROM fields') do |row|
       factId, value = row[0], row[1].chomp
       if value.include? '{'
         json = value.gsub('&quot;','"')
