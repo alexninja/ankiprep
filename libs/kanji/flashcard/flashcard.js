@@ -14,7 +14,6 @@
   catch(e) {
     alert('kanji data eval exception: name = [' + e.name  + ']; message = [' + e.message + ']');
   }
-  // TODO what is this?
   function clean_garbage(str) {
     return str.replace(/&quot;/g,'"').replace(/<span class=".+">/,"").replace('</span>',"");
   }
