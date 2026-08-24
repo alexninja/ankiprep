@@ -82,12 +82,6 @@
     color: white;
   }
 
-  table.kakijun td.yomieigo span.nanori-heading {
-    font-size: 8pt;
-    padding-right: 8px;
-    color: white;
-  }
-
   table.kakijun td.yomieigo div.eigo {
     font-family: "Georgia";
     font-size: 10pt;
@@ -105,6 +99,10 @@
     color: white;
   }
 
+  table.kakijun td.yomieigo span.na {
+    color: white;
+  }
+
   table.kakijun td.yomieigo-visible div.yomi {
     font-family: "MS PMincho";
     font-size: 9pt;
@@ -112,12 +110,6 @@
     padding-left: 25px;
     padding-right: 25px;
     padding-top: 25px;
-  }
-
-  table.kakijun td.yomieigo-visible span.nanori-heading {
-    font-size: 8pt;
-    padding-right: 8px;
-    color: #990000;
   }
 
   table.kakijun td.yomieigo-visible div.eigo {
@@ -333,6 +325,11 @@
     color: white;
     -webkit-box-shadow:inset 0px 0px 0px 1px #BB0000;
   }
+  table.wordlist td.expr span.hide-na {
+    font-size: 30pt;
+    color: white;
+    -webkit-box-shadow:inset 0px 0px 0px 1px green;
+  }
   table.wordlist td.expr span.hide-gray {
     font-size: 30pt;
     color: white;
@@ -347,6 +344,11 @@
     font-size: 22pt;
     color: white;
     -webkit-box-shadow:inset 0px 0px 0px 1px #BB0000;
+  }
+  table.wordlist td.expr-smaller span.hide-na {
+    font-size: 22pt;
+    color: white;
+    -webkit-box-shadow:inset 0px 0px 0px 1px green;
   }
   table.wordlist td.expr-smaller span.hide-gray {
     font-size: 22pt;
@@ -488,6 +490,11 @@
     color: #BB0000;
     font-weight: bold;
   }
+
+  span.na {
+    color: green;
+    font-weight: bold;
+  }
 #endif
 
 #ifdef RECOG
@@ -497,6 +504,11 @@
   }
 
   span.kun {
+    color: white;
+    font-weight: bold;
+  }
+
+  span.na {
     color: white;
     font-weight: bold;
   }
