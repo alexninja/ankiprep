@@ -14,7 +14,7 @@ module Kanjidic
     @k[k].scan(/\{.*?\}/).map {|x| x[1..-2]}
   end
 
-  def Kanjidic.yomi(k, which = :all)
+  def Kanjidic.yomi(k)
     return [] unless kanji?(k)
     yarr = @yomi_cache[k] || []
     if yarr.empty?
@@ -24,12 +24,7 @@ module Kanjidic
       end
       @yomi_cache[k] = yarr
     end
-    case which
-      when :all then yarr
-      when :on then yarr.select {|x| x.kat?}
-      when :kun then yarr.delete_if {|x| x.kat?}
-      else raise 'bad argument'
-    end
+    yarr
   end
 
   def Kanjidic.nanori(k)
