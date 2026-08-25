@@ -159,7 +159,9 @@ private
 
 #-----
 
-public class Entry
+public
+
+  class Entry
 
     attr_reader :expr, :kana, :eigo
     attr_writer :priority, :fake
@@ -175,31 +177,12 @@ public class Entry
       @seki = nil
     end
 
-    # TODO check if these are needed
-    def ==(other)
-      @expr == other.expr and @kana == other.kana and @eigoc == other.eigoc
-    end
-
     def priority?
       @priority
     end
 
     def fake?
       @fake
-    end
-
-    def priority=(forcepr)
-      @priority = forcepr
-    end
-
-    # for use as a Hash key
-
-    def hash
-      [expr, kana].hash
-    end
-
-    def eql? other
-      [expr, kana] == [other.expr, other.kana]
     end
 
   end # class Entry
