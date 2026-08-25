@@ -4,12 +4,10 @@ require 'dict/yomi/parse'
 require 'etc/progress'
 
 require 'sqlite3'
+require 'json'
 
 
 module Edict
-
-  @@expr = Hash.new {|hh,kk| hh[kk] = []}
-  @@kana = Hash.new {|hh,kk| hh[kk] = []}
 
   @@markers = File.readlines(File.dirname(__FILE__)+'/edict_markers.txt').map {|line| line.split[0]}
   (1..100).to_a.each {|x| @@markers << x.to_s}
@@ -70,16 +68,20 @@ private
 
     FileUtils.rm_f 'edict.sqlite'
     db = SQLite3::Database.new('edict.sqlite')
-    db.execute "CREATE TABLE edict (expr TEXT, kana TEXT, eigo TEXT, eigoc TEXT, alts TEXT)"
+    db.execute "CREATE TABLE edict (expr TEXT, kana TEXT, eigo TEXT, eigoc TEXT, alts TEXT, seki TEXT)"
 
     print "  reading file... "
     lines = nil
     Progress.new do |pr|
-      lines = Utf8.readlines($RES_DIR+'/dict/edict','euc-jp')
+      #lines = Utf8.readlines($RES_DIR+'/dict/edict','euc-jp')
+      lines = Utf8.readlines($RES_DIR+'/dict/edict.utf8')
     end
 
-    File.open($RES_DIR+'/dict/edict.utf8','w') {|f| lines.each {|line| f.puts line}}
+    #File.open($RES_DIR+'/dict/edict.utf8','w') {|f| lines.each {|line| f.puts line}}
 
+    @@expr = Hash.new {|hh,kk| hh[kk] = []}
+    @@kana = Hash.new {|hh,kk| hh[kk] = []}
+  
     print "  parsing #{lines.size-1} lines... "
     entries = []
     Progress.new(lines.size-1) do |pr|
@@ -101,9 +103,9 @@ private
     print "  classifying #{entries.size} entries... "
     Progress.new(entries.size) do |pr|
       entries.each do |entry|
-        entry.eigoc = entry.eigoc_()
-        entry.alts = entry.alts_()
-        entry.seki = entry.seki_()
+        entry.eigoc = Edict.eigoc(entry)
+        entry.alts = Edict.alts(entry)
+        entry.seki = Edict.seki(entry)
         pr.tick
       end
     end
@@ -112,13 +114,14 @@ private
     db.execute "BEGIN"
     Progress.new(entries.size) do |pr|
       entries.each do |entry|
-        expr, kana, eigo, eigoc, alts =
+        expr, kana, eigo, eigoc, alts, seki =
           entry.expr,
           entry.kana,
           entry.eigo.gsub("'","''"),
           entry.eigoc.gsub("'","''"),
-          alts.inspect
-        cmd = "INSERT INTO edict VALUES ('#{expr}', '#{kana}', '#{eigo}', '#{eigoc}, '#{alts}')"
+          entry.alts.to_json,
+          entry.seki.map {|s| [s.yomi,s.frag,s.moji]}.to_json
+        cmd = "INSERT INTO edict VALUES ('#{expr}', '#{kana}', '#{eigo}', '#{eigoc}', '#{alts}', '#{seki}')"
         db.execute cmd
         pr.tick
       end
@@ -136,6 +139,39 @@ private
     # end
   end
 
+private
+
+  def Edict.eigoc(entry)
+    eigo = entry.eigo.dup
+    eigo.scan(/\(.+?\)/).each do |part|
+      if part[1..-2].split(',').all? {|p| Edict.markers.include? p}
+        eigo.sub!(part, '')
+        eigo.sub!('  ', ' ')
+      end
+    end
+    eigo.split('/').delete_if {|x| x.empty?}.map {|x| x[0..0]==' ' ? x[1..-1] : x}.join('; ')
+  end
+
+  def Edict.alts(entry)
+    # find alternate kana for [expr,eigoc] (if any), and alternate expr's for [kana,eigoc] (if any)
+    # result is an array of two arrays of strings; non-priority strings prefixed with '~'
+    # e.g. for 言う いう returns: [["ゆう"], ["~謂う","~云う"]]
+    expr, kana, eigoc = entry.expr, entry.kana, entry.eigoc
+    [
+      Edict.lookup_expr(expr).
+        select {|e| e.eigoc == eigoc && e.kana != kana}.
+        partition(&:priority?).flatten.
+        map {|e| (e.priority?) ? e.kana : '~'+e.kana} ,
+      Edict.lookup_kana(kana).
+        select {|e| e.eigoc == eigoc && e.expr != expr}.
+        partition(&:priority?).flatten.
+        map {|e| (e.priority?) ? e.expr : '~'+e.expr}
+    ]
+  end
+
+  def Edict.seki(entry)
+    Yomi.parse(entry)
+  end
 
 #-----
 
@@ -155,39 +191,7 @@ public class Entry
       @seki = nil
     end
 
-    def eigoc_
-      e = @eigo.dup
-      e.scan(/\(.+?\)/).each do |part|
-        if part[1..-2].split(',').all? {|p| Edict.markers.include? p}
-          e.sub!(part, '')
-          e.sub!('  ', ' ')
-        end
-      end
-      e.split('/').delete_if {|x| x.empty?}.map {|x| x[0..0]==' ' ? x[1..-1] : x}.join('; ')
-    end
-
-    def alts_
-      # find alternate kana for [@expr,@eigoc] (if any), and alternate expr's for [@kana,@eigoc] (if any)
-      # result is an array of two arrays of strings; non-priority strings prefixed with '~'
-      # e.g. for 言う いう returns: [["ゆう"], ["~謂う","~云う"]]
-      [
-        Edict.lookup_expr(@expr).
-          select {|entry| entry.eigoc == @eigoc && entry.kana != @kana}.
-          partition {|entry| entry.priority?}.
-          flatten.
-          map {|entry| (entry.priority?) ? entry.kana : '~'+entry.kana} ,
-        Edict.lookup_kana(@kana).
-          select {|entry| entry.eigoc == @eigoc && entry.expr != @expr}.
-          partition {|entry| entry.priority?}. # TODO partition(&:priority?)
-          flatten.
-          map {|entry| (entry.priority?) ? entry.expr : '~'+entry.expr}
-      ]
-    end
-
-    def seki_
-      Yomi.parse(self)
-    end
-
+    # TODO check if these are needed
     def ==(other)
       @expr == other.expr and @kana == other.kana and @eigoc == other.eigoc
     end
