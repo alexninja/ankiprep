@@ -1,6 +1,7 @@
 _res/.marshal/
 
 _res/dict/edict.utf8
+_res/dict/edict.sqlite
 _res/dict/kanjidic.utf8
 
 _ankiprep/__OUT__/
