@@ -15,7 +15,7 @@ require 'etc/urlify'
 
 module Kanji
 
-  def self.makeall
+  def Kanji.makeall
     Kanji::Stats.init
     Kanji::Flashcard.makeall
     Kanji::Wordlist.makeall
@@ -37,7 +37,7 @@ private
   Wordinfo = Struct.new(:expr, :n, :entries)
 
 
-  def self.pre_init
+  def Stats.pre_init
     @valid_chars = Set.new
     Kanjidic.each_kanji {|k| @valid_chars << k}
     Kana.each_kana {|k| @valid_chars << k}
@@ -46,7 +46,7 @@ private
   end
 
 
-  def self.parse_sources
+  def Stats.parse_sources
     if File.exist?("#{$RES_DIR}/.marshal/kanji.marshal")
       print "[Kanji::Stats] loading marshaled data... "
       Progress.new do |pr|
@@ -98,7 +98,7 @@ private
   end
 
 
-  def self.validate_anki_json(h)
+  def Stats.validate_anki_json(h)
     h.each do |kanji,json|
       json_q = json.
         gsub('comp_rank:', '"comp_rank":').
@@ -120,7 +120,7 @@ private
   end
 
 
-  def self.parse_anki
+  def Stats.parse_anki
 
     print "[Kanji::Stats] reading #{$ANKIDIR}/kanji.anki... "
     @known_kanji = Anki.read("#{$ANKIDIR}/kanji.anki")
@@ -153,7 +153,7 @@ private
   end
 
 
-  def self.add_source(src, filename)
+  def Stats.add_source(src, filename)
 
     puts "[Kanji::Stats] adding word frequency source: " + %w[ANK POM MON EDI][src]
 
@@ -213,7 +213,7 @@ private
   end
 
 
-  def self.postprocess(kw)
+  def Stats.postprocess(kw)
     print "[Kanji::Stats] classifying... "
 
     k_src = Hash.new {|hk,_| hk[_] = Hash.new {|hy,_| hy[_] = []}}
@@ -262,7 +262,7 @@ private
   end
 
 
-  def self.parse_kjt
+  def Stats.parse_kjt
     print "[Kanji::Stats] reading kyuujitai list... "
     @kjt = Hash.new {|h,k| h[k] = ''}
     File.read("#{$RES_DIR}/old_chara.html", mode:'r:Shift_JIS:UTF-8')
@@ -277,14 +277,14 @@ private
 
 public
 
-  def self.words(src, k, yomi = :all)
+  def Stats.words(src, k, yomi = :all)
     if @k[src][k]
       ret = @k[src][k][yomi]
     end
     ret || []
   end
 
-  def self.yfreq(k, yomi)
+  def Stats.yfreq(k, yomi)
     if @yfreq.has_key?(k) && @yfreq[k].has_key?(yomi)
       @yfreq[k][yomi]
     else
@@ -292,7 +292,7 @@ public
     end
   end
 
-  def self.yarr(k)
+  def Stats.yarr(k)
     ret = Kanjidic.yomi(k).delete_if {|yomi| yomi.include? '-'}
     if @yfreq.has_key? k
       ret = ret.sort_by {|yomi| yfreq(k,yomi)}.reverse.
@@ -301,27 +301,27 @@ public
     ret
   end
 
-  def self.valid_char?(c)
+  def Stats.valid_char?(c)
     @valid_chars.include? c
   end
 
-  def self.known_kanji
+  def Stats.known_kanji
     @known_kanji
   end
 
-  def self.prepop_kanji
+  def Stats.prepop_kanji
     @prepop_kanji
   end
 
-  def self.vocab_kanji?(k)
+  def Stats.vocab_kanji?(k)
     @vocab_kanji.include? k
   end
 
-  def self.all_kanji
+  def Stats.all_kanji
     @vocab_kanji + @known_kanji.keys
   end
 
-  def self.new_kanji
+  def Stats.new_kanji
     if Vocab.regenerate_wordlists?
       all_kanji
     else
@@ -329,7 +329,7 @@ public
     end
   end
 
-  def self.relevant_kanji
+  def Stats.relevant_kanji
     if Vocab.regenerate_wordlists?
       all_kanji
     else
@@ -337,13 +337,13 @@ public
     end
   end
 
-  def self.kjt(k)
+  def Stats.kjt(k)
     @kjt[k]
   end
 
   # module initialization
 
-  def self.init
+  def Stats.init
     pre_init
     parse_sources
     parse_anki
