@@ -20,7 +20,7 @@ module Edict
       entry = Entry.new(row[0], row[1], row[2])
       entry.eigoc = row[3]
       entry.alts = JSON::parse(row[4])
-      entry.seki = JSON::parse(row[5]).map {|s| Seki.new(s[0],s[1],s[2])}
+      entry.seki = JSON::parse(row[5])
       yield entry
     end
   end
@@ -31,7 +31,7 @@ module Edict
       entry = Entry.new(row[0], row[1], row[2])
       entry.eigoc = row[3]
       entry.alts = JSON::parse(row[4])
-      entry.seki = JSON::parse(row[5]).map {|s| Seki.new(s[0],s[1],s[2])}
+      entry.seki = JSON::parse(row[5])
       entry
     end
   end

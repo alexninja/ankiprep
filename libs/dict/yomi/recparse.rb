@@ -1,6 +1,9 @@
 require_relative 'rendaku'
 
-Seki = Struct.new(:yomi, :frag, :moji)
+# seki list has one entry [yomi, frag, moji] per character in expr
+# 結構    けっこう  [["ケチ","けっ","結"],["コウ","こう","構"]]
+# 見倣う  みならう  [["み","み","見"],["なら","なら","倣"],["う","う","う"]]
+
 
 module Yomi
 
@@ -12,7 +15,7 @@ module Yomi
       if kana.empty?
         block.call(arr)
       elsif kana.size==1 && arr[-1] && arr[-1].frag.hir? #&& @@tailkana.include?(kana[0]) - forget for now, only kuchi, kawa, waga, kura fail so we can hand-edit those
-        block.call(arr << Seki.new(kana[0],kana[0],'@'))
+        block.call(arr << [kana[0],kana[0],'@'])
       end
       return
     end
@@ -53,7 +56,7 @@ module Yomi
       end
 
       if yomivar.any? {|v| v.to_hir == frag.to_hir}
-        arr << Seki.new(yomi,frag,moji)
+        arr << [yomi,frag,moji]
         if expr[1] == Utf8::Kurikaeshi
           recparse([moji] + expr[2..-1], kana[ylen..-1], arr, &block)
         else

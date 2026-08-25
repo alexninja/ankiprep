@@ -96,14 +96,15 @@ private
     # example output: "machi(a)waseru", "[ei]ga"
     return e.kana if e.seki.empty?
     e.seki.map do |s|
-      if s.moji == k
-        if s.yomi.kat?
-          '[' + s.frag + ']'
+      yomi, frag, moji = s
+      if moji == k
+        if yomi.kat?
+          '[' + frag + ']'
         else
-          '(' + s.frag + ')'
+          '(' + frag + ')'
         end
       else
-        s.frag
+        frag
       end
     end.
       join
