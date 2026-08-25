@@ -89,7 +89,7 @@ module Kanji; module Flashcard
   def self.make_card(k)
     # creates the kanji's html flashcard in __OUT__/kanji/flashcard/ (for display by server.rb),
     # prepopulated with the data json and the word_counts json.
-    # also returns the data json for Anki import txt file
+    # also returns the data json for kanji.[IMPORT].txt
 
     utf16 = k.utf16_code
     yarr = Kanji::Stats.yarr(k) + [:other]
