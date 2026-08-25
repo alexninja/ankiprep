@@ -49,19 +49,13 @@ module Edict
 
 private
 
-  def Edict.load!
-    print "Loading Edict... "
+  def Edict.create_sqlite
 
-    # TODO READONLY for duration
-    if File.exist? "#{$RES_DIR}/dict/edict.sqlite"
-      @@db = SQLite3::Database.new("#{$RES_DIR}/dict/edict.sqlite", {flags: SQLite3::Constants::Open::READONLY})
-      puts "#{Edict.size} entries in edict.sqlite"
-      return
-    end
+    FileUtils.rm_f "#{$RES_DIR}/dict/edict.sqlite.tmp"
+    db = SQLite3::Database.new("#{$RES_DIR}/dict/edict.sqlite.tmp")
 
-    @@db = SQLite3::Database.new("#{$RES_DIR}/dict/edict.sqlite")
-    @@db.execute "CREATE TABLE edict (id INT PRIMARY KEY, expr TEXT, kana TEXT, eigo TEXT, eigoc TEXT, alts TEXT, seki TEXT)"
-    @@db.execute "CREATE INDEX idx_edict_expr ON edict (expr)"
+    db.execute "CREATE TABLE edict (id INT PRIMARY KEY, expr TEXT, kana TEXT, eigo TEXT, eigoc TEXT, alts TEXT, seki TEXT)"
+    db.execute "CREATE INDEX idx_edict_expr ON edict (expr)"
 
     print "\n  reading #{$RES_DIR}/dict/edict... "
     lines = nil
@@ -104,7 +98,7 @@ private
     end
 
     print "  writing edict.sqlite... "
-    @@db.execute "BEGIN"
+    db.execute "BEGIN"
     Progress.new(entries.size) do |pr|
       entries.each_with_index do |entry,idx|
         expr, kana, eigo, eigoc, alts, seki =
@@ -115,12 +109,24 @@ private
           entry.alts.to_json,
           entry.seki.to_json
         cmd = "INSERT INTO edict VALUES ('#{idx+1}', '#{expr}', '#{kana}', '#{eigo}', '#{eigoc}', '#{alts}', '#{seki}')"
-        @@db.execute cmd
+        db.execute cmd
         pr.tick
       end
     end
-    @@db.execute "END"
+    db.execute "END"
 
+    db.close
+    FileUtils.mv "#{$RES_DIR}/dict/edict.sqlite.tmp", "#{$RES_DIR}/dict/edict.sqlite"
+  end
+
+  def Edict.load!
+    print "Loading Edict... "
+    if !File.exist? "#{$RES_DIR}/dict/edict.sqlite"
+      Edict.create_sqlite
+    end
+    @@db = SQLite3::Database.new("#{$RES_DIR}/dict/edict.sqlite", {flags: SQLite3::Constants::Open::READONLY})
+    puts "#{Edict.size} entries in edict.sqlite"
+    return
   end
 
 private
