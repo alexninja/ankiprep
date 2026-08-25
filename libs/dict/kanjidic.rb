@@ -3,8 +3,6 @@ require 'etc/progress'
 
 module Kanjidic
 
-  @yomi_cache = Hash.new
-
   def Kanjidic.kanji?(k)
     @k.has_key?(k)
   end
@@ -16,13 +14,10 @@ module Kanjidic
 
   def Kanjidic.yomi(k)
     return [] unless kanji?(k)
-    yarr = @yomi_cache[k] || []
-    if yarr.empty?
-      @k[k].split(' ').each do |part|
-        yarr << part if part.chars.any? {|x| x.kana?}
-        break if part[0] == 'T' # up to nanori
-      end
-      @yomi_cache[k] = yarr
+    yarr = []
+    @k[k].split(' ').each do |part|
+      yarr << part if part.chars.any? {|x| x.kana?}
+      break if part[0] == 'T' # up to nanori
     end
     yarr
   end
