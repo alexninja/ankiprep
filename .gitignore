@@ -3,6 +3,7 @@ _res/.marshal/
 _res/dict/edict.utf8
 _res/dict/edict.sqlite
 _res/dict/kanjidic.utf8
+_res/dict/kanjidic.sqlite
 
 _ankiprep/__OUT__/
 _ankiprep/scratch*.rb
