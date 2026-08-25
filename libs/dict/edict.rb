@@ -17,10 +17,10 @@ module Edict
   def Edict.each
     res = @@db.execute "SELECT * FROM edict"
     res.each do |row|
-      entry = Entry.new(row[0], row[1], row[2])
-      entry.eigoc = row[3]
-      entry.alts = JSON::parse(row[4])
-      entry.seki = JSON::parse(row[5])
+      entry = Entry.new(row[1], row[2], row[3])
+      entry.eigoc = row[4]
+      entry.alts = JSON::parse(row[5])
+      entry.seki = JSON::parse(row[6])
       yield entry
     end
   end
@@ -28,10 +28,10 @@ module Edict
   def Edict.lookup_expr(expr)
     res = @@db.execute "SELECT * FROM edict WHERE expr='#{expr}'"
     res.map do |row|
-      entry = Entry.new(row[0], row[1], row[2])
-      entry.eigoc = row[3]
-      entry.alts = JSON::parse(row[4])
-      entry.seki = JSON::parse(row[5])
+      entry = Entry.new(row[1], row[2], row[3])
+      entry.eigoc = row[4]
+      entry.alts = JSON::parse(row[5])
+      entry.seki = JSON::parse(row[6])
       entry
     end
   end
@@ -60,7 +60,7 @@ private
     end
 
     @@db = SQLite3::Database.new("#{$RES_DIR}/dict/edict.sqlite")
-    @@db.execute "CREATE TABLE edict (expr TEXT, kana TEXT, eigo TEXT, eigoc TEXT, alts TEXT, seki TEXT)"
+    @@db.execute "CREATE TABLE edict (id INT PRIMARY KEY, expr TEXT, kana TEXT, eigo TEXT, eigoc TEXT, alts TEXT, seki TEXT)"
     @@db.execute "CREATE INDEX idx_edict_expr ON edict (expr)"
 
     print "\n  reading #{$RES_DIR}/dict/edict... "
@@ -106,7 +106,7 @@ private
     print "  writing edict.sqlite... "
     @@db.execute "BEGIN"
     Progress.new(entries.size) do |pr|
-      entries.each do |entry|
+      entries.each_with_index do |entry,idx|
         expr, kana, eigo, eigoc, alts, seki =
           entry.expr,
           entry.kana,
@@ -114,7 +114,7 @@ private
           entry.eigoc.gsub("'","''"),
           entry.alts.to_json,
           entry.seki.to_json
-        cmd = "INSERT INTO edict VALUES ('#{expr}', '#{kana}', '#{eigo}', '#{eigoc}', '#{alts}', '#{seki}')"
+        cmd = "INSERT INTO edict VALUES ('#{idx+1}', '#{expr}', '#{kana}', '#{eigo}', '#{eigoc}', '#{alts}', '#{seki}')"
         @@db.execute cmd
         pr.tick
       end
