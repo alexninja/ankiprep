@@ -126,7 +126,6 @@ private
     end
     @@db = SQLite3::Database.new("#{$RES_DIR}/dict/edict.sqlite", {flags: SQLite3::Constants::Open::READONLY})
     puts "#{Edict.size} entries in edict.sqlite"
-    return
   end
 
 private
