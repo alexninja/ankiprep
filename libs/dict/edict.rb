@@ -12,23 +12,11 @@ module Edict
   @@markers = File.readlines(File.dirname(__FILE__)+'/edict_markers.txt').map {|line| line.split[0]}
   (1..100).to_a.each {|x| @@markers << x.to_s}
 
-  def Edict.lookup_expr(expr)
-    @@expr[expr]
-  end
-
-  def Edict.lookup_kana(kana)
-    @@kana[kana]
-  end
-
-  def Edict.markers
-    @@markers
-  end
-
   JoinChar = Utf8::Space
 
   def Edict.each
     res = @@db.execute "SELECT * FROM edict"
-    res.map do |row|
+    res.each do |row|
       entry = Entry.new(row[0], row[1], row[2])
       entry.eigoc = row[3]
       entry.alts = JSON::parse(row[4])
@@ -37,15 +25,27 @@ module Edict
     end
   end
 
-  def Edict.size
-    res = @@db.execute "SELECT COUNT(*) FROM edict"
-    res[0][0].to_i
+  def Edict.lookup_expr(expr)
+    res = @@db.execute "SELECT * FROM edict WHERE expr='#{expr}'"
+    res.map do |row|
+      entry = Entry.new(row[0], row[1], row[2])
+      entry.eigoc = row[3]
+      entry.alts = JSON::parse(row[4])
+      entry.seki = JSON::parse(row[5]).map {|s| Seki.new(s[0],s[1],s[2])}
+      entry
+    end
   end
 
   def Edict.contains?(expr)
     res = @@db.execute "SELECT * FROM edict WHERE expr='#{expr}'"
     !res.empty?
   end
+
+  def Edict.size
+    res = @@db.execute "SELECT COUNT(*) FROM edict"
+    res[0][0].to_i
+  end
+
 
 private
 
@@ -61,18 +61,19 @@ private
 
     @@db = SQLite3::Database.new("#{$RES_DIR}/dict/edict.sqlite")
     @@db.execute "CREATE TABLE edict (expr TEXT, kana TEXT, eigo TEXT, eigoc TEXT, alts TEXT, seki TEXT)"
+    @@db.execute "CREATE INDEX idx_edict_expr ON edict (expr)"
 
-    print "\n  reading #{$RES_DIR}/dict/edict.utf8... "
+    print "\n  reading #{$RES_DIR}/dict/edict... "
     lines = nil
     Progress.new do |pr|
-      #lines = Utf8.readlines("#{$RES_DIR}/dict/edict",'euc-jp')
-      lines = Utf8.readlines("#{$RES_DIR}/dict/edict.utf8")
+      lines = Utf8.readlines("#{$RES_DIR}/dict/edict",'euc-jp')
+      #lines = Utf8.readlines("#{$RES_DIR}/dict/edict.utf8")
     end
 
     #File.open($RES_DIR+'/dict/edict.utf8','w') {|f| lines.each {|line| f.puts line}}
 
-    @@expr = Hash.new {|hh,kk| hh[kk] = []}
-    @@kana = Hash.new {|hh,kk| hh[kk] = []}
+    expr_hash = Hash.new {|hh,kk| hh[kk] = []}
+    kana_hash = Hash.new {|hh,kk| hh[kk] = []}
   
     print "  parsing #{lines.size-1} lines... "
     entries = []
@@ -85,8 +86,8 @@ private
         end
         if entry
           entries << entry
-          @@expr[entry.expr] << entry
-          @@kana[entry.kana] << entry
+          expr_hash[entry.expr] << entry
+          kana_hash[entry.kana] << entry
         end
         pr.tick
       end
@@ -96,7 +97,7 @@ private
     Progress.new(entries.size) do |pr|
       entries.each do |entry|
         entry.eigoc = Edict.eigoc(entry)
-        entry.alts = Edict.alts(entry)
+        entry.alts = Edict.alts(entry, expr_hash, kana_hash)
         entry.seki = Edict.seki(entry)
         pr.tick
       end
@@ -119,9 +120,7 @@ private
       end
     end
     @@db.execute "END"
-  
-    @@expr = nil
-    @@kana = nil
+
   end
 
 private
@@ -129,7 +128,7 @@ private
   def Edict.eigoc(entry)
     eigo = entry.eigo.dup
     eigo.scan(/\(.+?\)/).each do |part|
-      if part[1..-2].split(',').all? {|p| Edict.markers.include? p}
+      if part[1..-2].split(',').all? {|p| @@markers.include? p}
         eigo.sub!(part, '')
         eigo.sub!('  ', ' ')
       end
@@ -137,17 +136,17 @@ private
     eigo.split('/').delete_if {|x| x.empty?}.map {|x| x[0..0]==' ' ? x[1..-1] : x}.join('; ')
   end
 
-  def Edict.alts(entry)
+  def Edict.alts(entry, expr_hash, kana_hash)
     # find alternate kana for [expr,eigoc] (if any), and alternate expr's for [kana,eigoc] (if any)
     # result is an array of two arrays of strings; non-priority strings prefixed with '~'
     # e.g. for 言う いう returns: [["ゆう"], ["~謂う","~云う"]]
     expr, kana, eigoc = entry.expr, entry.kana, entry.eigoc
     [
-      @@expr[expr].
+      expr_hash[expr].
         select {|e| e.eigoc == eigoc && e.kana != kana}.
         partition(&:priority?).flatten.
         map {|e| (e.priority?) ? e.kana : '~'+e.kana} ,
-      @@kana[kana].
+      kana_hash[kana].
         select {|e| e.eigoc == eigoc && e.expr != expr}.
         partition(&:priority?).flatten.
         map {|e| (e.priority?) ? e.expr : '~'+e.expr}
