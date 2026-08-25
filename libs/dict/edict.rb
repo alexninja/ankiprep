@@ -27,54 +27,46 @@ module Edict
   JoinChar = Utf8::Space
 
   def Edict.each
-    @@expr.each_value do |entries|
-      entries.each do |entry|
-        yield entry
-      end
+    res = @@db.execute "SELECT * FROM edict"
+    res.map do |row|
+      entry = Entry.new(row[0], row[1], row[2])
+      entry.eigoc = row[3]
+      entry.alts = JSON::parse(row[4])
+      entry.seki = JSON::parse(row[5]).map {|s| Seki.new(s[0],s[1],s[2])}
+      yield entry
     end
   end
 
   def Edict.size
-    @@expr.values.flatten.size
+    res = @@db.execute "SELECT COUNT(*) FROM edict"
+    res[0][0].to_i
   end
 
   def Edict.contains?(expr)
-    @@expr.has_key? expr
+    res = @@db.execute "SELECT * FROM edict WHERE expr='#{expr}'"
+    !res.empty?
   end
 
 private
 
-  def Edict.load_marshaled
-    if File.exist?($RES_DIR+"/.marshal/edict.marshal") &&
-        File.stat($RES_DIR+"/.marshal/edict.marshal").mtime > File.stat($RES_DIR+'/dict/edict').mtime
-      print "  unmarshaling... "
-      Progress.new do |pr|
-        @@expr, @@kana = File.open($RES_DIR+"/.marshal/edict.marshal", "rb") {|f| Marshal.load(f)}
-      end
+  def Edict.load!
+    print "Loading Edict... "
+
+    # TODO READONLY for duration
+    if File.exist? "#{$RES_DIR}/dict/edict.sqlite"
+      @@db = SQLite3::Database.new("#{$RES_DIR}/dict/edict.sqlite", {flags: SQLite3::Constants::Open::READONLY})
+      puts "#{Edict.size} entries in edict.sqlite"
+      return
     end
-  end
 
-  def Edict.save_marshaled
-    print "  marshaling... "
-    Progress.new do |pr|
-      @@expr.default = nil
-      @@kana.default = nil
-      FileUtils.mkdir_p "#{$RES_DIR}/.marshal"
-      File.open($RES_DIR+"/.marshal/edict.marshal", "wb") {|f| Marshal.dump([@@expr,@@kana], f)}
-    end
-  end
+    @@db = SQLite3::Database.new("#{$RES_DIR}/dict/edict.sqlite")
+    @@db.execute "CREATE TABLE edict (expr TEXT, kana TEXT, eigo TEXT, eigoc TEXT, alts TEXT, seki TEXT)"
 
-  def Edict.load_from_file
-
-    FileUtils.rm_f 'edict.sqlite'
-    db = SQLite3::Database.new('edict.sqlite')
-    db.execute "CREATE TABLE edict (expr TEXT, kana TEXT, eigo TEXT, eigoc TEXT, alts TEXT, seki TEXT)"
-
-    print "  reading file... "
+    print "\n  reading #{$RES_DIR}/dict/edict.utf8... "
     lines = nil
     Progress.new do |pr|
-      #lines = Utf8.readlines($RES_DIR+'/dict/edict','euc-jp')
-      lines = Utf8.readlines($RES_DIR+'/dict/edict.utf8')
+      #lines = Utf8.readlines("#{$RES_DIR}/dict/edict",'euc-jp')
+      lines = Utf8.readlines("#{$RES_DIR}/dict/edict.utf8")
     end
 
     #File.open($RES_DIR+'/dict/edict.utf8','w') {|f| lines.each {|line| f.puts line}}
@@ -111,7 +103,7 @@ private
     end
 
     print "  writing edict.sqlite... "
-    db.execute "BEGIN"
+    @@db.execute "BEGIN"
     Progress.new(entries.size) do |pr|
       entries.each do |entry|
         expr, kana, eigo, eigoc, alts, seki =
@@ -122,21 +114,14 @@ private
           entry.alts.to_json,
           entry.seki.map {|s| [s.yomi,s.frag,s.moji]}.to_json
         cmd = "INSERT INTO edict VALUES ('#{expr}', '#{kana}', '#{eigo}', '#{eigoc}', '#{alts}', '#{seki}')"
-        db.execute cmd
+        @@db.execute cmd
         pr.tick
       end
     end
-    db.execute "END"
+    @@db.execute "END"
   
-  end
-
-  def Edict.load!
-    puts "Loading Edict... "
-    # load_marshaled
-    # if @@expr.empty? && @@kana.empty?
-      load_from_file
-    #   save_marshaled
-    # end
+    @@expr = nil
+    @@kana = nil
   end
 
 private
@@ -158,11 +143,11 @@ private
     # e.g. for 言う いう returns: [["ゆう"], ["~謂う","~云う"]]
     expr, kana, eigoc = entry.expr, entry.kana, entry.eigoc
     [
-      Edict.lookup_expr(expr).
+      @@expr[expr].
         select {|e| e.eigoc == eigoc && e.kana != kana}.
         partition(&:priority?).flatten.
         map {|e| (e.priority?) ? e.kana : '~'+e.kana} ,
-      Edict.lookup_kana(kana).
+      @@kana[kana].
         select {|e| e.eigoc == eigoc && e.expr != expr}.
         partition(&:priority?).flatten.
         map {|e| (e.priority?) ? e.expr : '~'+e.expr}
