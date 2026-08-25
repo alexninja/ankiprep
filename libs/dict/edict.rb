@@ -113,7 +113,7 @@ private
           entry.eigo.gsub("'","''"),
           entry.eigoc.gsub("'","''"),
           entry.alts.to_json,
-          entry.seki.map {|s| [s.yomi,s.frag,s.moji]}.to_json
+          entry.seki.to_json
         cmd = "INSERT INTO edict VALUES ('#{expr}', '#{kana}', '#{eigo}', '#{eigoc}', '#{alts}', '#{seki}')"
         @@db.execute cmd
         pr.tick

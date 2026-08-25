@@ -14,7 +14,7 @@ module Yomi
     if expr.empty?
       if kana.empty?
         block.call(arr)
-      elsif kana.size==1 && arr[-1] && arr[-1].frag.hir? #&& @@tailkana.include?(kana[0]) - forget for now, only kuchi, kawa, waga, kura fail so we can hand-edit those
+      elsif kana.size==1 && arr[-1] && arr[-1][1].hir? #&& @@tailkana.include?(kana[0]) - forget for now, only kuchi, kawa, waga, kura fail so we can hand-edit those
         block.call(arr << [kana[0],kana[0],'@'])
       end
       return
