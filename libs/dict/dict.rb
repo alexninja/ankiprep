@@ -192,8 +192,24 @@ private
           entry.eigoc.gsub("'","''"),
           entry.alts.to_json,
           entry.seki.to_json
-        cmd = "INSERT INTO edict VALUES ('#{edict_id}', '#{expr}', '#{kana}', '#{eigo}', '#{eigoc}', '#{alts}', '#{seki}')"
+        cmd = "INSERT INTO edict VALUES ('#{id=edict_id}', '#{expr}', '#{kana}', '#{eigo}', '#{eigoc}', '#{alts}', '#{seki}')"
         @@db.execute cmd
+
+        entry.seki.each do |yomi, frag, moji|
+          if Dict.kanjidic_kanji? moji
+            res = @@db.execute <<-SQL
+SELECT j_kanji_yomi.id
+FROM yomi
+JOIN j_kanji_yomi ON j_kanji_yomi.yomi_id = yomi.id
+JOIN kanjidic ON j_kanji_yomi.kanjidic_id = kanjidic.id
+WHERE kanjidic.kanji = '#{moji}' AND yomi.yomi = '#{yomi}'
+            SQL
+            next unless res[0]
+            j_kanji_yomi_id = res[0][0]
+            cmd = "INSERT OR IGNORE INTO j_edict VALUES ('#{edict_id}', '#{j_kanji_yomi_id}')"
+            @@db.execute cmd
+          end
+        end
         pr.tick
       end
     end
