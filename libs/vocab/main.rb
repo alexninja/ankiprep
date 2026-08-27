@@ -1,6 +1,6 @@
 ﻿require 'set'
 require 'json'
-require 'dict/edict'
+require 'dict/dict'
 require 'etc/anki'
 require 'etc/utf8'
 require 'etc/gray'

@@ -8,6 +8,8 @@ require 'etc/progress'
 
 module Dict
 
+  @@yomi_cache = Hash.new
+
   @@markers = File.readlines(File.dirname(__FILE__)+'/edict_markers.txt').map {|line| line.split[0]}
   (1..100).to_a.each {|x| @@markers << x.to_s}
 
@@ -19,19 +21,21 @@ module Dict
   end
 
   def Dict.kanjidic_kanji?(k)
-    res = @@db.execute "SELECT * FROM kanjidic WHERE kanji='#{k}'"
-    res.count == 1
+    # res = @@db.execute "SELECT COUNT(*) FROM kanjidic WHERE kanji='#{k}'"
+    # res[0][0].to_i == 1
+    @@yomi_cache.has_key? k #HACK
   end
   
   def Dict.kanjidic_yomi(k)
-    res = @@db.execute <<-SQL
-SELECT yomi.yomi
-FROM yomi
-JOIN j_kanji_yomi ON yomi.id = j_kanji_yomi.yomi_id
-JOIN kanjidic ON kanjidic.id = j_kanji_yomi.kanjidic_id
-WHERE kanjidic.kanji = '#{k}'
-    SQL
-    res.flatten
+#     res = @@db.execute <<-SQL
+# SELECT yomi.yomi
+# FROM yomi
+# JOIN j_kanji_yomi ON yomi.id = j_kanji_yomi.yomi_id
+# JOIN kanjidic ON kanjidic.id = j_kanji_yomi.kanjidic_id
+# WHERE kanjidic.kanji = '#{k}'
+#     SQL
+    # res.flatten
+    @@yomi_cache[k] #HACK
   end
 
   def Dict.edict_size
@@ -96,6 +100,8 @@ private
           Dict.kanjidic_stroke_count_(line)
         @@db.execute "INSERT INTO kanjidic VALUES ('#{id}', '#{kanji}', '#{eigo}', '#{heisig}', '#{stroke_count}')"
 
+        @@yomi_cache[kanji] = Dict.kanjidic_yomi_(line) #HACK
+
         Dict.kanjidic_yomi_(line).each do |yomi|
           unless yomi_ids.has_key?(yomi)
             yomi_ids[yomi] = yomi_ids.size+1
@@ -129,9 +135,9 @@ private
 # --ORDER BY yomi.yomi DESC
 #     SQL
 #     exit
-@@db.close
-FileUtils.mv "#{$RES_DIR}/.sqlite/dict.sqlite.tmp", "#{$RES_DIR}/.sqlite/dict.sqlite"
-exit
+# @@db.close
+# FileUtils.mv "#{$RES_DIR}/.sqlite/dict.sqlite.tmp", "#{$RES_DIR}/.sqlite/dict.sqlite"
+# exit
 
     # edict
 
