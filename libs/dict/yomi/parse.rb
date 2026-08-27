@@ -1,3 +1,4 @@
+require 'dict/dict'
 require 'etc/utf8'
 require_relative 'recparse'
 
@@ -5,7 +6,7 @@ require_relative 'recparse'
 module Yomi
 
   def Yomi.parse(entry)
-    if entry.expr.chars.any? {|x| x.kanji?}
+    if entry.expr.chars.any? {|x| Dict.kanjidic_kanji? x}
       recparse(entry.expr.chars.to_a, entry.kana.chars.to_a, []) do |arr|
         return arr
       end

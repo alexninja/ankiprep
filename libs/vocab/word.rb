@@ -166,13 +166,13 @@ module Vocab
 
       else
         # Edict lookup, see input.png
-        if !Edict.contains?(expr)
+        if !Dict.edict_contains?(expr)
           w.error = "Not found in Edict: #{expr}"
           w.flags << :not_in_edict
           return w
         end
 
-        ent1, ent2 = Edict.lookup_expr(expr).partition {|e| e.kana == kana}
+        ent1, ent2 = Dict.edict_lookup(expr).partition {|e| e.kana == kana}
         entries = ent1 + ent2.partition {|e| e.priority?}.flatten
 
         process_expr = true
@@ -193,7 +193,7 @@ module Vocab
           if entries.none? {|e| e.priority?} && w.flags_none?(:exact_expr)
             entries.each do |e|
               if expr_p = e.alts.last.partition {|a| a[0] != '~'}.first.first
-                entries = Edict.lookup_expr(expr_p)
+                entries = Dict.edict_lookup(expr_p)
                 break
               end
             end

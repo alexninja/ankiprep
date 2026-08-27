@@ -1,4 +1,4 @@
-﻿require 'dict/kanjidic'
+﻿require 'dict/dict'
 require 'etc/template'
 require 'etc/progress'
 require 'etc/utf16'

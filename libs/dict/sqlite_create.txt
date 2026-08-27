@@ -1,0 +1,47 @@
+﻿CREATE TABLE kanji (
+    id INT PRIMARY KEY,
+    kanji TEXT,
+    eigo TEXT,
+    heisig INT,
+    stroke_count INT
+);
+
+CREATE INDEX idx_kanji_kanji ON kanji(kanji);
+
+CREATE TABLE yomi (
+    id INT PRIMARY KEY,
+    yomi TEXT
+);
+
+CREATE TABLE j_kanji_yomi (
+    id INT,
+    kanji_id INT,
+    yomi_id INT,
+    PRIMARY KEY (id, kanji_id, yomi_id)
+    FOREIGN KEY (kanji_id) REFERENCES kanji(id),
+    FOREIGN KEY (yomi_id) REFERENCES yomi(id),
+    UNIQUE (id),
+    UNIQUE (kanji_id, yomi_id)
+);
+
+----
+
+CREATE TABLE edict (
+    id INT PRIMARY KEY,
+    expr TEXT,
+    kana TEXT,
+    eigo TEXT,
+    eigoc TEXT,
+    alts TEXT,
+    seki TEXT
+);
+
+CREATE INDEX idx_edict_expr ON edict(expr);
+
+CREATE TABLE j_edict (
+    edict_id INT,
+    j_kanji_yomi_id INT,
+    PRIMARY KEY (edict_id, j_kanji_yomi_id),
+    FOREIGN KEY (edict_id) REFERENCES edict(id),
+    FOREIGN KEY (j_kanji_yomi_id) REFERENCES j_kanji_yomi(id)
+);

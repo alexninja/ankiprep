@@ -1,3 +1,4 @@
+ERROR
 require 'dict/kana'
 require 'etc/progress'
 
@@ -5,26 +6,26 @@ require 'sqlite3'
 require 'json'
 
 
-module Kanjidic
+module Kanjidic__
 
   # @yomi_cache = Hash.new
 
-  # def Kanjidic.kanji?(k)
+  # def Kanjidic__.kanji?(k)
   #   @k.has_key?(k)
   # end
 
-  # def Kanjidic.each_kanji
+  # def Kanjidic__.each_kanji
   #   @k.each_key {|k| yield k}
   # end
 
-  def Kanjidic.size
+  def Kanjidic__.size
     res = @@db.execute "SELECT COUNT(*) FROM kanji"
     res[0][0].to_i
   end
 
 private
 
-  def Kanjidic.create_sqlite
+  def Kanjidic__.create_sqlite
 
     FileUtils.rm_f "#{$RES_DIR}/dict/kanjidic.sqlite.tmp"
     db = SQLite3::Database.new("#{$RES_DIR}/dict/kanjidic.sqlite.tmp")
@@ -44,10 +45,10 @@ private
         kanji_id, kanji, yomi, eigo, heisig, stroke_count =
           idx+1,
           line.split(' ')[0],
-          Kanjidic.yomi_(line),
-          Kanjidic.eigo_(line).map {|e| e.gsub("'","''")}.to_json,
-          Kanjidic.heisig_(line),
-          Kanjidic.stroke_count_(line)
+          Kanjidic__.yomi_(line),
+          Kanjidic__.eigo_(line).map {|e| e.gsub("'","''")}.to_json,
+          Kanjidic__.heisig_(line),
+          Kanjidic__.stroke_count_(line)
         cmd = "INSERT INTO kanji VALUES ('#{kanji_id}', '#{kanji}', '#{eigo}', '#{heisig}', '#{stroke_count}')"
         db.execute cmd
         yomi.each do |y|
@@ -74,23 +75,23 @@ private
     FileUtils.mv "#{$RES_DIR}/dict/kanjidic.sqlite.tmp", "#{$RES_DIR}/dict/kanjidic.sqlite"
   end
 
-  def Kanjidic.load!
-    print "Loading Kanjidic... "
+  def Kanjidic__.load!
+    print "Loading Kanjidic__... "
     FileUtils.rm_f "#{$RES_DIR}/dict/kanjidic.sqlite"
     if !File.exist? "#{$RES_DIR}/dict/kanjidic.sqlite"
-      Kanjidic.create_sqlite
+      Kanjidic__.create_sqlite
     end
     @@db = SQLite3::Database.new("#{$RES_DIR}/dict/kanjidic.sqlite", {flags: SQLite3::Constants::Open::READONLY})
-    puts "#{Kanjidic.size} entries in kanjidic.sqlite"
+    puts "#{Kanjidic__.size} entries in kanjidic.sqlite"
   end
 
   private
 
-  def Kanjidic.eigo_(line)
+  def Kanjidic__.eigo_(line)
     line.scan(/\{.*?\}/).map {|x| x[1..-2]}
   end
 
-  def Kanjidic.yomi_(line)
+  def Kanjidic__.yomi_(line)
     yarr = []
     line.split(' ').each do |part|
       yarr << part if part.chars.any? {|x| x.kana?}
@@ -99,7 +100,7 @@ private
     yarr
   end
 
-  def Kanjidic.nanori_(k)
+  def Kanjidic__.nanori_(k)
     retval = []
     past_T = false
     line.split(' ').each do |part|
@@ -112,7 +113,7 @@ private
     retval
   end
 
-  def Kanjidic.heisig_(line)
+  def Kanjidic__.heisig_(line)
     m = line.match(/\sL(\d{1,4})\s/)
     if m
       m[1].to_i
@@ -121,7 +122,7 @@ private
     end
   end
 
-  def Kanjidic.stroke_count_(line)
+  def Kanjidic__.stroke_count_(line)
     m = line.match(/\sS(\d{1,2})\s/)
     if m
       m[1].to_i
@@ -132,14 +133,14 @@ private
 
 public
 
-  Kanjidic.load!
+  Kanjidic__.load!
   exit
 
-end # module Kanjidic
+end # module Kanjidic__
 
 
 # class String
 #   def kanji?
-#     Kanjidic.kanji?(self)
+#     Kanjidic__.kanji?(self)
 #   end
 # end

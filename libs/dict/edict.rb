@@ -1,3 +1,4 @@
+ERROR
 require 'fileutils'
 require 'dict/kanjidic'
 require 'dict/yomi/parse'
@@ -7,14 +8,14 @@ require 'sqlite3'
 require 'json'
 
 
-module Edict
+module Edict__
 
   @@markers = File.readlines(File.dirname(__FILE__)+'/edict_markers.txt').map {|line| line.split[0]}
   (1..100).to_a.each {|x| @@markers << x.to_s}
 
   JoinChar = Utf8::Space
 
-  def Edict.each
+  def Edict__.each
     res = @@db.execute "SELECT * FROM edict"
     res.each do |row|
       entry = Entry.new(row[1], row[2], row[3])
@@ -25,7 +26,7 @@ module Edict
     end
   end
 
-  def Edict.lookup_expr(expr)
+  def Edict__.lookup_expr(expr)
     res = @@db.execute "SELECT * FROM edict WHERE expr='#{expr}'"
     res.map do |row|
       entry = Entry.new(row[1], row[2], row[3])
@@ -36,12 +37,12 @@ module Edict
     end
   end
 
-  def Edict.contains?(expr)
+  def Edict__.contains?(expr)
     res = @@db.execute "SELECT * FROM edict WHERE expr='#{expr}'"
     !res.empty?
   end
 
-  def Edict.size
+  def Edict__.size
     res = @@db.execute "SELECT COUNT(*) FROM edict"
     res[0][0].to_i
   end
@@ -49,7 +50,7 @@ module Edict
 
 private
 
-  def Edict.create_sqlite
+  def Edict__.create_sqlite
 
     FileUtils.rm_f "#{$RES_DIR}/dict/edict.sqlite.tmp"
     db = SQLite3::Database.new("#{$RES_DIR}/dict/edict.sqlite.tmp")
@@ -90,9 +91,9 @@ private
     print "  classifying #{entries.size} entries... "
     Progress.new(entries.size) do |pr|
       entries.each do |entry|
-        entry.eigoc = Edict.eigoc(entry)
-        entry.alts = Edict.alts(entry, expr_hash, kana_hash)
-        entry.seki = Edict.seki(entry)
+        entry.eigoc = Edict__.eigoc(entry)
+        entry.alts = Edict__.alts(entry, expr_hash, kana_hash)
+        entry.seki = Edict__.seki(entry)
         pr.tick
       end
     end
@@ -119,18 +120,18 @@ private
     FileUtils.mv "#{$RES_DIR}/dict/edict.sqlite.tmp", "#{$RES_DIR}/dict/edict.sqlite"
   end
 
-  def Edict.load!
-    print "Loading Edict... "
+  def Edict__.load!
+    print "Loading Edict__... "
     if !File.exist? "#{$RES_DIR}/dict/edict.sqlite"
-      Edict.create_sqlite
+      Edict__.create_sqlite
     end
     @@db = SQLite3::Database.new("#{$RES_DIR}/dict/edict.sqlite", {flags: SQLite3::Constants::Open::READONLY})
-    puts "#{Edict.size} entries in edict.sqlite"
+    puts "#{Edict__.size} entries in edict.sqlite"
   end
 
 private
 
-  def Edict.eigoc(entry)
+  def Edict__.eigoc(entry)
     eigo = entry.eigo.dup
     eigo.scan(/\(.+?\)/).each do |part|
       if part[1..-2].split(',').all? {|p| @@markers.include? p}
@@ -141,7 +142,7 @@ private
     eigo.split('/').delete_if {|x| x.empty?}.map {|x| x[0..0]==' ' ? x[1..-1] : x}.join('; ')
   end
 
-  def Edict.alts(entry, expr_hash, kana_hash)
+  def Edict__.alts(entry, expr_hash, kana_hash)
     # find alternate kana for [expr,eigoc] (if any), and alternate expr's for [kana,eigoc] (if any)
     # result is an array of two arrays of strings; non-priority strings prefixed with '~'
     # e.g. for 言う いう returns: [["ゆう"], ["~謂う","~云う"]]
@@ -158,7 +159,7 @@ private
     ]
   end
 
-  def Edict.seki(entry)
+  def Edict__.seki(entry)
     Yomi.parse(entry)
   end
 
@@ -194,6 +195,6 @@ public
 
 #-----
 
-  Edict.load!
+  Edict__.load!
 
-end # module Edict
+end # module Edict__

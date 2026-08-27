@@ -22,8 +22,8 @@ module Yomi
 
     moji = expr[0]
 
-    if moji.kanji?
-      yomi_all = Kanjidic.yomi(moji).map do |y|
+    if Dict.kanjidic_kanji? moji
+      yomi_all = Dict.kanjidic_yomi(moji).map do |y|
         y.split('.')[0]
       end.partition do |y|
         y.kat?
@@ -49,7 +49,7 @@ module Yomi
 
       yomivar = [yomi]
 
-      if moji.kanji?
+      if Dict.kanjidic_kanji? moji
         yomivar += rendakuh(yomi) unless arr.size==0 #first char
         yomivar += rendakut(yomi) unless expr.size==1 #last char
         yomivar.uniq!
