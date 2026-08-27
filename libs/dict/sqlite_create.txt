@@ -1,4 +1,4 @@
-CREATE TABLE kanji (
+CREATE TABLE kanjidic (
     id INT PRIMARY KEY,
     kanji TEXT,
     eigo TEXT,
@@ -6,7 +6,7 @@ CREATE TABLE kanji (
     stroke_count INT
 );
 
-CREATE INDEX idx_kanji_kanji ON kanji(kanji);
+CREATE INDEX idx_kanji_kanji ON kanjidic(kanji);
 
 CREATE TABLE yomi (
     id INT PRIMARY KEY,
@@ -15,13 +15,13 @@ CREATE TABLE yomi (
 
 CREATE TABLE j_kanji_yomi (
     id INT,
-    kanji_id INT,
+    kanjidic_id INT,
     yomi_id INT,
-    PRIMARY KEY (id, kanji_id, yomi_id)
-    FOREIGN KEY (kanji_id) REFERENCES kanji(id),
+    PRIMARY KEY (id, kanjidic_id, yomi_id)
+    FOREIGN KEY (kanjidic_id) REFERENCES kanjidic(id),
     FOREIGN KEY (yomi_id) REFERENCES yomi(id),
     UNIQUE (id),
-    UNIQUE (kanji_id, yomi_id)
+    UNIQUE (kanjidic_id, yomi_id)
 );
 
 ----

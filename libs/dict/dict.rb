@@ -14,12 +14,12 @@ module Dict
   JoinChar = Utf8::Space
 
   def Dict.kanjidic_size
-    res = @@db.execute "SELECT COUNT(*) FROM kanji"
+    res = @@db.execute "SELECT COUNT(*) FROM kanjidic"
     res[0][0].to_i
   end
 
   def Dict.kanjidic_kanji?(k)
-    res = @@db.execute "SELECT * FROM kanji WHERE kanji='#{k}'"
+    res = @@db.execute "SELECT * FROM kanjidic WHERE kanji='#{k}'"
     res.count == 1
   end
   
@@ -28,8 +28,8 @@ module Dict
 SELECT yomi.yomi
 FROM yomi
 JOIN j_kanji_yomi ON yomi.id = j_kanji_yomi.yomi_id
-JOIN kanji ON kanji.id = j_kanji_yomi.kanji_id
-WHERE kanji.kanji = '#{k}'
+JOIN kanjidic ON kanjidic.id = j_kanji_yomi.kanjidic_id
+WHERE kanjidic.kanji = '#{k}'
     SQL
     res.flatten
   end
@@ -82,18 +82,18 @@ private
     Progress.new do |pr|
       lines = Utf8.readlines("#{$RES_DIR}/dict/kanjidic",'euc-jp')
 
-      kanji_id = 1
+      kanjidic_id = 1
       j_kanji_yomi_id = 1
       yomi_ids = Hash.new
 
       lines[1..-1].each do |line|
         id, kanji, eigo, heisig, stroke_count =
-          kanji_id,
+          kanjidic_id,
           line.split(' ')[0],
           Dict.kanjidic_eigo_(line).map {|e| e.gsub("'","''")}.to_json,
           Dict.kanjidic_heisig_(line),
           Dict.kanjidic_stroke_count_(line)
-        @@db.execute "INSERT INTO kanji VALUES ('#{id}', '#{kanji}', '#{eigo}', '#{heisig}', '#{stroke_count}')"
+        @@db.execute "INSERT INTO kanjidic VALUES ('#{id}', '#{kanji}', '#{eigo}', '#{heisig}', '#{stroke_count}')"
 
         Dict.kanjidic_yomi_(line).each do |yomi|
           unless yomi_ids.has_key?(yomi)
@@ -104,11 +104,11 @@ private
           id, yomi_id =
             j_kanji_yomi_id,
             yomi_ids[yomi]
-          @@db.execute "INSERT INTO j_kanji_yomi VALUES ('#{id}', '#{kanji_id}', '#{yomi_id}')"
+          @@db.execute "INSERT INTO j_kanji_yomi VALUES ('#{id}', '#{kanjidic_id}', '#{yomi_id}')"
           j_kanji_yomi_id += 1
         end
 
-        kanji_id += 1
+        kanjidic_id += 1
         pr.tick
       end
     end
