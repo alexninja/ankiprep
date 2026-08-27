@@ -72,63 +72,13 @@ private
 
     FileUtils.rm_f "#{$RES_DIR}/dict/dict.sqlite.tmp"
     @@db = SQLite3::Database.new("#{$RES_DIR}/dict/dict.sqlite.tmp")
-    # p File.read("../libs/dict/sqlite_create.txt").gsub("\n",'').gsub("\t",'')
-    # exit
-    @@db.execute_batch <<-SQL
-CREATE TABLE kanji (
-    id INT PRIMARY KEY,
-    kanji TEXT,
-    eigo TEXT,
-    heisig INT,
-    stroke_count INT
-);
-
-CREATE INDEX idx_kanji_kanji ON kanji(kanji);
-
-CREATE TABLE yomi (
-    id INT PRIMARY KEY,
-    yomi TEXT
-);
-
-CREATE TABLE edict (
-    id INT PRIMARY KEY,
-    expr TEXT,
-    kana TEXT,
-    eigo TEXT,
-    eigoc TEXT,
-    alts TEXT,
-    seki TEXT
-);
-
-CREATE INDEX idx_edict_expr ON edict(expr);
-
-CREATE TABLE j_kanji_yomi (
-    id INT,
-    kanji_id INT,
-    yomi_id INT,
-    PRIMARY KEY (id, kanji_id, yomi_id)
-    FOREIGN KEY (kanji_id) REFERENCES kanji(id),
-    FOREIGN KEY (yomi_id) REFERENCES yomi(id),
-    UNIQUE (id),
-    UNIQUE (kanji_id, yomi_id)
-);
-
-CREATE TABLE j_edict (
-    edict_id INT,
-    j_kanji_yomi_id INT,
-    PRIMARY KEY (edict_id, j_kanji_yomi_id),
-    FOREIGN KEY (edict_id) REFERENCES edict(id),
-    FOREIGN KEY (j_kanji_yomi_id) REFERENCES j_kanji_yomi(id)
-);
-    SQL
-
-    #File.read("../libs/dict/sqlite_create.txt").gsub("\n",'').gsub("\t",'')
+    @@db.execute_batch File.read("../libs/dict/sqlite_create.txt")
 
     # kanjidic
 
-    @@db.execute "BEGIN"
     print "\n  reading #{$RES_DIR}/dict/kanjidic... "
-    # lines = nil
+
+    @@db.execute "BEGIN"
     Progress.new do |pr|
       lines = Utf8.readlines("#{$RES_DIR}/dict/kanjidic",'euc-jp')
 

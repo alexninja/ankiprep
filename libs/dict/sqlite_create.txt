@@ -1,4 +1,4 @@
-﻿CREATE TABLE kanji (
+CREATE TABLE kanji (
     id INT PRIMARY KEY,
     kanji TEXT,
     eigo TEXT,
