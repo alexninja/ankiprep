@@ -1,4 +1,5 @@
 _res/.marshal/
+_res/.sqlite/
 
 _res/dict/edict.utf8
 _res/dict/edict.sqlite

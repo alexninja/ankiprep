@@ -70,8 +70,9 @@ private
 
   def Dict.create_sqlite
 
-    FileUtils.rm_f "#{$RES_DIR}/dict/dict.sqlite.tmp"
-    @@db = SQLite3::Database.new("#{$RES_DIR}/dict/dict.sqlite.tmp")
+    FileUtils.mkdir_p "#{$RES_DIR}/.sqlite"
+    FileUtils.rm_f "#{$RES_DIR}/.sqlite/dict.sqlite.tmp"
+    @@db = SQLite3::Database.new("#{$RES_DIR}/.sqlite/dict.sqlite.tmp")
     @@db.execute_batch File.read("../libs/dict/sqlite_create.txt")
 
     # kanjidic
@@ -129,7 +130,7 @@ private
 #     SQL
 #     exit
 @@db.close
-FileUtils.mv "#{$RES_DIR}/dict/dict.sqlite.tmp", "#{$RES_DIR}/dict/dict.sqlite"
+FileUtils.mv "#{$RES_DIR}/.sqlite/dict.sqlite.tmp", "#{$RES_DIR}/.sqlite/dict.sqlite"
 exit
 
     # edict
@@ -193,15 +194,15 @@ exit
     @@db.execute "END"
 
     @@db.close #TODO no @@
-    FileUtils.mv "#{$RES_DIR}/dict/dict.sqlite.tmp", "#{$RES_DIR}/dict/dict.sqlite"
+    FileUtils.mv "#{$RES_DIR}/.sqlite/dict.sqlite.tmp", "#{$RES_DIR}/.sqlite/dict.sqlite"
   end
 
   def Dict.load!
     print "Loading dictionaries... "
-    if !File.exist? "#{$RES_DIR}/dict/dict.sqlite"
+    if !File.exist? "#{$RES_DIR}/.sqlite/dict.sqlite"
       Dict.create_sqlite
     end
-    @@db = SQLite3::Database.new("#{$RES_DIR}/dict/dict.sqlite", {flags: SQLite3::Constants::Open::READONLY})
+    @@db = SQLite3::Database.new("#{$RES_DIR}/.sqlite/dict.sqlite", {flags: SQLite3::Constants::Open::READONLY})
   end
 
 private
