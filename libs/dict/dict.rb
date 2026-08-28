@@ -27,15 +27,15 @@ module Dict
   end
   
   def Dict.kanjidic_yomi(k)
-#     res = @@db.execute <<-SQL
-# SELECT yomi.yomi
-# FROM yomi
-# JOIN j_kanji_yomi ON yomi.id = j_kanji_yomi.yomi_id
-# JOIN kanjidic ON kanjidic.id = j_kanji_yomi.kanjidic_id
-# WHERE kanjidic.kanji = '#{k}'
-#     SQL
-    # res.flatten
-    @@yomi_cache[k] #HACK
+    res = @@db.execute <<-SQL
+SELECT yomi.yomi
+FROM yomi
+JOIN j_kanji_yomi ON yomi.id = j_kanji_yomi.yomi_id
+JOIN kanjidic ON kanjidic.id = j_kanji_yomi.kanjidic_id
+WHERE kanjidic.kanji = '#{k}'
+    SQL
+    res.flatten
+    # @@yomi_cache[k] #HACK
   end
 
   def Dict.edict_size
