@@ -284,7 +284,7 @@
 #endif
 
 #ifdef PROD
-// TODO try inheritance
+/* TODO try inheritance */
   table.wordlist td.expr span.hide-on {
     font-size: 30pt;
     color: white;
