@@ -45,22 +45,20 @@ module Dict
 
   def Dict.edict_each
     res = @@db.execute "SELECT * FROM edict"
-    res.each do |row|
-      entry = Entry.new(row[1], row[2], row[3])
-      entry.eigoc = row[4]
-      entry.alts = JSON::parse(row[5])
-      entry.seki = JSON::parse(row[6])
+    res.each do |id, expr, kana, eigo, prio, alts, seki|
+      entry = Entry.new(expr, kana, eigo, prio)
+      entry.alts = JSON::parse(alts)
+      entry.seki = JSON::parse(seki)
       yield entry
     end
   end
 
   def Dict.edict_lookup(expr)
     res = @@db.execute "SELECT * FROM edict WHERE expr='#{expr}'"
-    res.map do |row|
-      entry = Entry.new(row[1], row[2], row[3])
-      entry.eigoc = row[4]
-      entry.alts = JSON::parse(row[5])
-      entry.seki = JSON::parse(row[6])
+    res.map do |id, expr, kana, eigo, prio, alts, seki|
+      entry = Entry.new(expr, kana, eigo, prio)
+      entry.alts = JSON::parse(alts)
+      entry.seki = JSON::parse(seki)
       entry
     end
   end
@@ -81,12 +79,15 @@ private
 
     # kanjidic
 
-    print "\n  reading #{$RES_DIR}/dict/kanjidic... "
-
-    @@db.execute "BEGIN"
+    print "  reading #{$RES_DIR}/dict/kanjidic... "
+    lines = nil
     Progress.new do |pr|
       lines = Utf8.readlines("#{$RES_DIR}/dict/kanjidic",'euc-jp')
+    end
 
+    print "  writing .sqlite... "
+    @@db.execute "BEGIN"
+    Progress.new(lines.size-1) do |pr|
       kanjidic_id = 1
       j_kanji_yomi_id = 1
       yomi_ids = Hash.new
@@ -141,7 +142,7 @@ private
 
     # edict
 
-    print "\n  reading #{$RES_DIR}/dict/edict... "
+    print "  reading #{$RES_DIR}/dict/edict... "
     lines = nil
     Progress.new do |pr|
       lines = Utf8.readlines("#{$RES_DIR}/dict/edict",'euc-jp')
@@ -158,15 +159,19 @@ private
     Progress.new(lines.size-1) do |pr|
       lines[1..-1].each_with_index do |line,i|
         if m = line.match(/(.+?) \[(.+?)\] (\/.+\/)/)
-          entry = Entry.new(m[1], m[2], m[3])
+          expr, kana, eigo_raw = m[1], m[2], m[3]
         elsif m = line.match(/(.+?) (\/.+\/)/)
-          entry = Entry.new(m[1], m[1], m[2])
+          expr, kana, eigo_raw = m[1], m[1], m[2]
+        else
+          next
         end
-        if entry
-          entries << entry
-          expr_hash[entry.expr] << entry
-          kana_hash[entry.kana] << entry
-        end
+        eigo, prio =
+          Dict.edict_clean_eigo(eigo_raw),
+          eigo_raw.include?('(P)')
+        entry = Entry.new(expr, kana, eigo, prio)
+        entries << entry
+        expr_hash[entry.expr] << entry
+        kana_hash[entry.kana] << entry
         pr.tick
       end
     end
@@ -174,25 +179,25 @@ private
     print "  classifying #{entries.size} entries... "
     Progress.new(entries.size) do |pr|
       entries.each do |entry|
-        entry.eigoc = Dict.edict_eigoc(entry)
         entry.alts = Dict.edict_alts(entry, expr_hash, kana_hash)
         entry.seki = Dict.edict_seki(entry)
         pr.tick
       end
     end
 
+    print "  writing .sqlite... "
     @@db.execute "BEGIN"
     Progress.new(entries.size) do |pr|
       entries.each_with_index do |entry,idx|
-        edict_id, expr, kana, eigo, eigoc, alts, seki =
+        edict_id, expr, kana, eigo, prio, alts, seki =
           idx+1,
           entry.expr,
           entry.kana,
           entry.eigo.gsub("'","''"),
-          entry.eigoc.gsub("'","''"),
+          entry.priority? ? 1:0,
           entry.alts.to_json,
           entry.seki.to_json
-        cmd = "INSERT INTO edict VALUES ('#{id=edict_id}', '#{expr}', '#{kana}', '#{eigo}', '#{eigoc}', '#{alts}', '#{seki}')"
+        cmd = "INSERT INTO edict VALUES ('#{id=edict_id}', '#{expr}', '#{kana}', '#{eigo}', #{prio}, '#{alts}', '#{seki}')"
         @@db.execute cmd
 
         entry.seki.each do |yomi, frag, moji|
@@ -220,7 +225,7 @@ WHERE kanjidic.kanji = '#{moji}' AND yomi.yomi = '#{yomi}'
   end
 
   def Dict.load!
-    print "Loading dictionaries... "
+    puts "Loading dictionaries... "
     if !File.exist? "#{$RES_DIR}/.sqlite/dict.sqlite"
       Dict.create_sqlite
     end
@@ -277,29 +282,29 @@ private
 
   # edict helpers
 
-  def Dict.edict_eigoc(entry)
-    eigo = entry.eigo.dup
-    eigo.scan(/\(.+?\)/).each do |part|
+  def Dict.edict_clean_eigo(eigo_raw)
+    e = eigo_raw.dup
+    e.scan(/\(.+?\)/).each do |part|
       if part[1..-2].split(',').all? {|p| @@markers.include? p}
-        eigo.sub!(part, '')
-        eigo.sub!('  ', ' ')
+        e.sub!(part, '')
+        e.sub!('  ', ' ')
       end
     end
-    eigo.split('/').delete_if {|x| x.empty?}.map {|x| x[0..0]==' ' ? x[1..-1] : x}.join('; ')
+    e.split('/').delete_if {|x| x.empty?}.map {|x| x[0..0]==' ' ? x[1..-1] : x}.join('; ')
   end
 
   def Dict.edict_alts(entry, expr_hash, kana_hash)
-    # find alternate kana for [expr,eigoc] (if any), and alternate expr's for [kana,eigoc] (if any)
+    # find alternate kana for [expr,eigo] (if any), and alternate expr's for [kana,eigo] (if any)
     # result is an array of two arrays of strings; non-priority strings prefixed with '~'
     # e.g. for 言う いう returns: [["ゆう"], ["~謂う","~云う"]]
-    expr, kana, eigoc = entry.expr, entry.kana, entry.eigoc
+    expr, kana, eigo = entry.expr, entry.kana, entry.eigo
     [
       expr_hash[expr].
-        select {|e| e.eigoc == eigoc && e.kana != kana}.
+        select {|e| e.eigo == eigo && e.kana != kana}.
         partition(&:priority?).flatten.
         map {|e| (e.priority?) ? e.kana : '~'+e.kana} ,
       kana_hash[kana].
-        select {|e| e.eigoc == eigoc && e.expr != expr}.
+        select {|e| e.eigo == eigo && e.expr != expr}.
         partition(&:priority?).flatten.
         map {|e| (e.priority?) ? e.expr : '~'+e.expr}
     ]
@@ -315,24 +320,21 @@ public
 
   class Entry
 
-    attr_reader :expr, :kana, :eigo
-    attr_writer :priority, :fake
-    attr_accessor :eigoc, :alts, :seki
+    attr_reader :expr, :kana, :eigo, :priority
+    attr_writer :fake
+    attr_accessor :alts, :seki
 
-    def initialize(expr, kana, eigo)
-      @expr, @kana, @eigo = expr, kana, eigo
+    def initialize(expr, kana, eigo, prio)
+      @expr, @kana, @eigo, @priority = expr, kana, eigo, prio
+      @fake, @alts, @seki = false, nil, nil
       [@expr, @kana, @eigo].each {|v| v.freeze}
-      @priority = @eigo.include? '(P)'
-      @fake = false
-      @eigoc = nil
-      @alts = nil
-      @seki = nil
     end
 
-    def priority?
+    def priority?#TODO rename
       @priority
     end
 
+    #TODO review
     def fake?
       @fake
     end

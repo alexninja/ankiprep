@@ -31,7 +31,7 @@ CREATE TABLE edict (
     expr TEXT,
     kana TEXT,
     eigo TEXT,
-    eigoc TEXT,
+    prio BOOL,
     alts TEXT,
     seki TEXT
 );
