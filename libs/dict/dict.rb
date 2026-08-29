@@ -9,7 +9,7 @@ require 'etc/progress'
 
 module Dict
 
-  @@yomi_cache = Hash.new
+  @@yomi_cache = Hash.new #TODO remove
 
   @@markers = File.readlines(File.dirname(__FILE__)+'/edict_markers.txt').map {|line| line.split[0]}
   (1..100).to_a.each {|x| @@markers << x.to_s}
@@ -46,21 +46,15 @@ WHERE kanjidic.kanji = '#{k}'
 
   def Dict.edict_each
     res = @@db.execute "SELECT * FROM edict"
-    res.each do |id, expr, kana, eigo, prio, alts, seki|
-      entry = Entry.new(expr, kana, eigo, prio)
-      # entry.alts = JSON::parse(alts)
-      # entry.seki = JSON::parse(seki)
-      yield entry
+    res.each do |id, expr, kana, eigo, prio|
+      yield Entry.new(expr, kana, eigo, prio)
     end
   end
 
   def Dict.edict_lookup(expr)
     res = @@db.execute "SELECT * FROM edict WHERE expr='#{expr}'"
-    res.map do |id, expr, kana, eigo, prio, alts, seki|
-      entry = Entry.new(expr, kana, eigo, prio)
-      # entry.alts = JSON::parse(alts)
-      # entry.seki = JSON::parse(seki)
-      entry
+    res.map do |id, expr, kana, eigo, prio|
+      Entry.new(expr, kana, eigo, prio)
     end
   end
 
@@ -141,8 +135,6 @@ private
     @@db.execute "BEGIN"
     Progress.new(lines.size-1) do |pr|
       kanjidic_id = 1
-      j_kanji_yomi_id = 1
-      yomi_ids = Hash.new
 
       lines[1..-1].each do |line|
         id, kanji, eigo, heisig, stroke_count =
@@ -156,34 +148,17 @@ private
         @@yomi_cache[kanji] = Dict.kanjidic_yomi_(line) #HACK
 
         Dict.kanjidic_yomi_(line).each do |yomi|
-          # unless yomi_ids.has_key?(yomi)
-          #   yomi_ids[yomi] = yomi_ids.size+1
-          #   id = yomi_ids[yomi]
-          #   @@db.execute "INSERT INTO yomi VALUES ('#{id}', '#{yomi}')"
-          # end
-          # id, yomi_id =
-          #   j_kanji_yomi_id,
-          #   yomi_ids[yomi]
-          # @@db.execute "INSERT INTO j_kanji_yomi VALUES ('#{id}', '#{kanjidic_id}', '#{yomi_id}')"
-          # j_kanji_yomi_id += 1
-          #
-
           next if yomi.include? '-'
-
           frag, moji = 
             yomi.split('.')[0].to_hir,
             kanji
-
           @@db.execute "INSERT OR IGNORE INTO seki VALUES ('#{yomi}', '#{frag}', '#{moji}')"
-
           Yomi.rendakut(frag).each do |fragt|
             @@db.execute "INSERT OR IGNORE INTO seki VALUES ('#{yomi}', '#{fragt}', '#{moji}')"
           end
-
           Yomi.rendakuh(frag).each do |fragh|
             @@db.execute "INSERT OR IGNORE INTO seki VALUES ('#{yomi}', '#{fragh}', '#{moji}')"
           end
-      
         end
 
         kanjidic_id += 1
@@ -191,24 +166,6 @@ private
       end
     end
     @@db.execute "END"
-
-    # p Dict.kanjidic_yomi('奥') #'鬥'
-    # p Dict.kanjidic_yomi('八')
-    # exit
-
-#     puts @@db.execute <<-SQL
-# SELECT yomi.yomi
-# FROM yomi
-# JOIN j_kanji_yomi ON yomi.id = j_kanji_yomi.yomi_id
-# JOIN kanji ON kanji.id = j_kanji_yomi.kanji_id
-# --where j_kanji_yomi.kanji_id = 3139
-# WHERE kanji.kanji = '八'
-# --ORDER BY yomi.yomi DESC
-#     SQL
-#     exit
-# @@db.close
-# FileUtils.mv "#{$RES_DIR}/.sqlite/dict.sqlite.tmp", "#{$RES_DIR}/.sqlite/dict.sqlite"
-# exit
 
     # edict
 
@@ -221,9 +178,6 @@ private
 
     #File.open($RES_DIR+'/dict/edict.utf8','w') {|f| lines.each {|line| f.puts line}}
 
-    expr_hash = Hash.new {|hh,kk| hh[kk] = []}
-    kana_hash = Hash.new {|hh,kk| hh[kk] = []}
-  
     print "  parsing #{lines.size-1} lines... "
     entries = []
     Progress.new(lines.size-1) do |pr|
@@ -240,51 +194,22 @@ private
           eigo_raw.include?('(P)')
         entry = Entry.new(expr, kana, eigo, prio)
         entries << entry
-        # expr_hash[entry.expr] << entry
-        # kana_hash[entry.kana] << entry
         pr.tick
       end
     end
-
-    # print "  classifying #{entries.size} entries... "
-    # Progress.new(entries.size) do |pr|
-    #   entries.each do |entry|
-    #     entry.alts = Dict.edict_alts(entry, expr_hash, kana_hash)
-    #     entry.seki = Dict.edict_seki(entry)
-    #     pr.tick
-    #   end
-    # end
 
     print "  writing .sqlite... "
     @@db.execute "BEGIN"
     Progress.new(entries.size) do |pr|
       entries.each_with_index do |entry,idx|
-        edict_id, expr, kana, eigo, prio, alts, seki =
+        edict_id, expr, kana, eigo, prio =
           idx+1,
           entry.expr,
           entry.kana,
           entry.eigo.gsub("'","''"),
-          entry.priority? ? 1:0,
-          nil,
-          nil
-        cmd = "INSERT INTO edict VALUES ('#{id=edict_id}', '#{expr}', '#{kana}', '#{eigo}', #{prio}, '#{alts}', '#{seki}')"
+          entry.priority? ? 1:0
+        cmd = "INSERT INTO edict VALUES ('#{id=edict_id}', '#{expr}', '#{kana}', '#{eigo}', #{prio})"
         @@db.execute cmd
-
-#         entry.seki.each do |yomi, frag, moji|
-#           if Dict.kanjidic_kanji? moji
-#             res = @@db.execute <<-SQL
-# SELECT j_kanji_yomi.id
-# FROM yomi
-# JOIN j_kanji_yomi ON j_kanji_yomi.yomi_id = yomi.id
-# JOIN kanjidic ON j_kanji_yomi.kanjidic_id = kanjidic.id
-# WHERE kanjidic.kanji = '#{moji}' AND yomi.yomi = '#{yomi}'
-#             SQL
-#             next unless res[0]
-#             j_kanji_yomi_id = res[0][0]
-#             cmd = "INSERT OR IGNORE INTO j_edict VALUES ('#{edict_id}', '#{j_kanji_yomi_id}')"
-#             @@db.execute cmd
-#           end
-#         end
         pr.tick
       end
     end
@@ -361,27 +286,6 @@ private
       end
     end
     e.split('/').delete_if {|x| x.empty?}.map {|x| x[0..0]==' ' ? x[1..-1] : x}.join('; ')
-  end
-
-  def Dict.edict_alts(entry, expr_hash, kana_hash)
-    # find alternate kana for [expr,eigo] (if any), and alternate expr's for [kana,eigo] (if any)
-    # result is an array of two arrays of strings; non-priority strings prefixed with '~'
-    # e.g. for 言う いう returns: [["ゆう"], ["~謂う","~云う"]]
-    expr, kana, eigo = entry.expr, entry.kana, entry.eigo
-    [
-      expr_hash[expr].
-        select {|e| e.eigo == eigo && e.kana != kana}.
-        partition(&:priority?).flatten.
-        map {|e| (e.priority?) ? e.kana : '~'+e.kana} ,
-      kana_hash[kana].
-        select {|e| e.eigo == eigo && e.expr != expr}.
-        partition(&:priority?).flatten.
-        map {|e| (e.priority?) ? e.expr : '~'+e.expr}
-    ]
-  end
-
-  def Dict.edict_seki(entry)
-    Yomi.parse(entry)
   end
 
 #-----

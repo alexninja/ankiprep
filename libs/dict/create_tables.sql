@@ -40,23 +40,17 @@ CREATE INDEX idx_seki_moji ON seki(moji);
 
 ----
 
-
-
-----
-
 CREATE TABLE edict (
     id INT PRIMARY KEY,
     expr TEXT,
     kana TEXT,
     eigo TEXT,
-    prio BOOL,
-    alts TEXT,
-    seki TEXT
+    prio BOOL
 );
 
 CREATE INDEX idx_edict_expr ON edict(expr);
-CREATE INDEX idx_edict_eigo ON edict(eigo);
 CREATE INDEX idx_edict_kana ON edict(kana);
+CREATE INDEX idx_edict_eigo ON edict(eigo);
 
 CREATE TABLE j_edict (
     edict_id INT,
