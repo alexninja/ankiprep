@@ -36,14 +36,14 @@ module Dict
 
   def Dict.edict_each
     res = @@db.execute "SELECT * FROM edict"
-    res.each do |id, expr, kana, eigo, prio|
+    res.each do |expr, kana, eigo, prio|
       yield Entry.new(expr, kana, eigo, prio)
     end
   end
 
   def Dict.edict_lookup(expr)
     res = @@db.execute "SELECT * FROM edict WHERE expr='#{expr}'"
-    res.map do |id, expr, kana, eigo, prio|
+    res.map do |expr, kana, eigo, prio|
       Entry.new(expr, kana, eigo, prio)
     end
   end
