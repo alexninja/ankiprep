@@ -88,19 +88,19 @@ WHERE kanjidic.kanji = '#{k}'
     end
     # seki_candidates.each {|sc| p sc}
     #exit
-    puts "total #{seki_candidates.map{|sc|sc.size}.inject(0,:+)} seki candidates"
+    # puts "total #{seki_candidates.map{|sc|sc.size}.inject(1,:*)} seki candidates"
     # seki_arr_n = 0
-    rec_seki(seki_candidates, []) do |seki_arr|
-      # seki_arr_n += 1
-      #exit
-      kana = seki_arr.map {|yomi,frag,moji,excl| frag}.join
-      # puts kana
-      entries.each do |entry|
-        if kana == entry.kana
-          seki_arr.each {|s| p s}
-          puts "=> {\"#{entry.expr}\", \"#{entry.kana}\", \"#{entry.eigo}\"}"
-          puts '---'
-        end
+    entries.each do |entry|
+      puts "looking for #{entry.kana}..."
+      rec_seki(seki_candidates, [], entry.kana) do |seki_arr|
+        # seki_arr_n += 1
+        #exit
+        kana = seki_arr.map {|yomi,frag,moji,excl| frag}.join('')
+        raise unless kana == entry.kana
+        puts "===> got #{kana}"
+        seki_arr.each {|s| p s}
+        # puts "{\"#{entry.expr}\", \"#{entry.kana}\", \"#{entry.eigo}\"}"
+        puts '---------'
       end
     end
     # puts "total #{seki_arr_n} seki sets considered"
@@ -108,13 +108,15 @@ WHERE kanjidic.kanji = '#{k}'
 
 private
 
-  def Dict.rec_seki(seki_candidates, seki_arr, &block)
-    if seki_candidates.empty?
+  def Dict.rec_seki(seki_candidates, seki_arr, kana, &block)
+    kana_so_far = seki_arr.map {|yomi,frag,moji,excl| frag}.join('')
+    return if !kana.start_with?(kana_so_far)
+    if kana == kana_so_far
       block.call(seki_arr)
       return
     end
     seki_candidates[0].each do |sc|
-      rec_seki(seki_candidates[1..-1], seki_arr + [sc], &block)
+      rec_seki(seki_candidates[1..-1], seki_arr+[sc], kana, &block)
     end
   end
 
