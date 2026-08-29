@@ -31,11 +31,11 @@ CREATE TABLE j_kanji_yomi_2 (
 );
 
 CREATE TABLE seki (
-    moji TEXT,
     yomi TEXT,
     frag TEXT,
-    expt TEXT,
-    UNIQUE (moji, yomi, frag, expt)
+    moji TEXT,
+    excl TEXT,
+    UNIQUE (yomi, frag, moji, excl)
 );
 CREATE INDEX idx_seki_moji ON seki(moji);
 

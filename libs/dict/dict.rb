@@ -70,7 +70,15 @@ WHERE kanjidic.kanji = '#{k}'
   end
 
   def Dict.seki(expr)
-    seki_candidates = expr.chars.to_a.map do |moji|
+    p expr
+    #for regression checking
+    @@db4 ||= SQLite3::Database.new("#{$RES_DIR}/.sqlite/dict.4.sqlite", {flags: SQLite3::Constants::Open::READONLY})
+    puts "--- (from previous dict4.sqlite) ---------------------------------------------------"
+    puts @@db4.execute "SELECT expr, kana, seki FROM edict WHERE expr='#{expr}'"
+    puts "------------------------------------------------------------------------------------"
+    entries = Dict.edict_lookup(expr)
+    return if entries.empty?
+    seki_candidates = expr.chars.to_a.map.with_index do |moji,idx|
       res = @@db.execute "SELECT * FROM seki WHERE seki.moji = '#{moji}'"
       if res.empty?
         [[moji, moji, moji, '']]
@@ -79,14 +87,23 @@ WHERE kanjidic.kanji = '#{k}'
       end
     end
     # seki_candidates.each {|sc| p sc}
+    #exit
+    puts "total #{seki_candidates.map{|sc|sc.size}.inject(0,:+)} seki candidates"
+    # seki_arr_n = 0
     rec_seki(seki_candidates, []) do |seki_arr|
-      seki_arr.each {|s| p s}
+      # seki_arr_n += 1
       #exit
-      kana = seki_arr.map {|s| s[2]}.join
-      res = @@db.execute "SELECT * FROM edict WHERE expr='#{expr}' and kana='#{kana}'"
-      p res unless res.empty?
-      puts '---'
+      kana = seki_arr.map {|yomi,frag,moji,excl| frag}.join
+      # puts kana
+      entries.each do |entry|
+        if kana == entry.kana
+          seki_arr.each {|s| p s}
+          puts "=> {\"#{entry.expr}\", \"#{entry.kana}\", \"#{entry.eigo}\"}"
+          puts '---'
+        end
+      end
     end
+    # puts "total #{seki_arr_n} seki sets considered"
   end
 
 private
@@ -151,19 +168,20 @@ private
 
           next if yomi.include? '-'
 
-          frag, tail = yomi.split('.').map(&:to_hir)
-          if tail
-            @@db.execute "INSERT OR IGNORE INTO seki VALUES ('#{kanji}', '#{yomi}', '#{frag}', 'L')"
-          else
-            @@db.execute "INSERT OR IGNORE INTO seki VALUES ('#{kanji}', '#{yomi}', '#{frag}', '_')"
-            Yomi.rendakuh(frag).each do |fragh|
-              @@db.execute "INSERT OR IGNORE INTO seki VALUES ('#{kanji}', '#{yomi}', '#{fragh}', 'F')"
-            end
-            Yomi.rendakut(frag).each do |fragt|
-              @@db.execute "INSERT OR IGNORE INTO seki VALUES ('#{kanji}', '#{yomi}', '#{fragt}', 'L')"
-            end
+          frag, moji = 
+            yomi.split('.')[0].to_hir,
+            kanji
+
+          @@db.execute "INSERT OR IGNORE INTO seki VALUES ('#{yomi}', '#{frag}', '#{moji}', '')"
+
+          Yomi.rendakut(frag).each do |fragt|
+            @@db.execute "INSERT OR IGNORE INTO seki VALUES ('#{yomi}', '#{fragt}', '#{moji}', 'L')"
           end
-        
+
+          Yomi.rendakuh(frag).each do |fragh|
+            @@db.execute "INSERT OR IGNORE INTO seki VALUES ('#{yomi}', '#{fragh}', '#{moji}', 'F')"
+          end
+      
         end
 
         kanjidic_id += 1
