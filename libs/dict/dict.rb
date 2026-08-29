@@ -125,16 +125,14 @@ private
     print "  writing .sqlite... "
     @@db.execute "BEGIN"
     Progress.new(lines.size-1) do |pr|
-      kanjidic_id = 1 #TODO remove
-
       lines[1..-1].each do |line|
-        id, moji, eigo, heisig, stroke_count =
-          kanjidic_id,
+
+        moji, eigo, heisig, stroke_count =
           line.split(' ')[0],
           Dict.kanjidic_eigo_from_line(line).map {|e| e.gsub("'","''")}.to_json,
           Dict.kanjidic_heisig_from_line(line),
           Dict.kanjidic_stroke_count_from_line(line)
-        @@db.execute "INSERT INTO kanji VALUES ('#{id}', '#{moji}', '#{eigo}', '#{heisig}', '#{stroke_count}')"
+        @@db.execute "INSERT INTO kanji VALUES ('#{moji}', '#{eigo}', '#{heisig}', '#{stroke_count}')"
 
         Dict.kanjidic_yomi_from_line(line).each do |yomi|
           next if yomi.include? '-'
@@ -148,7 +146,6 @@ private
           end
         end
 
-        kanjidic_id += 1
         pr.tick
       end
     end
@@ -186,15 +183,13 @@ private
     print "  writing .sqlite... "
     @@db.execute "BEGIN"
     Progress.new(entries.size) do |pr|
-      entries.each_with_index do |entry,idx|
-        edict_id, expr, kana, eigo, prio =
-          idx+1,
+      entries.each do |entry|
+        expr, kana, eigo, prio =
           entry.expr,
           entry.kana,
           entry.eigo.gsub("'","''"),
           entry.priority? ? 1:0
-        cmd = "INSERT INTO edict VALUES ('#{id=edict_id}', '#{expr}', '#{kana}', '#{eigo}', #{prio})"
-        @@db.execute cmd
+        @@db.execute "INSERT OR IGNORE INTO edict VALUES ('#{expr}', '#{kana}', '#{eigo}', #{prio})"
         pr.tick
       end
     end
