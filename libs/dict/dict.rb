@@ -135,6 +135,8 @@ private
         @@db.execute "INSERT INTO kanji VALUES ('#{moji}', '#{eigo}', '#{heisig}', '#{stroke_count}')"
 
         Dict.kanjidic_yomi_from_line(line).each do |yomi|
+          @@db.execute "INSERT OR IGNORE INTO yomi VALUES ('#{yomi}', '#{moji}')"
+
           next if yomi.include? '-'
           frag = yomi.split('.')[0].to_hir
           @@db.execute "INSERT OR IGNORE INTO seki VALUES ('#{yomi}', '#{frag}', '#{moji}')"
