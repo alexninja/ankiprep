@@ -131,12 +131,12 @@ private
         id, moji, eigo, heisig, stroke_count =
           kanjidic_id,
           line.split(' ')[0],
-          Dict.kanjidic_eigo_(line).map {|e| e.gsub("'","''")}.to_json,
-          Dict.kanjidic_heisig_(line),
-          Dict.kanjidic_stroke_count_(line)
+          Dict.kanjidic_eigo_from_line(line).map {|e| e.gsub("'","''")}.to_json,
+          Dict.kanjidic_heisig_from_line(line),
+          Dict.kanjidic_stroke_count_from_line(line)
         @@db.execute "INSERT INTO kanji VALUES ('#{id}', '#{moji}', '#{eigo}', '#{heisig}', '#{stroke_count}')"
 
-        Dict.kanjidic_yomi_(line).each do |yomi|
+        Dict.kanjidic_yomi_from_line(line).each do |yomi|
           next if yomi.include? '-'
           frag = yomi.split('.')[0].to_hir
           @@db.execute "INSERT OR IGNORE INTO seki VALUES ('#{yomi}', '#{frag}', '#{moji}')"
@@ -216,11 +216,11 @@ private
 
   # kanjidic helpers
 
-  def Dict.kanjidic_eigo_(line)
+  def Dict.kanjidic_eigo_from_line(line)
     line.scan(/\{.*?\}/).map {|x| x[1..-2]}
   end
 
-  def Dict.kanjidic_yomi_(line)
+  def Dict.kanjidic_yomi_from_line(line)
     yarr = []
     line.split(' ').each do |part|
       yarr << part if part.chars.any? {|x| x.kana?}
@@ -229,7 +229,7 @@ private
     yarr
   end
 
-  def Dict.kanjidic_nanori(k)
+  def Dict.kanjidic_nanori_from_line(line)
     retval = []
     past_T = false
     line.split(' ').each do |part|
@@ -242,7 +242,7 @@ private
     retval
   end
 
-  def Dict.kanjidic_heisig_(line)
+  def Dict.kanjidic_heisig_from_line(line)
     m = line.match(/\sL(\d{1,4})\s/)
     if m
       m[1].to_i
@@ -251,7 +251,7 @@ private
     end
   end
 
-  def Dict.kanjidic_stroke_count_(line)
+  def Dict.kanjidic_stroke_count_from_line(line)
     m = line.match(/\sS(\d{1,2})\s/)
     if m
       m[1].to_i
