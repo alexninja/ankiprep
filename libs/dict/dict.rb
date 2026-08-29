@@ -125,7 +125,7 @@ private
     FileUtils.mkdir_p "#{$RES_DIR}/.sqlite"
     FileUtils.rm_f "#{$RES_DIR}/.sqlite/dict.sqlite.tmp"
     @@db = SQLite3::Database.new("#{$RES_DIR}/.sqlite/dict.sqlite.tmp")
-    @@db.execute_batch File.read("../libs/dict/sqlite_create.txt")
+    @@db.execute_batch File.read("../libs/dict/create_tables.sql")
 
     # kanjidic
 
