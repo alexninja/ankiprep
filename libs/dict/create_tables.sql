@@ -1,11 +1,11 @@
-CREATE TABLE kanjidic (
+CREATE TABLE kanji (
     id INT PRIMARY KEY,
-    kanji TEXT,
+    moji TEXT,
     eigo TEXT,
     heisig INT,
     stroke_count INT
-); --TODO rename kanji, moji
-CREATE INDEX idx_kanjidic_kanji ON kanjidic(kanji);
+);
+CREATE INDEX idx_kanj_moji ON kanji(moji);
 
 CREATE TABLE seki (
     yomi TEXT,

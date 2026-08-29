@@ -128,19 +128,17 @@ private
       kanjidic_id = 1 #TODO remove
 
       lines[1..-1].each do |line|
-        id, kanji, eigo, heisig, stroke_count =
+        id, moji, eigo, heisig, stroke_count =
           kanjidic_id,
           line.split(' ')[0],
           Dict.kanjidic_eigo_(line).map {|e| e.gsub("'","''")}.to_json,
           Dict.kanjidic_heisig_(line),
           Dict.kanjidic_stroke_count_(line)
-        @@db.execute "INSERT INTO kanjidic VALUES ('#{id}', '#{kanji}', '#{eigo}', '#{heisig}', '#{stroke_count}')"
+        @@db.execute "INSERT INTO kanji VALUES ('#{id}', '#{moji}', '#{eigo}', '#{heisig}', '#{stroke_count}')"
 
         Dict.kanjidic_yomi_(line).each do |yomi|
           next if yomi.include? '-'
-          frag, moji = 
-            yomi.split('.')[0].to_hir,
-            kanji
+          frag = yomi.split('.')[0].to_hir
           @@db.execute "INSERT OR IGNORE INTO seki VALUES ('#{yomi}', '#{frag}', '#{moji}')"
           Yomi.rendakut(frag).each do |fragt|
             @@db.execute "INSERT OR IGNORE INTO seki VALUES ('#{yomi}', '#{fragt}', '#{moji}')"
