@@ -9,34 +9,24 @@ require 'etc/progress'
 
 module Dict
 
-  @@yomi_cache = Hash.new #TODO remove
-
   @@markers = File.readlines(File.dirname(__FILE__)+'/edict_markers.txt').map {|line| line.split[0]}
   (1..100).to_a.each {|x| @@markers << x.to_s}
 
   JoinChar = Utf8::Space
 
-  def Dict.kanjidic_size
-    res = @@db.execute "SELECT COUNT(*) FROM kanjidic"
-    res[0][0].to_i
-  end
+  # def Dict.kanjidic_size
+  #   res = @@db.execute "SELECT COUNT(*) FROM kanjidic"
+  #   res[0][0].to_i
+  # end
 
   def Dict.kanjidic_kanji?(k)
-    # res = @@db.execute "SELECT COUNT(*) FROM kanjidic WHERE kanji='#{k}'"
-    # res[0][0].to_i == 1
-    @@yomi_cache.has_key? k #HACK
+    res = @@db.execute "SELECT COUNT(*) FROM seki WHERE seki.moji='#{k}'"
+    res[0][0].to_i > 0
   end
   
   def Dict.kanjidic_yomi(k)
-    res = @@db.execute <<-SQL
-SELECT yomi.yomi
-FROM yomi
-JOIN j_kanji_yomi ON yomi.id = j_kanji_yomi.yomi_id
-JOIN kanjidic ON kanjidic.id = j_kanji_yomi.kanjidic_id
-WHERE kanjidic.kanji = '#{k}'
-    SQL
-    res.flatten
-    # @@yomi_cache[k] #HACK
+    res = @@db.execute "SELECT seki.yomi FROM seki WHERE seki.moji='#{k}'"
+    res.flatten.uniq
   end
 
   def Dict.edict_size
@@ -73,9 +63,9 @@ WHERE kanjidic.kanji = '#{k}'
     return if entries.empty?
     entries.each {|e| puts "{ #{e.expr} #{e.kana} \"#{e.eigo}\" }"}
     seki_candidates = expr.chars.to_a.map.with_index do |moji,idx|
-      res = @@db.execute "SELECT * FROM seki WHERE seki.moji = '#{moji}'"
+      res = @@db.execute "SELECT * FROM seki WHERE seki.moji='#{moji}'"
       if res.empty?
-        [[moji, moji, moji, '']]
+        [[moji, moji, moji]]
       else
         res
       end
@@ -129,12 +119,13 @@ private
     lines = nil
     Progress.new do |pr|
       lines = Utf8.readlines("#{$RES_DIR}/dict/kanjidic",'euc-jp')
+      File.open($RES_DIR+'/dict/kanjidic.utf8','w') {|f| lines.each {|line| f.puts line}}
     end
 
     print "  writing .sqlite... "
     @@db.execute "BEGIN"
     Progress.new(lines.size-1) do |pr|
-      kanjidic_id = 1
+      kanjidic_id = 1 #TODO remove
 
       lines[1..-1].each do |line|
         id, kanji, eigo, heisig, stroke_count =
@@ -144,8 +135,6 @@ private
           Dict.kanjidic_heisig_(line),
           Dict.kanjidic_stroke_count_(line)
         @@db.execute "INSERT INTO kanjidic VALUES ('#{id}', '#{kanji}', '#{eigo}', '#{heisig}', '#{stroke_count}')"
-
-        @@yomi_cache[kanji] = Dict.kanjidic_yomi_(line) #HACK
 
         Dict.kanjidic_yomi_(line).each do |yomi|
           next if yomi.include? '-'
@@ -173,10 +162,8 @@ private
     lines = nil
     Progress.new do |pr|
       lines = Utf8.readlines("#{$RES_DIR}/dict/edict",'euc-jp')
-      #lines = Utf8.readlines("#{$RES_DIR}/dict/edict.utf8")
+      File.open($RES_DIR+'/dict/edict.utf8','w') {|f| lines.each {|line| f.puts line}}
     end
-
-    #File.open($RES_DIR+'/dict/edict.utf8','w') {|f| lines.each {|line| f.puts line}}
 
     print "  parsing #{lines.size-1} lines... "
     entries = []
