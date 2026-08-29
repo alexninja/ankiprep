@@ -70,7 +70,6 @@ WHERE kanjidic.kanji = '#{k}'
   end
 
   def Dict.seki(expr)
-    p expr
     #for regression checking
     @@db4 ||= SQLite3::Database.new("#{$RES_DIR}/.sqlite/dict.4.sqlite", {flags: SQLite3::Constants::Open::READONLY})
     puts "--- (from previous dict4.sqlite) ---------------------------------------------------"
@@ -78,6 +77,7 @@ WHERE kanjidic.kanji = '#{k}'
     puts "------------------------------------------------------------------------------------"
     entries = Dict.edict_lookup(expr)
     return if entries.empty?
+    entries.each {|e| puts "{ #{e.expr} #{e.kana} \"#{e.eigo}\" }"}
     seki_candidates = expr.chars.to_a.map.with_index do |moji,idx|
       res = @@db.execute "SELECT * FROM seki WHERE seki.moji = '#{moji}'"
       if res.empty?
@@ -95,7 +95,7 @@ WHERE kanjidic.kanji = '#{k}'
       rec_seki(seki_candidates, [], entry.kana) do |seki_arr|
         # seki_arr_n += 1
         #exit
-        kana = seki_arr.map {|yomi,frag,moji,excl| frag}.join('')
+        kana = seki_arr.map {|yomi,frag,moji| frag}.join('')
         raise unless kana == entry.kana
         puts "===> got #{kana}"
         seki_arr.each {|s| p s}
@@ -109,7 +109,7 @@ WHERE kanjidic.kanji = '#{k}'
 private
 
   def Dict.rec_seki(seki_candidates, seki_arr, kana, &block)
-    kana_so_far = seki_arr.map {|yomi,frag,moji,excl| frag}.join('')
+    kana_so_far = seki_arr.map {|yomi,frag,moji| frag}.join('')
     return if !kana.start_with?(kana_so_far)
     if kana == kana_so_far
       block.call(seki_arr)
@@ -174,14 +174,14 @@ private
             yomi.split('.')[0].to_hir,
             kanji
 
-          @@db.execute "INSERT OR IGNORE INTO seki VALUES ('#{yomi}', '#{frag}', '#{moji}', '')"
+          @@db.execute "INSERT OR IGNORE INTO seki VALUES ('#{yomi}', '#{frag}', '#{moji}')"
 
           Yomi.rendakut(frag).each do |fragt|
-            @@db.execute "INSERT OR IGNORE INTO seki VALUES ('#{yomi}', '#{fragt}', '#{moji}', 'L')"
+            @@db.execute "INSERT OR IGNORE INTO seki VALUES ('#{yomi}', '#{fragt}', '#{moji}')"
           end
 
           Yomi.rendakuh(frag).each do |fragh|
-            @@db.execute "INSERT OR IGNORE INTO seki VALUES ('#{yomi}', '#{fragh}', '#{moji}', 'F')"
+            @@db.execute "INSERT OR IGNORE INTO seki VALUES ('#{yomi}', '#{fragh}', '#{moji}')"
           end
       
         end

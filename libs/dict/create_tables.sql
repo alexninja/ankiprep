@@ -34,8 +34,7 @@ CREATE TABLE seki (
     yomi TEXT,
     frag TEXT,
     moji TEXT,
-    excl TEXT,
-    UNIQUE (yomi, frag, moji, excl)
+    UNIQUE (yomi, frag, moji)
 );
 CREATE INDEX idx_seki_moji ON seki(moji);
 
