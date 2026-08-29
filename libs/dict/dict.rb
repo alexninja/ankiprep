@@ -3,6 +3,7 @@ require 'sqlite3'
 require 'json'
 require 'dict/kana'
 require 'dict/yomi/parse'
+require 'dict/yomi/rendaku'
 require 'etc/progress'
 
 
@@ -47,8 +48,8 @@ WHERE kanjidic.kanji = '#{k}'
     res = @@db.execute "SELECT * FROM edict"
     res.each do |id, expr, kana, eigo, prio, alts, seki|
       entry = Entry.new(expr, kana, eigo, prio)
-      entry.alts = JSON::parse(alts)
-      entry.seki = JSON::parse(seki)
+      # entry.alts = JSON::parse(alts)
+      # entry.seki = JSON::parse(seki)
       yield entry
     end
   end
@@ -57,8 +58,8 @@ WHERE kanjidic.kanji = '#{k}'
     res = @@db.execute "SELECT * FROM edict WHERE expr='#{expr}'"
     res.map do |id, expr, kana, eigo, prio, alts, seki|
       entry = Entry.new(expr, kana, eigo, prio)
-      entry.alts = JSON::parse(alts)
-      entry.seki = JSON::parse(seki)
+      # entry.alts = JSON::parse(alts)
+      # entry.seki = JSON::parse(seki)
       entry
     end
   end
@@ -66,6 +67,38 @@ WHERE kanjidic.kanji = '#{k}'
   def Dict.edict_contains?(expr)
     res = @@db.execute "SELECT * FROM edict WHERE expr='#{expr}'"
     !res.empty?
+  end
+
+  def Dict.seki(expr)
+    seki_candidates = expr.chars.to_a.map do |moji|
+      res = @@db.execute "SELECT * FROM seki WHERE seki.moji = '#{moji}'"
+      if res.empty?
+        [[moji, moji, moji, '']]
+      else
+        res
+      end
+    end
+    # seki_candidates.each {|sc| p sc}
+    rec_seki(seki_candidates, []) do |seki_arr|
+      seki_arr.each {|s| p s}
+      #exit
+      kana = seki_arr.map {|s| s[2]}.join
+      res = @@db.execute "SELECT * FROM edict WHERE expr='#{expr}' and kana='#{kana}'"
+      p res unless res.empty?
+      puts '---'
+    end
+  end
+
+private
+
+  def Dict.rec_seki(seki_candidates, seki_arr, &block)
+    if seki_candidates.empty?
+      block.call(seki_arr)
+      return
+    end
+    seki_candidates[0].each do |sc|
+      rec_seki(seki_candidates[1..-1], seki_arr + [sc], &block)
+    end
   end
 
 private
@@ -104,16 +137,33 @@ private
         @@yomi_cache[kanji] = Dict.kanjidic_yomi_(line) #HACK
 
         Dict.kanjidic_yomi_(line).each do |yomi|
-          unless yomi_ids.has_key?(yomi)
-            yomi_ids[yomi] = yomi_ids.size+1
-            id = yomi_ids[yomi]
-            @@db.execute "INSERT INTO yomi VALUES ('#{id}', '#{yomi}')"
+          # unless yomi_ids.has_key?(yomi)
+          #   yomi_ids[yomi] = yomi_ids.size+1
+          #   id = yomi_ids[yomi]
+          #   @@db.execute "INSERT INTO yomi VALUES ('#{id}', '#{yomi}')"
+          # end
+          # id, yomi_id =
+          #   j_kanji_yomi_id,
+          #   yomi_ids[yomi]
+          # @@db.execute "INSERT INTO j_kanji_yomi VALUES ('#{id}', '#{kanjidic_id}', '#{yomi_id}')"
+          # j_kanji_yomi_id += 1
+          #
+
+          next if yomi.include? '-'
+
+          frag, tail = yomi.split('.').map(&:to_hir)
+          if tail
+            @@db.execute "INSERT OR IGNORE INTO seki VALUES ('#{kanji}', '#{yomi}', '#{frag}', 'L')"
+          else
+            @@db.execute "INSERT OR IGNORE INTO seki VALUES ('#{kanji}', '#{yomi}', '#{frag}', '_')"
+            Yomi.rendakuh(frag).each do |fragh|
+              @@db.execute "INSERT OR IGNORE INTO seki VALUES ('#{kanji}', '#{yomi}', '#{fragh}', 'F')"
+            end
+            Yomi.rendakut(frag).each do |fragt|
+              @@db.execute "INSERT OR IGNORE INTO seki VALUES ('#{kanji}', '#{yomi}', '#{fragt}', 'L')"
+            end
           end
-          id, yomi_id =
-            j_kanji_yomi_id,
-            yomi_ids[yomi]
-          @@db.execute "INSERT INTO j_kanji_yomi VALUES ('#{id}', '#{kanjidic_id}', '#{yomi_id}')"
-          j_kanji_yomi_id += 1
+        
         end
 
         kanjidic_id += 1
@@ -170,20 +220,20 @@ private
           eigo_raw.include?('(P)')
         entry = Entry.new(expr, kana, eigo, prio)
         entries << entry
-        expr_hash[entry.expr] << entry
-        kana_hash[entry.kana] << entry
+        # expr_hash[entry.expr] << entry
+        # kana_hash[entry.kana] << entry
         pr.tick
       end
     end
 
-    print "  classifying #{entries.size} entries... "
-    Progress.new(entries.size) do |pr|
-      entries.each do |entry|
-        entry.alts = Dict.edict_alts(entry, expr_hash, kana_hash)
-        entry.seki = Dict.edict_seki(entry)
-        pr.tick
-      end
-    end
+    # print "  classifying #{entries.size} entries... "
+    # Progress.new(entries.size) do |pr|
+    #   entries.each do |entry|
+    #     entry.alts = Dict.edict_alts(entry, expr_hash, kana_hash)
+    #     entry.seki = Dict.edict_seki(entry)
+    #     pr.tick
+    #   end
+    # end
 
     print "  writing .sqlite... "
     @@db.execute "BEGIN"
@@ -195,26 +245,26 @@ private
           entry.kana,
           entry.eigo.gsub("'","''"),
           entry.priority? ? 1:0,
-          entry.alts.to_json,
-          entry.seki.to_json
+          nil,
+          nil
         cmd = "INSERT INTO edict VALUES ('#{id=edict_id}', '#{expr}', '#{kana}', '#{eigo}', #{prio}, '#{alts}', '#{seki}')"
         @@db.execute cmd
 
-        entry.seki.each do |yomi, frag, moji|
-          if Dict.kanjidic_kanji? moji
-            res = @@db.execute <<-SQL
-SELECT j_kanji_yomi.id
-FROM yomi
-JOIN j_kanji_yomi ON j_kanji_yomi.yomi_id = yomi.id
-JOIN kanjidic ON j_kanji_yomi.kanjidic_id = kanjidic.id
-WHERE kanjidic.kanji = '#{moji}' AND yomi.yomi = '#{yomi}'
-            SQL
-            next unless res[0]
-            j_kanji_yomi_id = res[0][0]
-            cmd = "INSERT OR IGNORE INTO j_edict VALUES ('#{edict_id}', '#{j_kanji_yomi_id}')"
-            @@db.execute cmd
-          end
-        end
+#         entry.seki.each do |yomi, frag, moji|
+#           if Dict.kanjidic_kanji? moji
+#             res = @@db.execute <<-SQL
+# SELECT j_kanji_yomi.id
+# FROM yomi
+# JOIN j_kanji_yomi ON j_kanji_yomi.yomi_id = yomi.id
+# JOIN kanjidic ON j_kanji_yomi.kanjidic_id = kanjidic.id
+# WHERE kanjidic.kanji = '#{moji}' AND yomi.yomi = '#{yomi}'
+#             SQL
+#             next unless res[0]
+#             j_kanji_yomi_id = res[0][0]
+#             cmd = "INSERT OR IGNORE INTO j_edict VALUES ('#{edict_id}', '#{j_kanji_yomi_id}')"
+#             @@db.execute cmd
+#           end
+#         end
         pr.tick
       end
     end

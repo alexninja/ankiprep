@@ -24,6 +24,25 @@ CREATE TABLE j_kanji_yomi (
     UNIQUE (kanjidic_id, yomi_id)
 );
 
+CREATE TABLE j_kanji_yomi_2 (
+    kanji TEXT,
+    yomi TEXT,
+    UNIQUE (kanji, yomi)
+);
+
+CREATE TABLE seki (
+    moji TEXT,
+    yomi TEXT,
+    frag TEXT,
+    expt TEXT,
+    UNIQUE (moji, yomi, frag, expt)
+);
+CREATE INDEX idx_seki_moji ON seki(moji);
+
+----
+
+
+
 ----
 
 CREATE TABLE edict (

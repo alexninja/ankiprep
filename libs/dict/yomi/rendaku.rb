@@ -6,23 +6,19 @@ module Yomi
   @rendakut = Hash.new {|h,k| h[k] = []}
 
   readpairs('../libs/dict/yomi/rendakuh.txt').each {|p| @rendakuh[p[0]] << p[1]}
-
   readpairs('../libs/dict/yomi/rendakut.txt').each {|p| @rendakut[p[0]] << p[1]}
 
-  def Yomi.rendaku(yomi)
-    ([yomi] + rendakuh(yomi) + rendakut(yomi)).uniq
+  def Yomi.rendakuh(frag)
+    head = frag[0]
+    tail = frag[1..-1]
+    @rendakuh[head].map {|h| h+tail}
   end
 
-  def Yomi.rendakuh(yomi)
-    head = yomi[0]
-    rest = yomi[1..-1]
-    @rendakuh[head.to_hir].map {|v| v+rest}
-  end
-
-  def Yomi.rendakut(yomi)
-    tail = yomi[-1]
-    strt = yomi[0..-2]
-    @rendakut[tail.to_hir].map {|v| strt+v}
+  def Yomi.rendakut(frag)
+    return [] if frag.length == 1 #TODO see if needed
+    tail = frag[-1]
+    head = frag[0..-2]
+    @rendakut[tail].map {|t| head+t}
   end
 
 end # module
