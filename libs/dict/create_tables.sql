@@ -8,19 +8,11 @@ CREATE TABLE kanji (
 CREATE INDEX idx_kanj_moji ON kanji(moji);
 
 CREATE TABLE yomi (
-    yomi TEXT,
     moji TEXT,
-    UNIQUE (yomi, moji)
+    yomi TEXT,
+    UNIQUE (moji, yomi)
 );
 CREATE INDEX idx_yomi_moji ON yomi(moji);
-
-CREATE TABLE seki (
-    yomi TEXT,
-    frag TEXT,
-    moji TEXT,
-    UNIQUE (yomi, frag, moji)
-);
-CREATE INDEX idx_seki_moji ON seki(moji);
 
 ----
 

@@ -62,29 +62,30 @@ module Dict
     entries = Dict.edict_lookup(expr)
     return if entries.empty?
     entries.each {|e| puts "{ #{e.expr} #{e.kana} \"#{e.eigo}\" }"}
-    seki_candidates = expr.chars.to_a.map.with_index do |moji,idx|
-      res = @@db.execute "SELECT * FROM seki WHERE seki.moji='#{moji}'"
+    seki_candidate_rows = expr.chars.to_a.map.with_index do |moji,i|
+      candidate_row = []
+      res = @@db.execute "SELECT * FROM yomi WHERE yomi.moji='#{moji}'"
       if res.empty?
-        [[moji, moji, moji]]
+        candidate_row << [moji, moji, moji]
       else
-        res
+        res.each do |moji, yomi|
+          frag = yomi.split('.')[0].to_hir
+          candidate_row << [moji, yomi, frag]
+          Yomi.rendakuh(frag).each {|fragh| candidate_row << [moji, yomi, fragh]} unless i == 0
+          Yomi.rendakut(frag).each {|fragt| candidate_row << [moji, yomi, fragt]} unless i == expr.length-1
+        end
       end
+      candidate_row
     end
-    # seki_candidates.each {|sc| p sc}
-    #exit
-    # puts "total #{seki_candidates.map{|sc|sc.size}.inject(1,:*)} seki candidates"
-    # seki_arr_n = 0
+    seki_candidate_rows.each {|scr| p scr}
     entries.each do |entry|
       puts "looking for #{entry.kana}..."
-      rec_seki(seki_candidates, [], entry.kana) do |seki_arr|
-        # seki_arr_n += 1
-        #exit
-        kana = seki_arr.map {|yomi,frag,moji| frag}.join('')
-        raise unless kana == entry.kana
-        puts "===> got #{kana}"
-        seki_arr.each {|s| p s}
+      find_seki_rec(entry.kana, seki_candidate_rows, []) do |accum_seki_arr|
+        raise unless entry.kana == accum_seki_arr.map {|s| s[2]}.join('')
+        puts "===> got:"
+        accum_seki_arr.each {|s| p s}
         # puts "{\"#{entry.expr}\", \"#{entry.kana}\", \"#{entry.eigo}\"}"
-        puts '---------'
+        # puts '---------'
       end
     end
     # puts "total #{seki_arr_n} seki sets considered"
@@ -92,15 +93,15 @@ module Dict
 
 private
 
-  def Dict.rec_seki(seki_candidates, seki_arr, kana, &block)
-    kana_so_far = seki_arr.map {|yomi,frag,moji| frag}.join('')
+  def Dict.find_seki_rec(kana, seki_candidate_rows, accum_seki_arr, &block)
+    kana_so_far = accum_seki_arr.map {|s| s[2]}.join('')
     return if !kana.start_with?(kana_so_far)
     if kana == kana_so_far
-      block.call(seki_arr)
+      block.call(accum_seki_arr)
       return
     end
-    seki_candidates[0].each do |sc|
-      rec_seki(seki_candidates[1..-1], seki_arr+[sc], kana, &block)
+    seki_candidate_rows[0].each do |scr|
+      find_seki_rec(kana, seki_candidate_rows[1..-1], accum_seki_arr+[scr], &block)
     end
   end
 
@@ -126,28 +127,15 @@ private
     @@db.execute "BEGIN"
     Progress.new(lines.size-1) do |pr|
       lines[1..-1].each do |line|
-
-        moji, eigo, heisig, stroke_count =
-          line.split(' ')[0],
+        moji = line.split(' ')[0]
+        eigo, heisig, stroke_count =
           Dict.kanjidic_eigo_from_line(line).map {|e| e.gsub("'","''")}.to_json,
           Dict.kanjidic_heisig_from_line(line),
           Dict.kanjidic_stroke_count_from_line(line)
         @@db.execute "INSERT INTO kanji VALUES ('#{moji}', '#{eigo}', '#{heisig}', '#{stroke_count}')"
-
         Dict.kanjidic_yomi_from_line(line).each do |yomi|
-          @@db.execute "INSERT OR IGNORE INTO yomi VALUES ('#{yomi}', '#{moji}')"
-
-          next if yomi.include? '-'
-          frag = yomi.split('.')[0].to_hir
-          @@db.execute "INSERT OR IGNORE INTO seki VALUES ('#{yomi}', '#{frag}', '#{moji}')"
-          Yomi.rendakut(frag).each do |fragt|
-            @@db.execute "INSERT OR IGNORE INTO seki VALUES ('#{yomi}', '#{fragt}', '#{moji}')"
-          end
-          Yomi.rendakuh(frag).each do |fragh|
-            @@db.execute "INSERT OR IGNORE INTO seki VALUES ('#{yomi}', '#{fragh}', '#{moji}')"
-          end
+          @@db.execute "INSERT OR IGNORE INTO yomi VALUES ('#{moji}', '#{yomi}')"
         end
-
         pr.tick
       end
     end
