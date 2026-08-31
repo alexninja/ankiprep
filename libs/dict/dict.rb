@@ -53,6 +53,27 @@ module Dict
     !res.empty?
   end
 
+  def Dict.alts(expr)
+    res = @@db.execute <<-SQL
+WITH join_result AS (
+  SELECT
+  e1.id AS id1, e1.expr AS expr1, e1.kana AS kana1, e1.eigo AS eigo1, e1.prio AS prio1,
+  e2.id AS id2, e2.expr AS expr2, e2.kana AS kana2, e2.eigo AS eigo2, e2.prio AS prio2
+  FROM edict e1
+  JOIN edict e2
+  ON e1.eigo = e2.eigo
+  --AND e1.id <> e2.id
+  AND e1.expr = '#{expr}'
+  AND (e1.expr = e2.expr OR e1.kana = e2.kana)
+)
+SELECT id1 AS id, expr1 AS expr, kana1 AS kana, eigo1 AS eigo, prio1 AS prio FROM join_result
+UNION
+SELECT id2 AS id, expr2 AS expr, kana2 AS kana, eigo2 AS eigo, prio2 AS prio FROM join_result
+    SQL
+
+  end
+
+
   def Dict.seki(expr)
     #for regression checking
     @@db4 ||= SQLite3::Database.new("#{$RES_DIR}/.sqlite/dict.4.sqlite", {flags: SQLite3::Constants::Open::READONLY})
@@ -179,7 +200,7 @@ private
           entry.kana,
           entry.eigo.gsub("'","''"),
           entry.priority? ? 1:0
-        @@db.execute "INSERT OR IGNORE INTO edict VALUES ('#{expr}', '#{kana}', '#{eigo}', #{prio})"
+        @@db.execute "INSERT OR IGNORE INTO edict(expr, kana, eigo, prio) VALUES ('#{expr}', '#{kana}', '#{eigo}', #{prio})"
         pr.tick
       end
     end

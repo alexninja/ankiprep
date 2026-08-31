@@ -17,6 +17,7 @@ CREATE INDEX idx_yomi_moji ON yomi(moji);
 ----
 
 CREATE TABLE edict (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
     expr TEXT,
     kana TEXT,
     eigo TEXT,
