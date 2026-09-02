@@ -74,15 +74,12 @@ SELECT id2 AS id, expr2 AS expr, kana2 AS kana, eigo2 AS eigo, prio2 AS prio FRO
   end
 
 
-  def Dict.seki(expr)
+  def Dict.seki(expr, kana)
     # #for regression checking
     # @@db4 ||= SQLite3::Database.new("#{$RES_DIR}/.sqlite/dict.4.sqlite", {flags: SQLite3::Constants::Open::READONLY})
     # puts "--- (from previous dict4.sqlite) ---------------------------------------------------"
-    # puts @@db4.execute "SELECT expr, kana, seki FROM edict WHERE expr='#{expr}'"
+    # puts @@db4.execute "SELECT expr, kana, seki FROM edict WHERE expr='#{expr}' AND kana='#{kana}'"
     # puts "------------------------------------------------------------------------------------"
-    entries = Dict.edict_lookup(expr)
-    return nil if entries.empty?
-    # entries.each {|e| puts "{ #{e.expr} #{e.kana} \"#{e.eigo}\" }"}
     seki_candidate_rows = expr.chars.to_a.map.with_index do |moji,i|
       candidate_row = []
       res = @@db.execute "SELECT * FROM yomi WHERE yomi.moji='#{moji}'"
@@ -100,21 +97,20 @@ SELECT id2 AS id, expr2 AS expr, kana2 AS kana, eigo2 AS eigo, prio2 AS prio FRO
       end
       candidate_row
     end
-    # seki_candidate_rows.each {|scr| p scr}
-    entries.each do |entry|
-      # puts "looking for #{entry.kana}..."
-      find_seki_rec(entry.kana, seki_candidate_rows, []) do |accum_seki_arr|
-        raise unless entry.kana == accum_seki_arr.map {|s| s[2]}.join('')
-        # accum_seki_arr.each {|s| p s}
-        return accum_seki_arr
-      end
+    res = []
+    find_seki_rec(kana, seki_candidate_rows, []) do |accum_seki_arr|
+      # accum_seki_arr.each {|s| p s}
+      res << accum_seki_arr
     end
+    res
   end
 
 private
 
   def Dict.find_seki_rec(kana, seki_candidate_rows, accum_seki_arr, &block)
+    # p accum_seki_arr
     kana_so_far = accum_seki_arr.map {|s| s[2]}.join('')
+    # p kana_so_far
     return if !kana.start_with?(kana_so_far)
     if kana == kana_so_far
       block.call(accum_seki_arr)
