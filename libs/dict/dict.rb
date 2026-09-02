@@ -36,14 +36,14 @@ module Dict
 
   def Dict.edict_each
     res = @@db.execute "SELECT * FROM edict"
-    res.each do |expr, kana, eigo, prio|
+    res.each do |id, expr, kana, eigo, prio|
       yield Entry.new(expr, kana, eigo, prio)
     end
   end
 
   def Dict.edict_lookup(expr)
     res = @@db.execute "SELECT * FROM edict WHERE expr='#{expr}'"
-    res.map do |expr, kana, eigo, prio|
+    res.map do |id, expr, kana, eigo, prio|
       Entry.new(expr, kana, eigo, prio)
     end
   end
@@ -75,14 +75,14 @@ SELECT id2 AS id, expr2 AS expr, kana2 AS kana, eigo2 AS eigo, prio2 AS prio FRO
 
 
   def Dict.seki(expr)
-    #for regression checking
-    @@db4 ||= SQLite3::Database.new("#{$RES_DIR}/.sqlite/dict.4.sqlite", {flags: SQLite3::Constants::Open::READONLY})
-    puts "--- (from previous dict4.sqlite) ---------------------------------------------------"
-    puts @@db4.execute "SELECT expr, kana, seki FROM edict WHERE expr='#{expr}'"
-    puts "------------------------------------------------------------------------------------"
+    # #for regression checking
+    # @@db4 ||= SQLite3::Database.new("#{$RES_DIR}/.sqlite/dict.4.sqlite", {flags: SQLite3::Constants::Open::READONLY})
+    # puts "--- (from previous dict4.sqlite) ---------------------------------------------------"
+    # puts @@db4.execute "SELECT expr, kana, seki FROM edict WHERE expr='#{expr}'"
+    # puts "------------------------------------------------------------------------------------"
     entries = Dict.edict_lookup(expr)
-    return if entries.empty?
-    entries.each {|e| puts "{ #{e.expr} #{e.kana} \"#{e.eigo}\" }"}
+    return nil if entries.empty?
+    # entries.each {|e| puts "{ #{e.expr} #{e.kana} \"#{e.eigo}\" }"}
     seki_candidate_rows = expr.chars.to_a.map.with_index do |moji,i|
       candidate_row = []
       res = @@db.execute "SELECT * FROM yomi WHERE yomi.moji='#{moji}'"
@@ -90,26 +90,25 @@ SELECT id2 AS id, expr2 AS expr, kana2 AS kana, eigo2 AS eigo, prio2 AS prio FRO
         candidate_row << [moji, moji, moji]
       else
         res.each do |moji, yomi|
-          frag = yomi.split('.')[0].to_hir
-          candidate_row << [moji, yomi, frag]
-          Yomi.rendakuh(frag).each {|fragh| candidate_row << [moji, yomi, fragh]} unless i == 0
-          Yomi.rendakut(frag).each {|fragt| candidate_row << [moji, yomi, fragt]} unless i == expr.length-1
+          next if yomi.include? '-'
+          stem = yomi.split('.')[0]
+          frag = stem.to_hir
+          candidate_row << [moji, stem, frag]
+          Yomi.rendakuh(frag).each {|fragh| candidate_row << [moji, stem, fragh]} unless i == 0
+          Yomi.rendakut(frag).each {|fragt| candidate_row << [moji, stem, fragt]} unless i == expr.length-1
         end
       end
       candidate_row
     end
-    seki_candidate_rows.each {|scr| p scr}
+    # seki_candidate_rows.each {|scr| p scr}
     entries.each do |entry|
-      puts "looking for #{entry.kana}..."
+      # puts "looking for #{entry.kana}..."
       find_seki_rec(entry.kana, seki_candidate_rows, []) do |accum_seki_arr|
         raise unless entry.kana == accum_seki_arr.map {|s| s[2]}.join('')
-        puts "===> got:"
-        accum_seki_arr.each {|s| p s}
-        # puts "{\"#{entry.expr}\", \"#{entry.kana}\", \"#{entry.eigo}\"}"
-        # puts '---------'
+        # accum_seki_arr.each {|s| p s}
+        return accum_seki_arr
       end
     end
-    # puts "total #{seki_arr_n} seki sets considered"
   end
 
 private
@@ -121,8 +120,8 @@ private
       block.call(accum_seki_arr)
       return
     end
-    seki_candidate_rows[0].each do |scr|
-      find_seki_rec(kana, seki_candidate_rows[1..-1], accum_seki_arr+[scr], &block)
+    seki_candidate_rows[0].each do |sc|
+      find_seki_rec(kana, seki_candidate_rows[1..-1], accum_seki_arr+[sc], &block)
     end
   end
 
