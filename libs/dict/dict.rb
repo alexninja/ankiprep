@@ -189,13 +189,14 @@ private
     print "  writing .sqlite... "
     @@db.execute "BEGIN"
     Progress.new(entries.size) do |pr|
-      entries.each do |entry|
-        expr, kana, eigo, prio =
+      entries.each_with_index do |entry,idx|
+        id, expr, kana, eigo, prio =
+          idx+1,
           entry.expr,
           entry.kana,
           entry.eigo.gsub("'","''"),
           entry.priority? ? 1:0
-        @@db.execute "INSERT OR IGNORE INTO edict(expr, kana, eigo, prio) VALUES ('#{expr}', '#{kana}', '#{eigo}', #{prio})"
+        @@db.execute "INSERT OR IGNORE INTO edict VALUES ('#{id}', '#{expr}', '#{kana}', '#{eigo}', #{prio})"
         pr.tick
       end
     end
