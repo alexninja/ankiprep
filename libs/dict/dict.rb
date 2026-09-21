@@ -80,8 +80,12 @@ SELECT id2 AS id, expr2 AS expr, kana2 AS kana, eigo2 AS eigo, prio2 AS prio FRO
     # puts "--- (from previous dict4.sqlite) ---------------------------------------------------"
     # puts @@db4.execute "SELECT expr, kana, seki FROM edict WHERE expr='#{expr}' AND kana='#{kana}'"
     # puts "------------------------------------------------------------------------------------"
+    prev_moji = nil
     seki_candidate_rows = expr.chars.to_a.map.with_index do |moji,i|
       candidate_row = []
+      if moji == Utf8::Kurikaeshi && prev_moji
+        moji = prev_moji
+      end
       res = @@db.execute "SELECT * FROM yomi WHERE yomi.moji='#{moji}'"
       if res.empty?
         candidate_row << [moji, moji, moji]
@@ -95,6 +99,7 @@ SELECT id2 AS id, expr2 AS expr, kana2 AS kana, eigo2 AS eigo, prio2 AS prio FRO
           Yomi.rendakut(frag).each {|fragt| candidate_row << [moji, stem, fragt]} unless i == expr.length-1
         end
       end
+      prev_moji = moji
       candidate_row
     end
     res = []
